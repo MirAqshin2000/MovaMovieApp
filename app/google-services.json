@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1040919838227",
+    "project_id": "movamovieapp",
+    "storage_bucket": "movamovieapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040919838227:android:04e6b50096a0c54c3449e6",
+        "android_client_info": {
+          "package_name": "com.example.movamovieapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjl2S-5xhYFTpP-qEw1SRi9QCYkl-koE8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
