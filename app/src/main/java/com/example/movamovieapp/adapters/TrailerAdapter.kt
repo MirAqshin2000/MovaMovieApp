@@ -1,5 +1,6 @@
 package com.example.movamovieapp.adapters
 
+import android.util.Log
 import com.example.movamovieapp.databinding.ItemTrailerBinding
 import com.example.movamovieapp.model.Result
 
@@ -8,9 +9,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movamovieapp.model.ResultXX
 import com.example.movamovieapp.model.detail.DetailResponse
+import com.example.movamovieapp.model.video.Video
 
-class TrailerAdapter: RecyclerView.Adapter<TrailerAdapter.TrailerViewHolder>() {
-    private val trailerList = arrayListOf<ResultXX>()
+class TrailerAdapter(): RecyclerView.Adapter<TrailerAdapter.TrailerViewHolder>() {
+    private val trailerList = arrayListOf<Video>()
+
+   lateinit var onItemClick: (Video) -> Unit
 
 
     class TrailerViewHolder(val itemTrailerBinding: ItemTrailerBinding):
@@ -27,11 +31,30 @@ class TrailerAdapter: RecyclerView.Adapter<TrailerAdapter.TrailerViewHolder>() {
 
     override fun onBindViewHolder(holder: TrailerViewHolder, position: Int) {
         val item = trailerList[position]
-holder.itemTrailerBinding.trailer = item
+        holder.itemTrailerBinding.trailer = item
+
+
+        holder.itemTrailerBinding.buttonTest.setOnClickListener {
+            onItemClick.invoke(item)
+            Log.d("VideoKey",item.toString())
+        }
+        holder.itemTrailerBinding.cvTrailer.setOnClickListener {
+            onItemClick.invoke(item)
+            Log.d("VideoKey",item.toString())
+        }
+
+
+
+//        holder.itemTrailerBinding.cvTrailer.setOnClickListener {data->
+//            onItemClick.invoke(item)
+//            Log.d("VideoKey",item.toString())
+//
+//        }
+
 
     }
 
-    fun updateList(newList: List<ResultXX>){
+    fun updateList(newList: List<Video>){
         trailerList.clear()
         trailerList.addAll(newList)
         notifyDataSetChanged()

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.movamovieapp.splash.SplashFragment"
+        android:name="com.example.movamovieapp.screen.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/onboardingFragment"
-        android:name="com.example.movamovieapp.splash.OnboardingFragment"
+        android:name="com.example.movamovieapp.screen.splash.OnboardingFragment"
         android:label="fragment_onboarding"
         tools:layout="@layout/fragment_onboarding" >
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/letsFragment"
-        android:name="com.example.movamovieapp.login.LetsFragment"
+        android:name="com.example.movamovieapp.screen.login.LetsFragment"
         android:label="fragment_lets"
         tools:layout="@layout/fragment_lets" >
         <action
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.movamovieapp.home.HomeFragment"
+        android:name="com.example.movamovieapp.screen.home.HomeFragment"
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
@@ -60,7 +60,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.movamovieapp.login.RegisterFragment"
+        android:name="com.example.movamovieapp.screen.login.RegisterFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -72,7 +72,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.movamovieapp.login.LoginFragment"
+        android:name="com.example.movamovieapp.screen.login.LoginFragment"
         android:label="LoginFragment" >
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
@@ -83,7 +83,7 @@
     </fragment>
     <fragment
         android:id="@+id/viewAllFragment"
-        android:name="com.example.movamovieapp.home.ViewAllFragment"
+        android:name="com.example.movamovieapp.screen.home.ViewAllFragment"
         android:label="fragment_view_all"
         tools:layout="@layout/fragment_view_all" >
 
@@ -96,7 +96,7 @@
     </fragment>
     <fragment
         android:id="@+id/exploreFragment"
-        android:name="com.example.movamovieapp.explore.ExploreFragment"
+        android:name="com.example.movamovieapp.screen.explore.ExploreFragment"
         android:label="fragment_explore"
         tools:layout="@layout/fragment_explore" >
         <action
@@ -110,7 +110,7 @@
         tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.movamovieapp.detail.DetailFragment"
+        android:name="com.example.movamovieapp.screen.detail.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
         <argument
@@ -124,6 +124,6 @@
         tools:layout="@layout/fragment_comment" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.movamovieapp.profile.ProfileFragment"
+        android:name="com.example.movamovieapp.screen.profile.ProfileFragment"
         android:label="ProfileFragment" />
 </navigation>

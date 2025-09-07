@@ -1,15 +1,13 @@
-package com.example.movamovieapp.home
+package com.example.movamovieapp.screen.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.movamovieapp.R
 import com.example.movamovieapp.adapters.FilmsAdapter
 import com.example.movamovieapp.databinding.FragmentViewAllBinding
 import com.example.movamovieapp.enum1.CategoryMovie

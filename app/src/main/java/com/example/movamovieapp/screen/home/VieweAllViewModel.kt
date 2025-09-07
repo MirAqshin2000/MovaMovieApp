@@ -1,4 +1,4 @@
-package com.example.movamovieapp.home
+package com.example.movamovieapp.screen.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

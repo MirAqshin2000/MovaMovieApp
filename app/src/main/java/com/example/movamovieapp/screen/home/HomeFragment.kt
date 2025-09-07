@@ -1,18 +1,14 @@
-package com.example.movamovieapp.home
+package com.example.movamovieapp.screen.home
 
-import android.R.attr.action
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.mova.base.BaseFragment
 import com.example.movamovieapp.adapters.FilmsAdapter
 import com.example.movamovieapp.databinding.FragmentHomeBinding
-import com.example.movamovieapp.model.Result
-import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

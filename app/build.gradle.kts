@@ -107,4 +107,17 @@ dependencies {
 //tablLayout
     implementation ("com.google.android.material:material:1.9.0")
    implementation(  "androidx.core:core-ktx:1.12.0")
+
+
+//    youtube
+
+     implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.1")
+
+
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.31")
+
+
+
+
+
 }

@@ -1,4 +1,4 @@
-package com.example.movamovieapp.explore
+package com.example.movamovieapp.screen.explore
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,14 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.movamovieapp.adapters.MoreLikeAdapter
 import com.example.movamovieapp.databinding.FragmentExploreBinding
 import kotlinx.coroutines.delay
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.example.movamovieapp.adapters.FilmsAdapter
-import com.example.movamovieapp.home.ViewAllFragmentDirections
 import com.example.movamovieapp.util.gone
 import com.example.movamovieapp.util.visible
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,6 +46,7 @@ class ExploreFragment : Fragment() {
         binding.recyclerView2.adapter = adapter
         observe()
 viewModel.getMovie()
+
 
 
 

@@ -1,4 +1,4 @@
-package com.example.movamovieapp.splash
+package com.example.movamovieapp.screen.splash
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class OnboardingFragment : Fragment() {
     private lateinit var binding: FragmentOnboardingBinding
-    val adapter = IntroPagerAdapter()
+    private val adapter = IntroPagerAdapter()
 
 
     override fun onCreateView(
@@ -34,13 +34,7 @@ class OnboardingFragment : Fragment() {
 
         binding.viewPager2.adapter = adapter
 
-        binding.getstardetbutton.setOnClickListener {
 
-            val prefs = SharedPrefManager(requireContext())
-            prefs.setFirstLaunch(false)
-
-            findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToRegisterFragment())
-        }
 
         binding.dotindicator.attachTo(binding.viewPager2)
         val list = listOf(
@@ -60,6 +54,29 @@ class OnboardingFragment : Fragment() {
             ),
         )
         adapter.updateList(list)
+
+        binding.getstardetbutton.setOnClickListener {
+
+            val prefs = SharedPrefManager(requireContext())
+            prefs.setFirstLaunch(false)
+
+            findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToRegisterFragment())
+        }
+
+        binding.getstardetbutton.setOnClickListener {
+            val currentItem = binding.viewPager2.currentItem
+            val lastItem = adapter.itemCount - 1
+            if (currentItem < lastItem) {
+                binding.viewPager2.setCurrentItem(currentItem + 1, true)
+            } else {
+                val prefs = SharedPrefManager(requireContext())
+                prefs.setFirstLaunch(false)
+                findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToRegisterFragment())
+
+            }
+
+        }
+
 
     }
 }

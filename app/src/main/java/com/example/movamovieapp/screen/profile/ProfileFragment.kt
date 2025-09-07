@@ -1,4 +1,4 @@
-package com.example.movamovieapp.profile
+package com.example.movamovieapp.screen.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.example.movamovieapp.R
 import com.example.movamovieapp.databinding.FragmentProfileBinding
 
 

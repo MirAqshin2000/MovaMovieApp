@@ -1,11 +1,10 @@
 package com.example.movamovieapp.api
 
 import com.example.movamovieapp.model.MovaListModel
-import com.example.movamovieapp.model.ResultX
 import com.example.movamovieapp.model.ReviewResponse
-import com.example.movamovieapp.model.TrailerResponse
 import com.example.movamovieapp.model.detail.DetailResponse
 import com.example.movamovieapp.model.detail.credits.CreditResponse
+import com.example.movamovieapp.model.video.VideoResponse
 import com.example.movamovieapp.util.Constants.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET
@@ -63,12 +62,14 @@ interface ApiService {
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String = API_KEY,
         @Query("language") language: String = "en-US"
-    ): TrailerResponse
+    ): VideoResponse
 
     @GET("search/movie")
     suspend fun searchMovies(
         @Query("query") query: String,
         @Query("api_key") apiKey: String = API_KEY
     ): Response<MovaListModel>
+
+
 }
 

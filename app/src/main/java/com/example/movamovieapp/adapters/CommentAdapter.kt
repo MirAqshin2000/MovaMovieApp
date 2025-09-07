@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movamovieapp.databinding.ItemCommentBinding
-import com.example.movamovieapp.model.ResultX
+import com.example.movamovieapp.model.Review
 
 class CommentAdapter : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
-    val list = arrayListOf<ResultX>()
+    val list = arrayListOf<Review>()
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -22,13 +22,14 @@ class CommentAdapter : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() 
     ) {
         val item = list[position]
         holder.itemcommentBinding.comment = item
+        holder.itemcommentBinding.executePendingBindings()
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
 
-    fun updateList(newList: List<ResultX>) {
+    fun updateList(newList: List<Review>) {
         list.clear()
         list.addAll(newList)
         notifyDataSetChanged()

@@ -1,4 +1,4 @@
-package com.example.movamovieapp.login
+package com.example.movamovieapp.screen.login
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

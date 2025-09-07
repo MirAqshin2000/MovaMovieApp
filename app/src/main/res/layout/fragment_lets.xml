@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".login.LetsFragment">
+    tools:context=".screen.login.LetsFragment">
 
     <ImageView
         android:id="@+id/imageView4back"

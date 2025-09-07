@@ -1,5 +1,9 @@
-package com.example.movamovieapp.detail
+package com.example.movamovieapp.screen.detail
 
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,27 +24,24 @@ import com.google.android.material.tabs.TabLayout
 
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
-
 
     private lateinit var binding: FragmentDetailBinding
     private val args by navArgs<DetailFragmentArgs>()
     private val viewModel by viewModels<DetailViewModel>()
 
-
-   private val creditsAdapter = CreditsAdapter()
-    private val commentAdapter=CommentAdapter()
-    private val moreLikeAdapter=MoreLikeAdapter()
-    private val trailerAdapter=TrailerAdapter()
-
-
+    private val creditsAdapter = CreditsAdapter()
+    private val commentAdapter = CommentAdapter()
+    private val moreLikeAdapter = MoreLikeAdapter()
+    private val trailerAdapter = TrailerAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -48,20 +49,39 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        observeData()
-        setupTabLayout()
         binding.rvtrailer.adapter = trailerAdapter
         binding.rvlikemore.adapter = moreLikeAdapter
         binding.rvcomment.adapter = commentAdapter
-
         binding.recyclerView3.adapter = creditsAdapter
 
-    binding.imageView8back.setOnClickListener {
-        findNavController().popBackStack()
+        trailerAdapter.onItemClick = { video ->
+            openYoutube(requireContext(), video.key)
+        }
+
+//        moreLikeAdapter.onItemClickListener = {
+//            val action = DetailFragmentDirections.actionHomFragmentSelf(it.id)
+//            findNavController().navigate(action)
+//        }
+
+//            Log.d("VideoKey",video.toString())
+
+        binding.imageView8back.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        setupTabLayout()
+        observeData()
+
+        // Data çağırışları
+        viewModel.getMovieDetail(args.id)
+        viewModel.getMovieCredits(args.id)
+        viewModel.getComments(args.id)
+        viewModel.getmore()
+        viewModel.getMovieTrailers(args.id)
     }
 
-    }
+
+
     private fun setupTabLayout() {
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -70,14 +90,13 @@ class DetailFragment : Fragment() {
                         binding.rvtrailer.visible()
                         binding.rvlikemore.gone()
                         binding.rvcomment.gone()
-                    }
 
+                    }
                     1 -> {
                         binding.rvtrailer.gone()
                         binding.rvlikemore.visible()
                         binding.rvcomment.gone()
                     }
-
                     2 -> {
                         binding.rvtrailer.gone()
                         binding.rvlikemore.gone()
@@ -90,8 +109,21 @@ class DetailFragment : Fragment() {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
         binding.tabLayout.getTabAt(0)?.select()
-
     }
+
+    private fun openYoutube(context: Context, youtubeKey: String?) {
+        val youtubeAppIntent = Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:$youtubeKey"))
+        val youtubeWebIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=$youtubeKey"))
+
+        try {
+            context.startActivity(youtubeAppIntent)
+        } catch (e: ActivityNotFoundException) {
+            context.startActivity(youtubeWebIntent)
+        }
+    }
+
+
+
     private fun observeData() {
         viewModel.detail.observe(viewLifecycleOwner) {
             binding.detail = it
@@ -100,35 +132,21 @@ class DetailFragment : Fragment() {
         viewModel.error.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
         }
-        viewModel.getMovieDetail(args.id)
 
         viewModel.credits.observe(viewLifecycleOwner) {
             creditsAdapter.updateCredits(it.cast)
         }
-        viewModel.getMovieCredits(args.id)
 
         viewModel.comments.observe(viewLifecycleOwner) {
             commentAdapter.updateList(it)
-
         }
-        viewModel.getComments(args.id)
 
         viewModel.more.observe(viewLifecycleOwner) {
             moreLikeAdapter.updateMore(it)
         }
-        viewModel.getmore()
 
         viewModel.trailer.observe(viewLifecycleOwner) {
             trailerAdapter.updateList(it)
         }
-        viewModel.getMovieTrailers(args.id)
-
-
     }
-
-
-
-
-
-    }
-
+}

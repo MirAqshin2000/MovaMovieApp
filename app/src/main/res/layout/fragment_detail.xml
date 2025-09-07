@@ -15,7 +15,7 @@
     android:layout_width="match_parent"
     android:background="@color/black"
     android:layout_height="match_parent"
-    tools:context=".detail.DetailFragment">
+    tools:context=".screen.detail.DetailFragment">
 
     <ImageView
         android:id="@+id/imageView22"
@@ -28,6 +28,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/imageView8back"
+        android:layout_width="42dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView22"
+        app:srcCompat="@drawable/popstacklef" />
 
     <TextView
         android:id="@+id/textView16"
@@ -111,14 +121,14 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonyear"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="8dp"
         android:backgroundTint="@android:color/transparent"
         android:fontFamily="@font/urbanist_semibold"
         android:minWidth="0dp"
         android:paddingHorizontal="10dp"
-        android:text="@{detail.originalLanguage}"
+        android:text="13+"
         android:textColor="@color/red"
         app:cornerRadius="6dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView19detailyear"
@@ -129,23 +139,46 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonolke"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginStart="12dp"
+        android:layout_margin="10sp"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="@android:color/transparent"
         android:ellipsize="end"
         android:fontFamily="@font/urbanist_semibold"
         android:maxLines="1"
         android:minWidth="0dp"
+        android:textSize="12sp"
         android:paddingHorizontal="10dp"
-        android:text="@{detail.originCountry.toString()}"
+        android:text="United States"
         android:textColor="@color/red"
         app:cornerRadius="6dp"
         app:layout_constraintBottom_toBottomOf="@+id/buttonyear"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonsubtitle"
         app:layout_constraintStart_toEndOf="@+id/buttonyear"
         app:layout_constraintTop_toTopOf="@+id/buttonyear"
+        app:strokeColor="@color/red"
+        app:strokeWidth="1dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonsubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="@android:color/transparent"
+        android:ellipsize="end"
+        android:fontFamily="@font/urbanist_semibold"
+        android:maxLines="1"
+        android:textSize="12dp"
+        android:minWidth="0dp"
+        android:paddingHorizontal="10dp"
+        android:text="Subtitle"
+        android:textColor="@color/red"
+        app:cornerRadius="6dp"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonolke"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonolke"
         app:strokeColor="@color/red"
         app:strokeWidth="1dp" />
 
@@ -159,9 +192,10 @@
         android:backgroundTint="@color/red"
         android:fontFamily="@font/urbanist_bold"
         android:text="Play"
+        android:textSize="16sp"
+    app:iconGravity="textStart"
+
         app:icon="@drawable/play"
-        android:paddingLeft="55dp"
-        android:paddingEnd="66dp"
         app:layout_constraintEnd_toStartOf="@+id/buttonDetailDownload"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonyear" />
@@ -260,20 +294,12 @@
             android:text="More Like This" />
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Comments" />
-    </com.google.android.material.tabs.TabLayout>
 
-    <ImageView
-        android:id="@+id/imageView8back"
-        android:layout_width="42dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView22"
-        app:srcCompat="@drawable/popstacklef" />
+    </com.google.android.material.tabs.TabLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvtrailer"
@@ -282,13 +308,32 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout"
-        tools:listitem="@layout/item_trailer" />
+        tools:listitem="@layout/item_trailer">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvlikemore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+        app:spanCount="2"
+        tools:listitem="@layout/item_more">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvcomment"
@@ -297,30 +342,15 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-
-        android:layout_marginBottom="1dp"
         android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout"
         tools:listitem="@layout/item_comment" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvlikemore"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:visibility="gone"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout"
-        app:spanCount="2"
-        tools:listitem="@layout/item_more" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

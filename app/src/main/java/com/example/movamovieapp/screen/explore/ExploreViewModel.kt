@@ -1,4 +1,4 @@
-package com.example.movamovieapp.explore
+package com.example.movamovieapp.screen.explore
 
 import android.R.attr.id
 import androidx.lifecycle.MutableLiveData
@@ -19,6 +19,7 @@ class ExploreViewModel@Inject constructor(
 
     val allmovies = MutableLiveData<List<Result>>()
     val searchmovie = MutableLiveData<List<Result>>()
+
     val error = MutableLiveData<String>()
     val loading = MutableLiveData<Boolean>()
     val success = MutableLiveData<Boolean>()
@@ -51,7 +52,7 @@ class ExploreViewModel@Inject constructor(
 
     }
     fun getMovie() {
-        viewModelScope.launch {
+        viewModelScope.launch  {
             loading.value = true
             try {
                 repository.getPopularMoviesFlow().collect { response ->
@@ -66,5 +67,7 @@ class ExploreViewModel@Inject constructor(
             }
         }
     }
+
+
 }
 

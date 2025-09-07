@@ -1,4 +1,4 @@
-package com.example.movamovieapp.login
+package com.example.movamovieapp.screen.login
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

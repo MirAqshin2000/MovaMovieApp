@@ -3,7 +3,7 @@ package com.example.movamovieapp.model
 
 import com.google.gson.annotations.SerializedName
 
-data class ResultX(
+data class Review(
     @SerializedName("author")
     val author: String? = "",
     @SerializedName("author_details")

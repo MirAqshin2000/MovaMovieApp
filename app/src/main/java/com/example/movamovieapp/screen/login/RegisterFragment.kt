@@ -1,14 +1,12 @@
-package com.example.movamovieapp.login
+package com.example.movamovieapp.screen.login
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.mova.base.BaseFragment
+import com.example.movamovieapp.R
 import com.example.movamovieapp.databinding.FragmentRegisterBinding
 import com.example.movamovieapp.util.SharedPrefManager
 import com.example.movamovieapp.util.gone
@@ -41,17 +39,33 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT)
                     .show()
+                binding.editLoginemail.error = "Email is required"
+                binding.editLogipassword.error = "Password is required"
+                shakeView(binding.editLoginemail)
+                shakeView(binding.editLogipassword)
+            } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                Toast.makeText(requireContext(), "Invalid email format", Toast.LENGTH_SHORT).show()
+                shakeView(binding.editLoginemail)
+            } else if (password.length < 6) {
+                Toast.makeText(
+                    requireContext(),
+                    "Password must be at least 6 characters",
+                    Toast.LENGTH_SHORT
+                ).show()
+                shakeView(binding.editLogipassword)
             } else {
                 viewModel.registerUser(email, password)
             }
+
+
         }
         binding.checkboxRemember.setOnCheckedChangeListener { _, isChecked ->
             binding.signupregister.isEnabled = isChecked
         }
 
 
-
     }
+
     private fun observe() {
         viewModel.registerUi.observe(viewLifecycleOwner) {
             when (it) {
@@ -63,6 +77,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                     binding.animationView22.gone()
                     Toast.makeText(requireContext(), it.errormessage, Toast.LENGTH_SHORT).show()
                 }
+
                 is RegisterViewModel.RegisterUiState.EmptyFields -> {
                     binding.animationView22.gone()
                     Toast.makeText(requireContext(), it.emptyMessage, Toast.LENGTH_SHORT).show()
@@ -78,13 +93,20 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                         prefs.saveUser(it.email)
 
                     }
-                    Toast.makeText(requireContext(),"Registered: ${it.email}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Registered: ${it.email}", Toast.LENGTH_SHORT)
+                        .show()
                     findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
 
                 }
 
             }
         }
+    }
+
+    private fun shakeView(view: View) {
+        val shake =
+            android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.shake)
+        view.startAnimation(shake)
     }
 }
 

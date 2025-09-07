@@ -1,4 +1,4 @@
-package com.example.movamovieapp.profile
+package com.example.movamovieapp.screen.profile
 
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.LiveData

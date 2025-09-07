@@ -1,4 +1,4 @@
-package com.example.movamovieapp.login
+package com.example.movamovieapp.screen.login
 
 
 sealed class LoginUi {
@@ -6,6 +6,7 @@ sealed class LoginUi {
     data class Success(val successMessage: String) : LoginUi()
     data class Error(val errorMessage: String) : LoginUi()
 }
+
 sealed class RegisterUi {
     object Loading : RegisterUi()
     data class Success(val successMessage: String) : RegisterUi()

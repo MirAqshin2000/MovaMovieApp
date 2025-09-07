@@ -1,4 +1,4 @@
-package com.example.movamovieapp.detail
+package com.example.movamovieapp.screen.detail
 
 
 import androidx.lifecycle.MutableLiveData
@@ -6,11 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movamovieapp.di.MovieRepository
 import com.example.movamovieapp.model.Result
-import com.example.movamovieapp.model.ResultX
-import com.example.movamovieapp.model.ResultXX
-import com.example.movamovieapp.model.TrailerResponse
+import com.example.movamovieapp.model.Review
 import com.example.movamovieapp.model.detail.DetailResponse
 import com.example.movamovieapp.model.detail.credits.CreditResponse
+import com.example.movamovieapp.model.video.Video
 
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -24,9 +23,9 @@ class DetailViewModel @Inject constructor(
     val detail = MutableLiveData<DetailResponse>()
     val error = MutableLiveData<String>()
     val loading = MutableLiveData<Boolean>()
-    val comments = MutableLiveData<List<ResultX>>()
+    val comments = MutableLiveData<List<Review>>()
     val more = MutableLiveData<List<Result>>()
-    val trailer = MutableLiveData<List<ResultXX>>()
+    val trailer = MutableLiveData<List<Video>>()
 
     fun getMovieDetail(id: Int) {
         loading.value = true
@@ -78,7 +77,7 @@ class DetailViewModel @Inject constructor(
                     if (response.isSuccessful) {
                         response.body()?.results?.let {
                             loading.value = false
-                            comments.value = it as List<ResultX>
+                            comments.value = it as List<Review>
                         }
                     }
                 }
@@ -96,8 +95,8 @@ class DetailViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 respository.getTrailerFlow(id).collect { response ->
-                    if (response.results.isNotEmpty()) {
-                        trailer.value = response.results
+                    if (response.results?.isNotEmpty() ?: false) {
+                        trailer.value = response.results as List<Video>
                     }
                 }
             } catch (e: Exception) {
@@ -128,6 +127,8 @@ class DetailViewModel @Inject constructor(
 
         }
     }
+
+
 
 
 }

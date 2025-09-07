@@ -15,7 +15,7 @@
     android:layout_width="match_parent"
     android:background="@color/black"
     android:layout_height="match_parent"
-    tools:context=".home.HomeFragment">
+    tools:context=".screen.home.HomeFragment">
 
     <TextView
         android:id="@+id/textView20"
@@ -64,7 +64,6 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
@@ -170,7 +169,8 @@
         load_url="@{film.posterPath}"
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
+        android:clipToOutline="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -230,11 +230,11 @@
         android:backgroundTint="@color/transparent"
         android:fontFamily="@font/urbanist_bold"
         android:text="@string/my_list"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         app:cornerRadius="100dp"
         app:icon="@drawable/add"
         app:iconSize="15sp"
-        app:iconTint="@color/white"
+        app:iconTint="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/buttonplay2"
         app:layout_constraintStart_toEndOf="@+id/buttonplay2"
         app:layout_constraintTop_toTopOf="@+id/buttonplay2"

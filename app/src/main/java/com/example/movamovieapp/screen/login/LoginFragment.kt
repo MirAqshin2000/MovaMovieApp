@@ -1,10 +1,7 @@
-package com.example.movamovieapp.login
+package com.example.movamovieapp.screen.login
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -38,6 +35,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     }
 
+
     private fun loginClick() {
         binding.signinbuttonlogin.setOnClickListener {
 
@@ -45,14 +43,23 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             val email = binding.editLoginemail.text.toString().trim()
             val password = binding.editLogipassword.text.toString().trim()
 
-            if (email.isNotEmpty() && password.isNotEmpty()) {
-                binding.animationView11.visible()
+
+            if (email.isEmpty() || password.isEmpty()) {
+                binding.editLoginemail.error = "Email is required"
+                binding.editLogipassword.error = "Password is required"
+                shakeView(binding.editLoginemail)
+                shakeView(binding.editLogipassword)
+            }
+            else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                Toast.makeText(requireContext(), "Invalid email format", Toast.LENGTH_SHORT).show()
+                shakeView(binding.editLoginemail)
+
+            }else if (password.length < 6){
+                Toast.makeText(requireContext(), "Password must be at least 6 characters", Toast.LENGTH_SHORT).show()
+                shakeView(binding.editLogipassword)
+            }
+            else {
                 viewModel.loginUser(email, password)
-
-
-            } else {
-                Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT)
-                    .show()
             }
 
         }
@@ -69,35 +76,47 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
                     }
 
+
                 }
 
+
                 is LoginUi.Success -> {
+
                     if (binding.checkboxRemember.isChecked) {
                         val prefs = SharedPrefManager(requireContext())
                         prefs.saveIsLoggedIn(true)
 
                     }
                     binding.animationView11.gone()
-                    Toast.makeText(requireContext(), state.successMessage, Toast.LENGTH_SHORT)
-                        .show()
                     lifecycleScope.launch {
+                        Toast.makeText(requireContext(), state.successMessage, Toast.LENGTH_SHORT)
+                            .show()
+
                         delay(2000)
                         findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
 
 
                     }
 
+
                 }
 
                 is LoginUi.Error -> {
                     binding.animationView11.gone()
-                    Toast.makeText(requireContext(), state.errorMessage, Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(requireContext(), "Email and password are incorrect" , Toast.LENGTH_SHORT).show()
+                    shakeView(binding.editLoginemail)
+                    shakeView(binding.editLogipassword)
                 }
 
 
             }
         }
+    }
+
+    private fun shakeView(view: View) {
+        val shake =
+            android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.shake)
+        view.startAnimation(shake)
     }
 }
 

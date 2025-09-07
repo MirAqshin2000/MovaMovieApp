@@ -16,7 +16,7 @@ class CreditsAdapter : RecyclerView.Adapter<CreditsAdapter.CreditsViewHolder>(){
         parent: ViewGroup,
         viewType: Int
     ): CreditsViewHolder {
- val view=ItemActorsBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+val view = ItemActorsBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return CreditsViewHolder(view)
     }
 
