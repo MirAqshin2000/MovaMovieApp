@@ -27,6 +27,7 @@ lateinit var onItemClickListener: ((Result) -> Unit)
         val item = morelist[position]
         holder.itemMoreBinding.more = item
 
+
         holder.itemMoreBinding.cvMore.setOnClickListener {
             onItemClickListener.invoke(item)
         }

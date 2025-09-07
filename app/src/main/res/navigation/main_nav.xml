@@ -126,4 +126,9 @@
         android:id="@+id/profileFragment"
         android:name="com.example.movamovieapp.screen.profile.ProfileFragment"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/myListFragment2"
+        android:name="com.example.movamovieapp.mylist.MyListFragment"
+        android:label="fragment_my_list"
+        tools:layout="@layout/fragment_my_list" />
 </navigation>

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movamovieapp.di.MovieRepository
+import com.example.movamovieapp.model.MyListModel
 import com.example.movamovieapp.model.Result
 import com.example.movamovieapp.model.Review
 import com.example.movamovieapp.model.detail.DetailResponse
@@ -26,6 +27,7 @@ class DetailViewModel @Inject constructor(
     val comments = MutableLiveData<List<Review>>()
     val more = MutableLiveData<List<Result>>()
     val trailer = MutableLiveData<List<Video>>()
+    val movie= MutableLiveData<Result>()
 
     fun getMovieDetail(id: Int) {
         loading.value = true
@@ -125,6 +127,18 @@ class DetailViewModel @Inject constructor(
                 error.value = e.localizedMessage
             }
 
+        }
+    }
+
+    fun addMovie(movie: MyListModel) {
+        viewModelScope.launch {
+            respository.addMovie(movie)
+        }
+
+    }
+    fun deleteMovie(id: Int) {
+        viewModelScope.launch {
+            respository.deleteMovie(id)
         }
     }
 

@@ -1,7 +1,10 @@
 package com.example.movamovieapp.di
 
 import android.content.Context
+import androidx.room.Room
 import com.example.movamovieapp.api.ApiService
+import com.example.movamovieapp.local.MovieDao
+import com.example.movamovieapp.local.MovieDatabase
 import com.example.movamovieapp.util.Constants.BASE_URL
 import com.example.movamovieapp.util.SharedPrefManager
 import com.google.firebase.auth.FirebaseAuth
@@ -39,18 +42,28 @@ fun providefireBaseAuth() :FirebaseAuth{
         return retrofit.create(ApiService::class.java)
     }
 
-@Singleton
-@Provides
-fun provideMovieRepository(apiService: ApiService): MovieRepository {
-    return MovieRepository(apiService)
-}
+//@Singleton
+//@Provides
+//fun provideMovieRepository(apiService: ApiService): MovieRepository {
+//    return MovieRepository( apiService)
+//}
     @Singleton
     @Provides
     fun provideSharedPrefManager(@ApplicationContext context: Context): SharedPrefManager {
         return SharedPrefManager(context)
     }
 
-
+@Singleton
+@Provides
+fun provideRoom(@ApplicationContext context: Context): MovieDatabase {
+    return Room.databaseBuilder(context, MovieDatabase::class.java, "movie_database")
+        .build()
+}
+    @Singleton
+    @Provides
+    fun MovieDao(movieDatabase: MovieDatabase): MovieDao {
+        return movieDatabase.createMovieDao
+    }
 
 
 

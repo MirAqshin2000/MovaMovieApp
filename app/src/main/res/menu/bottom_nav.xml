@@ -12,6 +12,7 @@
         android:id="@id/exploreFragment"/>
     <item
         android:icon="@drawable/bottom5"
+        android:id="@+id/myListFragment2"
         android:title="My List" />
     <item
         android:icon="@drawable/bottom3"

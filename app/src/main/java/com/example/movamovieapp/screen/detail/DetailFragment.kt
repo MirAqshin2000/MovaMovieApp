@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,11 +14,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.movamovieapp.R
 import com.example.movamovieapp.adapters.CommentAdapter
 import com.example.movamovieapp.adapters.CreditsAdapter
 import com.example.movamovieapp.adapters.MoreLikeAdapter
 import com.example.movamovieapp.adapters.TrailerAdapter
 import com.example.movamovieapp.databinding.FragmentDetailBinding
+import com.example.movamovieapp.model.MyListModel
+import com.example.movamovieapp.mylist.MyListViewModel
 import com.example.movamovieapp.util.gone
 import com.example.movamovieapp.util.visible
 import com.google.android.material.tabs.TabLayout
@@ -36,6 +40,7 @@ class DetailFragment : Fragment() {
     private val commentAdapter = CommentAdapter()
     private val moreLikeAdapter = MoreLikeAdapter()
     private val trailerAdapter = TrailerAdapter()
+    private var isSelected = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,12 +63,7 @@ class DetailFragment : Fragment() {
             openYoutube(requireContext(), video.key)
         }
 
-//        moreLikeAdapter.onItemClickListener = {
-//            val action = DetailFragmentDirections.actionHomFragmentSelf(it.id)
-//            findNavController().navigate(action)
-//        }
 
-//            Log.d("VideoKey",video.toString())
 
         binding.imageView8back.setOnClickListener {
             findNavController().popBackStack()
@@ -78,8 +78,53 @@ class DetailFragment : Fragment() {
         viewModel.getComments(args.id)
         viewModel.getmore()
         viewModel.getMovieTrailers(args.id)
-    }
+        binding.rvtrailer.visible()
+        binding.rvlikemore.gone()
+        binding.rvcomment.gone()
 
+        val sp = requireContext().getSharedPreferences("local_shared", Context.MODE_PRIVATE)
+        isSelected = sp.getBoolean("added_${args.id}", false)
+
+        binding.buttonaddlist.setBackgroundResource(if (isSelected) R.drawable.selectlist else R.drawable.defaultlist)
+
+
+        binding.buttonaddlist.setOnClickListener {
+
+
+            isSelected = !isSelected
+
+
+            binding.buttonaddlist.setBackgroundResource(if (isSelected) R.drawable.selectlist else R.drawable.defaultlist)
+
+            viewModel.movie.value?.let { movie ->
+                val movieItem = MyListModel(
+                    title = movie.title ?: "No Title",
+                    image = movie.posterPath ?: "",
+                    selected = isSelected,
+                    id = movie.id ?: 0
+                )
+
+                if (isSelected) {
+                    viewModel.addMovie(movieItem)
+                    Toast.makeText(requireContext(), "Movie added to My List", Toast.LENGTH_SHORT)
+                        .show()
+                    sp.edit().putBoolean("added_${args.id}", true).apply()
+
+                    added()
+                } else {
+                    viewModel.deleteMovie(movieItem.id)
+                    Toast.makeText(
+                        requireContext(),
+                        "Movie removed from My List",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    sp.edit().putBoolean("added_${args.id}", false).apply()
+                    removed()
+                }
+            }
+
+        }
+    }
 
 
     private fun setupTabLayout() {
@@ -92,11 +137,13 @@ class DetailFragment : Fragment() {
                         binding.rvcomment.gone()
 
                     }
+
                     1 -> {
                         binding.rvtrailer.gone()
                         binding.rvlikemore.visible()
                         binding.rvcomment.gone()
                     }
+
                     2 -> {
                         binding.rvtrailer.gone()
                         binding.rvlikemore.gone()
@@ -113,7 +160,8 @@ class DetailFragment : Fragment() {
 
     private fun openYoutube(context: Context, youtubeKey: String?) {
         val youtubeAppIntent = Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:$youtubeKey"))
-        val youtubeWebIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=$youtubeKey"))
+        val youtubeWebIntent =
+            Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=$youtubeKey"))
 
         try {
             context.startActivity(youtubeAppIntent)
@@ -121,7 +169,6 @@ class DetailFragment : Fragment() {
             context.startActivity(youtubeWebIntent)
         }
     }
-
 
 
     private fun observeData() {
@@ -148,5 +195,20 @@ class DetailFragment : Fragment() {
         viewModel.trailer.observe(viewLifecycleOwner) {
             trailerAdapter.updateList(it)
         }
+
+
     }
+
+    private fun added() {
+        val sp = requireContext().getSharedPreferences("local_shared", Context.MODE_PRIVATE)
+        sp.edit().putBoolean("added_${args.id}", true).apply()
+
+    }
+
+    private fun removed() {
+        val sp = requireContext().getSharedPreferences("local_shared", Context.MODE_PRIVATE)
+        sp.edit().putBoolean("added_${args.id}", false).apply()
+
+    }
+
 }

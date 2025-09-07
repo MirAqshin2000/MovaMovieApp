@@ -49,4 +49,8 @@ class SharedPrefManager@Inject constructor
 
     }
 
+    fun addToken(token: String) {
+        sharedPreferences.edit { putString("token", token) }
+    }
+
 }
