@@ -73,7 +73,7 @@ class MovieRepository @Inject constructor(
      fun addMovie(movie: MyListModel) {
        return dao.addMovie(movie)
     }
-     fun deleteMovie(id: Int) {
+     fun deleteMovie(id: Int): Int {
         return dao.deleteMovie(id)
     }
      fun getAllMovies(): List<MyListModel> {

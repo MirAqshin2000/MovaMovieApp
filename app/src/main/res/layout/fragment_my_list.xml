@@ -30,13 +30,29 @@
         app:layout_constraintStart_toEndOf="@+id/imageView28"
         app:layout_constraintTop_toTopOf="@+id/imageView28" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvMylist"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/imageView29"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
+        android:src="@drawable/emptylist"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3List"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMylist"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,14 +60,4 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3List"
         tools:listitem="@layout/item_mylist" />
 
-    <ImageView
-        android:id="@+id/imageView29"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:src="@drawable/emptylist"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/rvMylist"
-        app:layout_constraintEnd_toEndOf="@+id/rvMylist"
-        app:layout_constraintStart_toStartOf="@+id/rvMylist"
-        app:layout_constraintTop_toTopOf="@+id/rvMylist" />
 </androidx.constraintlayout.widget.ConstraintLayout>

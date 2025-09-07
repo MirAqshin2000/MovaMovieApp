@@ -130,6 +130,14 @@ class DetailViewModel @Inject constructor(
         }
     }
 
+    fun isMovieInMyList(id: Int, callback: (Boolean) -> Unit) {
+        viewModelScope.launch {
+            val movie = respository.deleteMovie(id) // Room query: get movie by ID
+            callback(movie != null)
+        }
+    }
+
+
     fun addMovie(movie: MyListModel) {
         viewModelScope.launch {
             respository.addMovie(movie)

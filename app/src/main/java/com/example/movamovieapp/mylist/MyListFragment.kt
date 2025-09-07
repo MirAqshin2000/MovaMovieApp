@@ -32,15 +32,14 @@ class MyListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getAllMovies()
         binding.rvMylist.adapter = adapter
 
         adapter.onItemClickListener = { movie ->
 
             viewModel.deleteMovie(movie.id)
-            val sp = requireContext().getSharedPreferences("local_shared", Context.MODE_PRIVATE)
-            sp.edit().putBoolean("added_${movie.id}", false).apply()
+
         }
+        viewModel.getAllMovies()
         observe()
 
     }
@@ -49,7 +48,7 @@ class MyListFragment : Fragment() {
         viewModel.movies.observe(viewLifecycleOwner) {
             adapter.updateList(it)
 
-            if (it.isEmpty()) {
+            if (it.isNullOrEmpty()) {
                 binding.imageView29.visible()
                 binding.rvMylist.gone()
             } else {

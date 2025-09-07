@@ -1,5 +1,6 @@
 package com.example.movamovieapp.local
 
+import androidx.databinding.adapters.Converters
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.example.movamovieapp.model.MyListModel

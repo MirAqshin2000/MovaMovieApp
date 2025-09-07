@@ -21,26 +21,18 @@ class MyListViewModel @Inject constructor(
 
     fun getAllMovies() {
         viewModelScope.launch(Dispatchers.IO) {
-            val movalist = respository.getAllMovies()
-            withContext(Dispatchers.Main) {
-                movies.value = movalist
+            movies.postValue(respository.getAllMovies())
+
             }
 
-            Log.e("gelenData", movalist.toString())
 
         }
-    }
 
     fun deleteMovie(id: Int) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             respository.deleteMovie(id)
-            val updatelsit = respository.getAllMovies()
-            withContext(Dispatchers.Main) {
-                movies.value = updatelsit
-            }
-
+            movies.postValue(respository.getAllMovies())
         }
-
+    }
     }
 
-}

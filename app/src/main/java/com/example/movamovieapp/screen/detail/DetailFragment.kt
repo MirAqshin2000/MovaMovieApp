@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.movamovieapp.R
@@ -27,6 +28,7 @@ import com.example.movamovieapp.util.visible
 import com.google.android.material.tabs.TabLayout
 
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -53,6 +55,7 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        checkSelected()
 
         binding.rvtrailer.adapter = trailerAdapter
         binding.rvlikemore.adapter = moreLikeAdapter
@@ -72,7 +75,6 @@ class DetailFragment : Fragment() {
         setupTabLayout()
         observeData()
 
-        // Data çağırışları
         viewModel.getMovieDetail(args.id)
         viewModel.getMovieCredits(args.id)
         viewModel.getComments(args.id)
@@ -82,50 +84,41 @@ class DetailFragment : Fragment() {
         binding.rvlikemore.gone()
         binding.rvcomment.gone()
 
-        val sp = requireContext().getSharedPreferences("local_shared", Context.MODE_PRIVATE)
-        isSelected = sp.getBoolean("added_${args.id}", false)
 
-        binding.buttonaddlist.setBackgroundResource(if (isSelected) R.drawable.selectlist else R.drawable.defaultlist)
-
-
-        binding.buttonaddlist.setOnClickListener {
-
+        binding.imageviewbuttonadd.setOnClickListener {
 
             isSelected = !isSelected
 
+            val image = if (isSelected) R.drawable.selectlist
+            else R.drawable.defaultlist
+            binding.imageviewbuttonadd.setImageResource(image)
 
-            binding.buttonaddlist.setBackgroundResource(if (isSelected) R.drawable.selectlist else R.drawable.defaultlist)
 
             viewModel.movie.value?.let { movie ->
-                val movieItem = MyListModel(
+                val movie = MyListModel(
                     title = movie.title ?: "No Title",
                     image = movie.posterPath ?: "",
                     selected = isSelected,
                     id = movie.id ?: 0
+
                 )
 
                 if (isSelected) {
-                    viewModel.addMovie(movieItem)
-                    Toast.makeText(requireContext(), "Movie added to My List", Toast.LENGTH_SHORT)
+                    viewModel.addMovie(movie)
+                    Toast.makeText(requireContext(), "Movie added to your list", Toast.LENGTH_SHORT)
                         .show()
-                    sp.edit().putBoolean("added_${args.id}", true).apply()
-
                     added()
                 } else {
-                    viewModel.deleteMovie(movieItem.id)
-                    Toast.makeText(
-                        requireContext(),
-                        "Movie removed from My List",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    sp.edit().putBoolean("added_${args.id}", false).apply()
+                    viewModel.deleteMovie(movie.id)
+                    Toast.makeText(requireContext(), "Movie removed from your list", Toast.LENGTH_SHORT)
+                        .show()
                     removed()
                 }
+
+
             }
-
+}
         }
-    }
-
 
     private fun setupTabLayout() {
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -211,4 +204,23 @@ class DetailFragment : Fragment() {
 
     }
 
+    private fun checkSelected() {
+
+        val sp = requireContext().getSharedPreferences("local_shared", Context.MODE_PRIVATE)
+        val isAdded = sp.getBoolean("added_${args.id}", false)
+
+
+        if (isAdded) {
+            isSelected = true
+
+
+        } else {
+            isSelected = false
+        }
+        val image = if (isSelected) R.drawable.selectlist
+        else R.drawable.defaultlist
+        binding.imageviewbuttonadd.setImageResource(image)
+
+
+    }
 }
