@@ -6,12 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import com.example.movamovieapp.R
 import com.example.movamovieapp.adapters.MyListAdapter
 import com.example.movamovieapp.databinding.FragmentMyListBinding
 import com.example.movamovieapp.util.gone
 import com.example.movamovieapp.util.visible
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,7 +39,55 @@ class MyListFragment : Fragment() {
 
         adapter.onItemClickListener = { movie ->
 
-            viewModel.deleteMovie(movie.id)
+            val dialogView =
+                LayoutInflater.from(requireContext()).inflate(R.layout.alert_dialog, null)
+            val alertDialog = MaterialAlertDialogBuilder(requireContext())
+                .setView(dialogView)
+                .create()
+
+            val titleTextView = dialogView.findViewById<TextView>(R.id.tvTitle)
+            val messageTextView = dialogView.findViewById<TextView>(R.id.tvMessage)
+            val noButton = dialogView.findViewById<TextView>(R.id.btnNo)
+            val yesButton = dialogView.findViewById<TextView>(R.id.btnYes)
+            titleTextView.text = "Delete Movie"
+            messageTextView.text = "Are you sure you want to delete this movie?"
+            noButton.setOnClickListener {
+                alertDialog.dismiss()
+            }
+            yesButton.setOnClickListener {
+                viewModel.deleteMovie(movie.id)
+                alertDialog.dismiss()
+            }
+            alertDialog.show()
+
+//            val alertDialog = MaterialAlertDialogBuilder(requireContext(),R.style.CustomAlertDialog)
+//            alertDialog.setTitle("Delete Movie")
+//            alertDialog.setMessage("Are you sure you want to delete this movie?")
+//            alertDialog.setPositiveButton("Yes") { dialog, _ ->
+//                viewModel.deleteMovie(movie.id)
+//                dialog.dismiss()
+//            }
+//            alertDialog.setNegativeButton("No") { dialog, _ ->
+//                dialog.dismiss()
+//            }
+//            val dialog=alertDialog.create()
+//            dialog.setOnShowListener {
+//                dialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE)
+//                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+//
+//                dialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE)
+//                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.greyscale))
+//            }
+//            dialog.window?.setBackgroundDrawableResource(R.drawable.custom_alertdialog)
+//
+//            dialog.show()
+//            val messageTextView = dialog.findViewById<TextView>(android.R.id.message)
+//            messageTextView?.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+//
+//
+//            val negaviteButton = dialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE)
+//            negaviteButton?.setTextColor(ContextCompat.getColor(requireContext(), R.color.greyscale))
+
 
         }
         viewModel.getAllMovies()
@@ -57,7 +108,6 @@ class MyListFragment : Fragment() {
             }
         }
     }
-
 
 
 }

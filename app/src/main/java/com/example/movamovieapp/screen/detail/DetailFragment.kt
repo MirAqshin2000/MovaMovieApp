@@ -55,7 +55,6 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        checkSelected()
 
         binding.rvtrailer.adapter = trailerAdapter
         binding.rvlikemore.adapter = moreLikeAdapter
@@ -84,41 +83,8 @@ class DetailFragment : Fragment() {
         binding.rvlikemore.gone()
         binding.rvcomment.gone()
 
-
-        binding.imageviewbuttonadd.setOnClickListener {
-
-            isSelected = !isSelected
-
-            val image = if (isSelected) R.drawable.selectlist
-            else R.drawable.defaultlist
-            binding.imageviewbuttonadd.setImageResource(image)
-
-
-            viewModel.movie.value?.let { movie ->
-                val movie = MyListModel(
-                    title = movie.title ?: "No Title",
-                    image = movie.posterPath ?: "",
-                    selected = isSelected,
-                    id = movie.id ?: 0
-
-                )
-
-                if (isSelected) {
-                    viewModel.addMovie(movie)
-                    Toast.makeText(requireContext(), "Movie added to your list", Toast.LENGTH_SHORT)
-                        .show()
-                    added()
-                } else {
-                    viewModel.deleteMovie(movie.id)
-                    Toast.makeText(requireContext(), "Movie removed from your list", Toast.LENGTH_SHORT)
-                        .show()
-                    removed()
-                }
-
-
-            }
-}
-        }
+setupAddButton()
+    }
 
     private fun setupTabLayout() {
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -189,38 +155,48 @@ class DetailFragment : Fragment() {
             trailerAdapter.updateList(it)
         }
 
-
     }
 
-    private fun added() {
-        val sp = requireContext().getSharedPreferences("local_shared", Context.MODE_PRIVATE)
-        sp.edit().putBoolean("added_${args.id}", true).apply()
 
-    }
-
-    private fun removed() {
-        val sp = requireContext().getSharedPreferences("local_shared", Context.MODE_PRIVATE)
-        sp.edit().putBoolean("added_${args.id}", false).apply()
-
-    }
-
-    private fun checkSelected() {
-
-        val sp = requireContext().getSharedPreferences("local_shared", Context.MODE_PRIVATE)
-        val isAdded = sp.getBoolean("added_${args.id}", false)
-
-
-        if (isAdded) {
-            isSelected = true
-
-
-        } else {
-            isSelected = false
+    private fun setupAddButton() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            val added = viewModel.isMovieAdded(args.id)
+            isSelected = added
+            updateButtonUI()
         }
-        val image = if (isSelected) R.drawable.selectlist
-        else R.drawable.defaultlist
-        binding.imageviewbuttonadd.setImageResource(image)
 
+        binding.imageviewbuttonadd.setOnClickListener {
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewModel.detail.value?.let { movieDetail ->
+                    val movieItem = MyListModel(
+                        title = movieDetail.title ?: "No Title",
+                        image = movieDetail.posterPath ?: "",
+                        selected = !isSelected,
+                        id = movieDetail.id ?: 0
+                    )
+
+                    if (isSelected) {
+                        viewModel.deleteMovie(movieItem.id)
+                        isSelected = false
+                        Toast.makeText(requireContext(), "Movie Removed", Toast.LENGTH_SHORT).show()
+                        updateButtonUI()
+                    } else {
+                        viewModel.addMovie(movieItem)
+                        isSelected = true
+                        Toast.makeText(requireContext(), "Movie Added", Toast.LENGTH_SHORT).show()
+                        updateButtonUI()
+                    }
+
+                }
+
+            }
+        }
 
     }
+
+    private fun updateButtonUI() {
+        val image = if (isSelected) R.drawable.selectlist else R.drawable.defaultlist
+        binding.imageviewbuttonadd.setImageResource(image)
+    }
+
 }
