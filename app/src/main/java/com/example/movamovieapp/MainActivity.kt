@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.homeFragment -> bottomMenu.visible()
                 R.id.exploreFragment -> bottomMenu.visible()
-                R.id.detailFragment -> bottomMenu.visible()
                 R.id.profileFragment -> bottomMenu.visible()
                 R.id.myListFragment2 -> bottomMenu.visible()
                 else -> bottomMenu.gone()

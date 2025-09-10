@@ -55,7 +55,7 @@ class MyListFragment : Fragment() {
                 alertDialog.dismiss()
             }
             yesButton.setOnClickListener {
-                viewModel.deleteMovie(movie.id)
+                viewModel.deleteMovie(movie.id.toInt())
                 alertDialog.dismiss()
             }
             alertDialog.show()

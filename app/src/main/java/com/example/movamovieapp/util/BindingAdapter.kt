@@ -30,4 +30,12 @@ fun loadImageYoutube(imageView: ImageView, key: String?) {
     } else {
         imageView.loadImageYoutube(key)
     }
+    @BindingAdapter("selectedimageradio")
+    fun selectimage(imageView: ImageView, isSelected: Boolean?) {
+        if (isSelected == true) {
+            imageView.setImageResource(R.drawable.selectedpayment)
+        } else {
+            imageView.setImageResource(R.drawable.unselectedpayment)
+        }
+    }
 }

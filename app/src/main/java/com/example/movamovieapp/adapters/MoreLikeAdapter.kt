@@ -8,7 +8,7 @@ import com.example.movamovieapp.databinding.ItemMoreBinding
 import com.example.movamovieapp.model.Result
 
 class MoreLikeAdapter() : RecyclerView.Adapter<MoreViewHolder>() {
-lateinit var onItemClickListener: ((Result) -> Unit)
+//lateinit var onItemClickListener: ((Result) -> Unit)
     val morelist = arrayListOf<Result>()
 
     override fun onCreateViewHolder(
@@ -28,9 +28,9 @@ lateinit var onItemClickListener: ((Result) -> Unit)
         holder.itemMoreBinding.more = item
 
 
-        holder.itemMoreBinding.cvMore.setOnClickListener {
-            onItemClickListener.invoke(item)
-        }
+//        holder.itemMoreBinding.cvMore.setOnClickListener {
+//            onItemClickListener.invoke(item)
+//        }
 
 
 

@@ -5,4 +5,7 @@
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
 
+    <color name="text_primary">#000000</color> <!-- dark mode üçün qara -->
+    <color name="text_secondary">#555555</color>
+
 </resources>

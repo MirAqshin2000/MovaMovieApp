@@ -34,7 +34,7 @@ class LoginViewModel @Inject constructor(
                     }
 
                     is NetworkResource.Success -> {
-                        loginUi.value = LoginUi.Success("Login Successful")
+                        loginUi.value = LoginUi.Success("Login Successful",email)
                     }
 
                     is NetworkResource.Error -> {

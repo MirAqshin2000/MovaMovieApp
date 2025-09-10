@@ -5,6 +5,7 @@ import com.example.movamovieapp.local.MovieDao
 import com.example.movamovieapp.local.MovieDatabase
 import com.example.movamovieapp.model.MovaListModel
 import com.example.movamovieapp.model.MyListModel
+import com.example.movamovieapp.model.Result
 import com.example.movamovieapp.model.ReviewResponse
 import com.example.movamovieapp.model.TrailerResponse
 import com.example.movamovieapp.model.detail.DetailResponse
@@ -82,6 +83,8 @@ class MovieRepository @Inject constructor(
     suspend fun isMovieAdded(id: Int): Boolean {
         return dao.isMovieInList(id)
     }
+
+
 
 
 }

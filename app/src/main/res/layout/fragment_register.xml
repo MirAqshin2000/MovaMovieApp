@@ -278,7 +278,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/textView12email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="103dp"
@@ -331,9 +331,9 @@
         android:text="Sign in"
         android:textColor="@color/red"
         android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView12"
-        app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toTopOf="@+id/textView12" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView12email"
+        app:layout_constraintStart_toEndOf="@+id/textView12email"
+        app:layout_constraintTop_toTopOf="@+id/textView12email" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

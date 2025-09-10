@@ -57,6 +57,9 @@
         <action
             android:id="@+id/action_homeFragment_to_exploreFragment"
             app:destination="@id/exploreFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -118,17 +121,34 @@
             app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/commentFragment"
-        android:name="com.example.movamovieapp.detail.CommentFragment"
-        android:label="fragment_comment"
-        tools:layout="@layout/fragment_comment" />
-    <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.movamovieapp.screen.profile.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_subscribeFragment"
+            app:destination="@id/subscribeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/myListFragment2"
         android:name="com.example.movamovieapp.mylist.MyListFragment"
         android:label="fragment_my_list"
         tools:layout="@layout/fragment_my_list" />
+    <fragment
+        android:id="@+id/subscribeFragment"
+        android:name="com.example.movamovieapp.screen.subscribe.SubscribeFragment"
+        android:label="fragment_subscribe"
+        tools:layout="@layout/fragment_subscribe" >
+        <action
+            android:id="@+id/action_subscribeFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.example.movamovieapp.screen.subscribe.PaymentFragment"
+        android:label="fragment_payment"
+        tools:layout="@layout/fragment_payment" >
+        <argument
+            android:name="paymentargs"
+            app:argType="string" />
+    </fragment>
 </navigation>

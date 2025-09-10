@@ -52,5 +52,11 @@ class SharedPrefManager@Inject constructor
     fun addToken(token: String) {
         sharedPreferences.edit { putString("token", token) }
     }
+    fun saveUserEmail(email: String) {
+        sharedPreferences.edit().putString("user_email", email).apply()
+    }
+    fun getUserEmail(): String? {
+        return sharedPreferences.getString("user_email", "")
+    }
 
 }

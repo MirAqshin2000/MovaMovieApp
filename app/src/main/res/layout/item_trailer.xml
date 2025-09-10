@@ -47,7 +47,7 @@
 
                         <ImageView
                             android:id="@+id/imageView23"
-                            load_url_youtube="@{trailer.key}"
+                            load_url_youtube="@{trailer.key.toString()}"
                             android:layout_width="150dp"
                             android:layout_height="100dp"
                             android:scaleType="fitXY"

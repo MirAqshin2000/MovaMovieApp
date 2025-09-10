@@ -71,7 +71,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             when (state) {
                 is LoginUi.Loading -> {
                     lifecycleScope.launch {
-                        delay(2000)
+                        binding.animationView11.visible()
+                        delay(1000)
                         binding.animationView11.gone()
 
                     }
@@ -81,18 +82,22 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
 
                 is LoginUi.Success -> {
+                    val prefs = SharedPrefManager(requireContext())
 
                     if (binding.checkboxRemember.isChecked) {
-                        val prefs = SharedPrefManager(requireContext())
                         prefs.saveIsLoggedIn(true)
 
                     }
+                    prefs.saveUserEmail(state.email)
+
                     binding.animationView11.gone()
                     lifecycleScope.launch {
+                        binding.animationView11.visible()
+                        delay(1500)
+                        binding.animationView11.gone()
                         Toast.makeText(requireContext(), state.successMessage, Toast.LENGTH_SHORT)
                             .show()
 
-                        delay(2000)
                         findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
 
 

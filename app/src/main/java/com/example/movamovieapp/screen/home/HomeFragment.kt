@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.mova.base.BaseFragment
 import com.example.movamovieapp.adapters.FilmsAdapter
@@ -15,7 +16,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
     private val viewModel: HomeViewModel by viewModels()
-
     private fun createAdapter() = FilmsAdapter { movieId ->
         val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(movieId)
         findNavController().navigate(action)
@@ -40,7 +40,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         viewModel.loadFeaturedMovie()
         setonClickListener()
 
-
     }
 
     private fun setupRecyclerViews() {
@@ -49,33 +48,42 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         binding.rvnewreleases.adapter = nowPlayingAdapter
         binding.rvupcomig.adapter = upcomingAdapter
     }
-private  fun setonClickListener() {
-    binding.top10buttonSeeAll.setOnClickListener {
-        val action = HomeFragmentDirections.actionHomeFragmentToViewAllFragment2(
-            "top_rated"
-        )
-        findNavController().navigate(action)
-    }
-    binding.buttonSeeAllnewreleases.setOnClickListener {
-        val action = HomeFragmentDirections.actionHomeFragmentToViewAllFragment2(
-            "now_playing"
-        )
-        findNavController().navigate(action)
+
+    private fun setonClickListener() {
+        binding.top10buttonSeeAll.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToViewAllFragment2(
+                "top_rated"
+            )
+            findNavController().navigate(action)
+        }
+        binding.buttonSeeAllnewreleases.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToViewAllFragment2(
+                "now_playing"
+            )
+            findNavController().navigate(action)
+
+        }
+        binding.buttonSeeAllPopular.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToViewAllFragment2(
+                "popular"
+            )
+            findNavController().navigate(action)
+        }
+        binding.buttonSeeAllUpcoming.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToViewAllFragment2(
+                "upcoming"
+            )
+            findNavController().navigate(action)
+        }
+
+        binding.imageView17search2.setOnClickListener {
+           findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToExploreFragment())
+        }
+        binding.imageView16notification2.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToNotificationFragment())
+        }
 
     }
-    binding.buttonSeeAllPopular.setOnClickListener {
-        val action = HomeFragmentDirections.actionHomeFragmentToViewAllFragment2(
-            "popular"
-        )
-        findNavController().navigate(action)
-    }
-    binding.buttonSeeAllUpcoming.setOnClickListener {
-        val action = HomeFragmentDirections.actionHomeFragmentToViewAllFragment2(
-            "upcoming"
-        )
-        findNavController().navigate(action)
-        }
-}
 
     private fun observeViewModel() {
         viewModel.popularMovies.observe(viewLifecycleOwner) { state ->

@@ -3,7 +3,7 @@ package com.example.movamovieapp.screen.login
 
 sealed class LoginUi {
     object Loading : LoginUi()
-    data class Success(val successMessage: String) : LoginUi()
+    data class Success(val successMessage: String,val email: String) : LoginUi()
     data class Error(val errorMessage: String) : LoginUi()
 }
 

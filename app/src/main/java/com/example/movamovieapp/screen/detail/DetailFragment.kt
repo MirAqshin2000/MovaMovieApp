@@ -67,6 +67,7 @@ class DetailFragment : Fragment() {
 
 
 
+
         binding.imageView8back.setOnClickListener {
             findNavController().popBackStack()
         }
