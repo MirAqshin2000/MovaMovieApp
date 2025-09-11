@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -15,8 +16,10 @@ import com.example.movamovieapp.R
 import com.example.movamovieapp.adapters.CardAdapter
 import com.example.movamovieapp.adapters.PaymentAdapter
 import com.example.movamovieapp.databinding.FragmentPaymentBinding
+import com.example.movamovieapp.model.CardModel
 import com.example.movamovieapp.model.PaymentModel
 import com.example.movamovieapp.util.gone
+import com.example.movamovieapp.util.maskCardNumberGrouped
 import com.example.movamovieapp.util.visible
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,8 +30,8 @@ import kotlinx.coroutines.launch
 class PaymentFragment : Fragment() {
 
     private lateinit var binding: FragmentPaymentBinding
-private lateinit var cardadapter: CardAdapter
-private val viewModel: PaymentViewModel by viewModels()
+    private lateinit var cardadapter: CardAdapter
+    private val viewModel: PaymentViewModel by viewModels()
     val args: PaymentFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,6 +55,7 @@ private val viewModel: PaymentViewModel by viewModels()
             findNavController().popBackStack()
         }
 
+
         val eachpayment = arrayListOf<PaymentModel>()
         eachpayment.add(PaymentModel(R.drawable.paypallogo, "PayPal", false))
         eachpayment.add(PaymentModel(R.drawable.google, "Google Pay", false))
@@ -60,12 +64,13 @@ private val viewModel: PaymentViewModel by viewModels()
 
         adapter.updateList(eachpayment)
 
-
-
         cardadapter = CardAdapter()
 
         binding.rv2.adapter = cardadapter
         observe()
+
+
+
 
         binding.button5.setOnClickListener {
             lifecycleScope.launch {
@@ -74,9 +79,65 @@ private val viewModel: PaymentViewModel by viewModels()
                 binding.animationView22.gone()
                 findNavController().navigate(PaymentFragmentDirections.actionPaymentFragmentToNewCardFragment())
 
+
             }
 
+
         }
+
+        var selectedPayment: PaymentModel? = null
+
+        adapter.onSelectClickListener = { payment ->
+            selectedPayment = payment
+            cardadapter.clearSelection()
+        }
+
+        var selectedCard: CardModel? = null
+        cardadapter.onSelectClickListener = { card ->
+            selectedCard = card
+            adapter.clearSelection()
+
+        }
+
+        binding.button4.setOnClickListener {
+            when {
+                selectedCard != null -> {
+                    val maskedNumber = maskCardNumberGrouped(selectedCard!!.cardNumber)
+                    val action = PaymentFragmentDirections.actionPaymentFragmentToSummaryFragment(
+                        cardNumber = maskedNumber,
+                        cardImage = selectedCard!!.cardImage,
+                    )
+                    findNavController().navigate(action)
+                }
+
+                selectedPayment != null -> {
+                    val action = PaymentFragmentDirections.actionPaymentFragmentToSummaryFragment(
+                        cardNumber = selectedPayment!!.cardNumber,
+                        cardImage = selectedPayment!!.image,
+                        paymentName = selectedPayment!!.title
+                    )
+                    findNavController().navigate(action)
+                }
+
+                else -> {
+                    Toast.makeText(
+                        requireContext(),
+                        "Card or Payment not selected!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
         cardadapter.onItemClickListener = { cardId ->
             val dialogView =
                 LayoutInflater.from(requireContext()).inflate(R.layout.alert_dialog, null)
@@ -94,7 +155,7 @@ private val viewModel: PaymentViewModel by viewModels()
                 alertDialog.dismiss()
             }
             yesButton.setOnClickListener {
-                viewModel.deleteCard( cardId.id)
+                viewModel.deleteCard(cardId.id)
                 alertDialog.dismiss()
             }
             alertDialog.show()
@@ -102,8 +163,10 @@ private val viewModel: PaymentViewModel by viewModels()
 
         }
     }
-    private fun observe(){
-        viewModel.cards.observe(viewLifecycleOwner){
+
+
+    private fun observe() {
+        viewModel.cards.observe(viewLifecycleOwner) {
             Log.d("CARD_DEBUG", "List size: ${it.size}")
 
             cardadapter.updateList(it)
@@ -113,3 +176,4 @@ private val viewModel: PaymentViewModel by viewModels()
 
     }
 }
+

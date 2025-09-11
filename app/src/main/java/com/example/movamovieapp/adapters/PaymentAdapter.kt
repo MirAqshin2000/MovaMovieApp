@@ -1,8 +1,10 @@
 package com.example.movamovieapp.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView.OnItemClickListener
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movamovieapp.R
 import com.example.movamovieapp.databinding.ItemPaymentBinding
@@ -10,7 +12,13 @@ import com.example.movamovieapp.model.PaymentModel
 
 
 class PaymentAdapter:RecyclerView.Adapter<PaymentAdapter.PaymentViewHolder>(){
+    private var selectedPosition = -1
+    fun clearSelection() {
+        selectedPosition = -1
+        notifyDataSetChanged()
+    }
     var onItemClickListener: ((PaymentModel) -> Unit)? = null
+    var onSelectClickListener: ((PaymentModel) -> Unit)? = null
      val paymentlist= arrayListOf<PaymentModel>()
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -30,17 +38,16 @@ val item=paymentlist[position]
 
         holder.itemPaymentBinding.imageView67.setImageResource(item.image)
 
-        val selected=item.selected
+        holder.itemPaymentBinding.imageView56.visibility=
+            if (selectedPosition == position) View.VISIBLE
+            else View.GONE
 
-        if (selected){
-            holder.itemPaymentBinding.imageViewbosbuton.setImageResource(R.drawable.selectedpayment)
-
-        }else{
-            holder.itemPaymentBinding.imageViewbosbuton.setImageResource(R.drawable.unselectedpayment)
+        holder.itemPaymentBinding.materialCardViewcards.setOnClickListener {
+            selectedPosition = holder.bindingAdapterPosition
+            notifyDataSetChanged()
+            onSelectClickListener?.invoke(item)
         }
-holder.itemPaymentBinding.materialCardViewcards.setOnClickListener {
-    onItemClickListener?.invoke(item)
-}
+
 
 
     }
@@ -55,6 +62,5 @@ return paymentlist.size
     }
 
     class PaymentViewHolder(val itemPaymentBinding: ItemPaymentBinding) :RecyclerView.ViewHolder(itemPaymentBinding.root)
-
 
 }
