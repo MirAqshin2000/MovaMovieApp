@@ -38,7 +38,7 @@ val item=paymentlist[position]
         }else{
             holder.itemPaymentBinding.imageViewbosbuton.setImageResource(R.drawable.unselectedpayment)
         }
-holder.itemPaymentBinding.materialCardView5.setOnClickListener {
+holder.itemPaymentBinding.materialCardViewcards.setOnClickListener {
     onItemClickListener?.invoke(item)
 }
 

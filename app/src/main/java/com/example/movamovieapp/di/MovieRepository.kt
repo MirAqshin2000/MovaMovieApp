@@ -1,8 +1,10 @@
 package com.example.movamovieapp.di
 
 import com.example.movamovieapp.api.ApiService
+import com.example.movamovieapp.local.CardDao
 import com.example.movamovieapp.local.MovieDao
 import com.example.movamovieapp.local.MovieDatabase
+import com.example.movamovieapp.model.CardModel
 import com.example.movamovieapp.model.MovaListModel
 import com.example.movamovieapp.model.MyListModel
 import com.example.movamovieapp.model.Result
@@ -21,7 +23,8 @@ import javax.inject.Inject
 
 class MovieRepository @Inject constructor(
     val apiService: ApiService,
-    private val dao: MovieDao
+    private val dao: MovieDao,
+    private val cardDao: CardDao
 ) {
 
     fun getPopularMoviesFlow(): Flow<Response<MovaListModel>> = flow {
@@ -84,7 +87,15 @@ class MovieRepository @Inject constructor(
         return dao.isMovieInList(id)
     }
 
+     fun getCards(): Flow<List<com.example.movamovieapp.model.CardModel>> {
+        return cardDao.getAllCards()
 
-
+    }
+    suspend fun addCard(card: CardModel){
+        cardDao.addCard(card)
+    }
+    suspend fun deleteCard(id: Int): Int {
+        return cardDao.deleteCard(id)
+    }
 
 }

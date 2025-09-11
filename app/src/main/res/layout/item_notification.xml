@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardView5"
+                    android:id="@+id/materialCardViewcards"
                     android:layout_width="150dp"
                     android:layout_height="113dp"
                     android:layout_marginStart="24dp"
@@ -91,7 +91,7 @@
                     android:textColor="@color/white"
                     android:textFontWeight="600"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@+id/materialCardView5"
+                    app:layout_constraintStart_toEndOf="@+id/materialCardViewcards"
                     app:layout_constraintTop_toBottomOf="@+id/textView17notifTitle" />
 
                 <TextView
@@ -106,7 +106,7 @@
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toStartOf="@+id/textView19notifDate"
-                    app:layout_constraintStart_toEndOf="@+id/materialCardView5"
+                    app:layout_constraintStart_toEndOf="@+id/materialCardViewcards"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView

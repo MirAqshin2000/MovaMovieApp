@@ -3,6 +3,7 @@ package com.example.movamovieapp.di
 import android.content.Context
 import androidx.room.Room
 import com.example.movamovieapp.api.ApiService
+import com.example.movamovieapp.local.CardDao
 import com.example.movamovieapp.local.MovieDao
 import com.example.movamovieapp.local.MovieDatabase
 import com.example.movamovieapp.util.Constants.BASE_URL
@@ -64,7 +65,10 @@ fun provideRoom(@ApplicationContext context: Context): MovieDatabase {
     fun MovieDao(movieDatabase: MovieDatabase): MovieDao {
         return movieDatabase.createMovieDao
     }
-
+    @Provides
+    fun provideCardDao(movieDatabase: MovieDatabase): CardDao {
+        return movieDatabase.createCardDao
+    }
 
 
 

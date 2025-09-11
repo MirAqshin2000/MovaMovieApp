@@ -71,7 +71,7 @@ class OnboardingFragment : Fragment() {
             } else {
                 val prefs = SharedPrefManager(requireContext())
                 prefs.setFirstLaunch(false)
-                findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToRegisterFragment())
+                findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToLetsFragment())
 
             }
 

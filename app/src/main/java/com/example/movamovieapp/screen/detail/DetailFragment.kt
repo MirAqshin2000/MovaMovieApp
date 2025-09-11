@@ -65,6 +65,10 @@ class DetailFragment : Fragment() {
             openYoutube(requireContext(), video.key)
         }
 
+      moreLikeAdapter.onItemClickListener = {
+          val action = DetailFragmentDirections.actionDetailFragmentSelf(it.id)
+          findNavController().navigate(action)
+      }
 
 
 

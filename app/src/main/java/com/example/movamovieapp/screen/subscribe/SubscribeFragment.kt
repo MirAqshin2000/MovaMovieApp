@@ -11,9 +11,10 @@ import com.example.movamovieapp.R
 import com.example.movamovieapp.databinding.FragmentSubscribeBinding
 import com.example.movamovieapp.util.gone
 import com.example.movamovieapp.util.visible
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-
+@AndroidEntryPoint
 class SubscribeFragment : Fragment() {
     private lateinit var binding: FragmentSubscribeBinding
     override fun onCreateView(
