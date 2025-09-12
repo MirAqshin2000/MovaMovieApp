@@ -60,34 +60,6 @@ class MyListFragment : Fragment() {
             }
             alertDialog.show()
 
-//            val alertDialog = MaterialAlertDialogBuilder(requireContext(),R.style.CustomAlertDialog)
-//            alertDialog.setTitle("Delete Movie")
-//            alertDialog.setMessage("Are you sure you want to delete this movie?")
-//            alertDialog.setPositiveButton("Yes") { dialog, _ ->
-//                viewModel.deleteMovie(movie.id)
-//                dialog.dismiss()
-//            }
-//            alertDialog.setNegativeButton("No") { dialog, _ ->
-//                dialog.dismiss()
-//            }
-//            val dialog=alertDialog.create()
-//            dialog.setOnShowListener {
-//                dialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE)
-//                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-//
-//                dialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE)
-//                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.greyscale))
-//            }
-//            dialog.window?.setBackgroundDrawableResource(R.drawable.custom_alertdialog)
-//
-//            dialog.show()
-//            val messageTextView = dialog.findViewById<TextView>(android.R.id.message)
-//            messageTextView?.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-//
-//
-//            val negaviteButton = dialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE)
-//            negaviteButton?.setTextColor(ContextCompat.getColor(requireContext(), R.color.greyscale))
-
 
         }
         viewModel.getAllMovies()
