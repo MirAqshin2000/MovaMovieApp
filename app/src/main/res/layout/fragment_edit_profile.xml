@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/black"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".screen.profile.EditProfileFragment">
 
     <ImageView
@@ -22,10 +22,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Edit Profile"
         android:fontFamily="@font/urbanist_bold"
-        android:textSize="24sp"
+        android:text="Edit Profile"
         android:textColor="@color/white"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView57"
         app:layout_constraintStart_toEndOf="@+id/imageView57"
         app:layout_constraintTop_toTopOf="@+id/imageView57" />
@@ -69,6 +69,7 @@
         app:boxCornerRadiusTopEnd="12dp"
         app:boxCornerRadiusTopStart="12dp"
         app:boxStrokeColor="@color/gray"
+        app:boxStrokeErrorColor="@color/red"
         app:boxStrokeWidth="0dp"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,6 +98,7 @@
         app:boxCornerRadiusBottomStart="12dp"
         app:boxCornerRadiusTopEnd="12dp"
         app:boxCornerRadiusTopStart="12dp"
+        app:boxStrokeColor="@color/red"
         app:boxStrokeWidth="0dp"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
@@ -125,9 +127,9 @@
         app:boxCornerRadiusBottomStart="12dp"
         app:boxCornerRadiusTopEnd="12dp"
         app:boxCornerRadiusTopStart="12dp"
+        app:boxStrokeColor="@color/red"
         app:boxStrokeWidth="0dp"
         app:hintEnabled="false"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
@@ -172,6 +174,7 @@
         app:boxCornerRadiusBottomStart="12dp"
         app:boxCornerRadiusTopEnd="12dp"
         app:boxCornerRadiusTopStart="12dp"
+        app:boxStrokeColor="@color/red"
         app:boxStrokeWidth="0dp"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
@@ -197,9 +200,9 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         app:ccp_autoDetectCountry="true"
+        app:ccp_contentColor="@color/white"
         app:ccp_defaultNameCode="US"
         app:ccp_showFlag="true"
-        app:ccp_contentColor="@color/white"
         app:ccp_showNameCode="false"
         app:ccp_showPhoneCode="true"
         app:layout_constraintBottom_toBottomOf="@id/textInputLayout5"
@@ -207,31 +210,38 @@
         app:layout_constraintTop_toTopOf="@id/textInputLayout5" />
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/gray"
         app:boxBackgroundColor="@color/gray"
+        app:boxBackgroundMode="filled"
         app:boxCornerRadiusBottomEnd="12dp"
         app:boxCornerRadiusBottomStart="12dp"
         app:boxCornerRadiusTopEnd="12dp"
-        app:boxCornerRadiusTopStart="12dp"
+        app:boxStrokeColor="@color/red"
         app:boxStrokeWidth="0dp"
         app:hintEnabled="false"
-        app:startIconDrawable="@drawable/down"
-
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextMale"
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteGender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/transparent"
+
+            android:focusable="false"
+            android:hint="Select Gender"
+            android:inputType="none"
+            android:padding="1dp"
             android:textColor="@color/white"
             android:textColorHint="@color/greyscale"
-            android:hint="Male" />
+            tools:ignore="MissingConstraints" />
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
