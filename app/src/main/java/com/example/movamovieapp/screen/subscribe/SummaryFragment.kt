@@ -5,10 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.movamovieapp.R
 import com.example.movamovieapp.databinding.FragmentSummaryBinding
+import com.example.movamovieapp.util.gone
+import com.example.movamovieapp.util.visible
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class SummaryFragment : Fragment() {
@@ -39,6 +44,25 @@ class SummaryFragment : Fragment() {
         }
         binding.textView60.setOnClickListener {
             findNavController().popBackStack()
+        }
+        binding.button5confirmpayment.setOnClickListener {
+            lifecycleScope.launch {
+                binding.animationView22.visible()
+                delay(2000)
+                binding.animationView22.gone()
+                binding.cardsummary.visible()
+
+            }
+        }
+        binding.buttonoksummary.setOnClickListener {
+            lifecycleScope.launch {
+                binding.animationView22.visible()
+                delay(2500)
+                binding.animationView22.gone()
+                binding.cardsummary.gone()
+                findNavController().navigate(SummaryFragmentDirections.actionSummaryFragmentToProfileFragment())
+
+            }
         }
     }
 

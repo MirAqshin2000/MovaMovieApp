@@ -72,7 +72,7 @@ class PaymentFragment : Fragment() {
 
 
 
-        binding.button5.setOnClickListener {
+        binding.button5addcard.setOnClickListener {
             lifecycleScope.launch {
                 binding.animationView22.visible()
                 delay(2000)
@@ -100,35 +100,42 @@ class PaymentFragment : Fragment() {
         }
 
         binding.button4.setOnClickListener {
-            when {
-                selectedCard != null -> {
-                    val maskedNumber = maskCardNumberGrouped(selectedCard!!.cardNumber)
-                    val action = PaymentFragmentDirections.actionPaymentFragmentToSummaryFragment(
-                        cardNumber = maskedNumber,
-                        cardImage = selectedCard!!.cardImage,
-                    )
-                    findNavController().navigate(action)
-                }
+            lifecycleScope.launch {
+                binding.animationView22.visible()
+                delay(2000)
+                binding.animationView22.gone()
 
-                selectedPayment != null -> {
-                    val action = PaymentFragmentDirections.actionPaymentFragmentToSummaryFragment(
-                        cardNumber = selectedPayment!!.cardNumber,
-                        cardImage = selectedPayment!!.image,
-                        paymentName = selectedPayment!!.title
-                    )
-                    findNavController().navigate(action)
-                }
+                when {
+                    selectedCard != null -> {
+                        val maskedNumber = maskCardNumberGrouped(selectedCard!!.cardNumber)
+                        val action =
+                            PaymentFragmentDirections.actionPaymentFragmentToSummaryFragment(
+                                cardNumber = maskedNumber,
+                                cardImage = selectedCard!!.cardImage,
+                            )
+                        findNavController().navigate(action)
+                    }
 
-                else -> {
-                    Toast.makeText(
-                        requireContext(),
-                        "Card or Payment not selected!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    selectedPayment != null -> {
+                        val action =
+                            PaymentFragmentDirections.actionPaymentFragmentToSummaryFragment(
+                                cardNumber = selectedPayment!!.cardNumber,
+                                cardImage = selectedPayment!!.image,
+                                paymentName = selectedPayment!!.title
+                            )
+                        findNavController().navigate(action)
+                    }
+
+                    else -> {
+                        Toast.makeText(
+                            requireContext(),
+                            "Card or Payment not selected!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
             }
         }
-
 
 
 

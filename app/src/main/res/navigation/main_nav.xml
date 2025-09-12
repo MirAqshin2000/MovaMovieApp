@@ -178,5 +178,8 @@
             android:name="paymentName"
             app:argType="string"
             android:defaultValue="" />
+        <action
+            android:id="@+id/action_summaryFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
 </navigation>

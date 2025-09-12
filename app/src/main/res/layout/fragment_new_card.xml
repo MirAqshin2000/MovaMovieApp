@@ -105,7 +105,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:inputType="text"
-            android:hint="Kart Adı Giriniz" />
+            android:hint="Enter your card name" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -132,7 +132,7 @@
             android:maxLines="1"
             android:textColor="@color/white"
             android:layout_height="wrap_content"
-            android:hint="Kart Numarasını Giriniz" />
+            android:hint="Enter your card number" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -235,14 +235,16 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonaddcard"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="58dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="32dp"
         android:backgroundTint="@color/red"
         android:fontFamily="@font/urbanist"
         android:text="Add"
         android:textFontWeight="700"
+        android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

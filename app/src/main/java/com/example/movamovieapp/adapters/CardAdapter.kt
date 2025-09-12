@@ -50,6 +50,7 @@ holder.itemCardsBinding.imageViewcheckh.visibility=
         holder.itemCardsBinding.materialCardViewcards.setOnClickListener {
             selectedPosition = holder.bindingAdapterPosition
             notifyDataSetChanged()
+
             onSelectClickListener?.invoke(item)
         }
 
