@@ -47,7 +47,7 @@ class ProfileFragment : Fragment() {
                 }
             }
         }
-        binding.imageView30.setOnClickListener {
+        binding.buttonEdit.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             pickImageLauncher.launch(intent)
         }
@@ -65,6 +65,9 @@ binding.textView12email.text=prefs.getUserEmail()
                 findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToSubscribeFragment())
 
             }
+        }
+        binding.constraintLayoutEditProfile.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment())
         }
     }
 

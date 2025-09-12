@@ -41,17 +41,22 @@
         android:layout_marginEnd="147dp"
         android:src="@drawable/default_profile_photo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.562"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-    <ImageView
-        android:id="@+id/imageView30"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/qelemisaresi"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonEdit"
+        android:layout_width="40dp"
+        android:layout_height="45dp"
+        android:backgroundTint="@color/red"
+        app:cornerRadius="10dp"
+        app:icon="@drawable/edit"
+        app:iconGravity="top"
+        app:iconSize="25dp"
+        app:iconTint="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/imageView25"
         app:layout_constraintEnd_toEndOf="@+id/imageView25" />
-
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
