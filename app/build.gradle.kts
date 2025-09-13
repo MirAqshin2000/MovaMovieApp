@@ -123,7 +123,7 @@ dependencies {
 
 
 //    Prefix
-    implementation("com.hbb20:ccp:2.5.3")
+    implementation("com.hbb20:ccp:2.5.4")
 
 
 

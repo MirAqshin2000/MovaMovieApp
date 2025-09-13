@@ -37,5 +37,35 @@ binding.autoCompleteGender.setOnItemClickListener { parent, view, position, id -
     Toast.makeText(requireContext(), "Selected Gender: $selectedGender", Toast.LENGTH_SHORT).show()
 }
 
+
+
+        val countries=listOf(
+            "Afghanistan",
+            "Albania",
+            "Algeria",
+            "Andorra",
+            "Angola",
+            "Antigua and Barbuda",
+            "Argentina",
+            "Azerbaijan",
+            "Australia",
+            "Austria",
+            "Bahamas",
+            "Bahrain",
+            "Bangladesh",
+            "Barbados",
+            "Belarus",
+            "Turkey"
+        )
+        val countryadapter=ArrayAdapter(requireContext(),R.layout.dropdown_item,countries)
+
+        binding.autoCompleteCountry.setAdapter(countryadapter)
+
+        binding.autoCompleteCountry.setDropDownBackgroundResource(R.color.gray)
+        binding.autoCompleteCountry.setOnItemClickListener { parent, view, position, id ->
+            val selectedCountry = parent.getItemAtPosition(position).toString()
+            Toast.makeText(requireContext(), "Selected Country: $selectedCountry", Toast.LENGTH_SHORT).show()
+        }
+
     }
 }
