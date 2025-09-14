@@ -1,5 +1,6 @@
 package com.example.movamovieapp
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +15,17 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
     lateinit var binding: ActivityMainBinding
+
+    override fun attachBaseContext(newBase: Context) {
+        val prefs = newBase.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val langCode = prefs.getString("app_language", "en") // default EN
+        val context = com.example.movamovieapp.util.LocalHelper.setLocale(newBase, langCode ?: "en")
+        super.attachBaseContext(context)      //dil deyismek
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -39,5 +50,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
+
+
     }
+
 }

@@ -1,9 +1,14 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.movamovieapp.util
 
+import android.content.Context
+import android.content.res.Configuration
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.movamovieapp.R
+import java.util.Locale
 
 
 fun ImageView.loadImageUrl(url: String?){
@@ -48,6 +53,9 @@ fun maskCardNumberGrouped(cardNumber: String): String {
     }
     return maskedGroups.trim()
 }
+
+
+
 
 
 

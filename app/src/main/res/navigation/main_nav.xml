@@ -133,6 +133,9 @@
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileNotificationFragment"
+            app:destination="@id/editProfileNotificationFragment" />
     </fragment>
     <fragment
         android:id="@+id/myListFragment2"
@@ -190,4 +193,8 @@
         android:name="com.example.movamovieapp.screen.profile.EditProfileFragment"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/editProfileNotificationFragment"
+        android:name="com.example.movamovieapp.screen.profile.EditProfileNotificationFragment"
+        android:label="EditProfileNotificationFragment" />
 </navigation>

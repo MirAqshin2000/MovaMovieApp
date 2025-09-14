@@ -19,4 +19,10 @@
     <string name="sorry_not_found">Sorry, the keyword you entered could not be found. Try to check again or search with other keywords.</string>
 
 
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="azerbaijani">Azerbaijani</string>
+    <string name="turkish">Turkish</string>
+    <string name="russian">Russian</string>
+
 </resources>
