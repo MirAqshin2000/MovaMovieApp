@@ -397,7 +397,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+        android:id="@+id/constraintLayoutprivacy"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginStart="24dp"
@@ -422,7 +422,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:fontFamily="@font/urbanist_bold"
-            android:text="Privacy Police"
+            android:text="Privacy Policy"
             android:textColor="@color/white"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"

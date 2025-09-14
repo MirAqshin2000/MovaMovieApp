@@ -68,19 +68,24 @@ class ProfileFragment : Fragment() {
                 binding.animationView22.gone()
                 findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToSubscribeFragment())
             }
-            binding.constraintLayoutNotifications.setOnClickListener {
-                lifecycleScope.launch {
-                    binding.animationView22.visible()
-                    delay(1500)
-                    binding.animationView22.gone()
-                    findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditProfileNotificationFragment())
-                }
-            }
         }
         binding.constraintLayoutNotifications.setOnClickListener {
-            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditProfileNotificationFragment())
-
+            lifecycleScope.launch {
+                binding.animationView22.visible()
+                delay(1500)
+                binding.animationView22.gone()
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditProfileNotificationFragment())
+            }
         }
+        binding.constraintLayoutEditProfile.setOnClickListener {
+            lifecycleScope.launch {
+                binding.animationView22.visible()
+                delay(1500)
+                binding.animationView22.gone()
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment())
+            }
+        }
+
 
 
 
@@ -110,10 +115,15 @@ class ProfileFragment : Fragment() {
             bottomSheet.show()
 
         }
+
+
+        binding.constraintLayoutprivacy.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToPrivacyFragment())
+        }
+
     }
 
     private fun changeLanguage(langCode: String, prefs: SharedPreferences) {
-        LocalHelper.setLocale(requireContext(), langCode)
         prefs.edit().putString("app_language", langCode).apply()
         requireActivity().recreate()
     }

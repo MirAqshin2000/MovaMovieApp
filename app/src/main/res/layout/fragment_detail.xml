@@ -276,6 +276,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView3"
         app:tabIndicatorColor="@color/red"
+        app:tabIndicatorFullWidth="true"
         app:tabSelectedTextColor="@color/red"
         app:tabTextColor="@color/greyscale">
 

@@ -17,11 +17,23 @@
     <string name="up_date">Update</string>
     <string name="search">Search</string>
     <string name="sorry_not_found">Sorry, the keyword you entered could not be found. Try to check again or search with other keywords.</string>
-
-
+    <string name="Types_of_Data_We_Collect">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui official deserunt mollit anim id est laborum.</string>
+    <string name="Use_of_Your_Personal_Data">Magna etiam tempor orci eu lobortis elementum nibh. Vulputate enim nulla aliquet porttitor lacus. Orci sagittis eu volutpat odio. Cras semper auctor neque vitae tempus quam pellentesque nec. Non quam lacus suspendisse faucibus interdum posuere lorem ipsum dolor. Commodo elit at imperdiet dui. Nisi vitae suscipit tellus mauris a diam. Erat pellentesque adipiscing commodo elit at imperdiet dui. Mi ipsum faucibus vitae aliquet nec ullamcorper. Pellentesque pulvinar pellentesque habitant morbi tristique senectus et.</string>
+    <string name="Disclosure_of_Your_Personal_Data">Consequat id porta nibh venenatis cras sed. Ipsum nunc aliquet bibendum enim facilisis gravida neque. Nibh tellus molestie nunc non blandit massa. Quam pellentesque nec nam aliquam sem et tortor consequat id. Faucibus vitae aliquet nec ullamcorper sit amet risus. Nunc consequat interdum varius sit amet. Eget magna fermentum iaculis eu non diam phasellus vestibulum. Pulvinar pellentesque habitant morbi tristique senectus et. Lorem donec massa sapien faucibus et molestie. Massa tempor nec feugiat nisl pretium fusce id. Lacinia at quis risus sed vulputate odio. Integer vitae justo eget magna fermentum iaculis. Eget gravida cum sociis natoque penatibus et magnis.</string>
+    <string name="what_is_Mova">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="how_to_remove_wishlist">To remove an item from your wishlist, open the wishlist in the app, locate the item you want to delete, tap the three-dot menu or heart icon next to it, and choose “Remove from Wishlist” to immediately remove it.</string>
+    <string name="how_premium">To subscribe to premium, open the app, go to the Profile or Subscription section, tap Subscribe or Upgrade to Premium, choose your plan, and follow the on-screen payment instructions.</string>
+   <string name="how_download">To download movies, open the app, go to the movie you want, tap the Download button (usually a downward arrow), and the movie will be saved to your device for offline viewing.</string>
+   <string name="how_unsubrice">To unsubscribe from premium, open the app, go to Profile or Subscription settings, tap Manage Subscription or Cancel Premium, and follow the prompts to confirm cancellation.</string>
+   <string name="how_list">To add content to your list, open the app, navigate to the movie or show you want, tap the Add to My List or + button, and it will appear in your personal list.</string>
+   
+   
+   
+   
+   
     <string name="language">Language</string>
     <string name="english">English</string>
-    <string name="azerbaijani">Azerbaijani</string>
+    <string name="azerbaijan">Azerbaijan</string>
     <string name="turkish">Turkish</string>
     <string name="russian">Russian</string>
 
