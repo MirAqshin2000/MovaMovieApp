@@ -13,10 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="78dp"
-android:tint="@color/icon_color"
         android:src="@drawable/popstacklef"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/icon_color" />
 
     <TextView
         android:id="@+id/textView59"
@@ -31,16 +31,15 @@ android:tint="@color/icon_color"
         app:layout_constraintStart_toEndOf="@+id/imageView57popback"
         app:layout_constraintTop_toTopOf="@+id/imageView57popback" />
 
+
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageViewedit"
+        android:id="@+id/editimage"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginStart="144dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="147dp"
-        android:src="@drawable/facebook"
+        android:src="@drawable/default_profile_photo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.562"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView59" />
 
@@ -54,8 +53,8 @@ android:tint="@color/icon_color"
         app:iconGravity="top"
         app:iconSize="25dp"
         app:iconTint="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewedit"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewedit" />
+        app:layout_constraintBottom_toBottomOf="@+id/editimage"
+        app:layout_constraintEnd_toEndOf="@+id/editimage" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -74,7 +73,7 @@ android:tint="@color/icon_color"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewedit">
+        app:layout_constraintTop_toBottomOf="@+id/editimage">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editnametextinput"
@@ -198,7 +197,7 @@ android:tint="@color/icon_color"
         android:id="@+id/countryCodePicker1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/textPrimary1"
+        android:textColor="@color/white"
         app:ccp_autoDetectCountry="true"
         app:ccp_contentColor="@color/textPrimary1"
         app:ccp_defaultNameCode="US"
@@ -234,9 +233,10 @@ android:tint="@color/icon_color"
             android:id="@+id/autoCompleteGender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusable="false"
+            android:focusable="true"
             android:hint="Select Gender"
             android:inputType="none"
+
             android:textColor="@color/textPrimary1"
             android:textColorHint="@color/greyscale"
             tools:ignore="MissingConstraints" />
@@ -267,7 +267,7 @@ android:tint="@color/icon_color"
             android:id="@+id/autoCompleteCountry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusable="false"
+            android:focusable="true"
             android:hint="Select Country"
             android:inputType="none"
             android:textColor="@color/textPrimary1"
@@ -283,11 +283,11 @@ android:tint="@color/icon_color"
         android:layout_marginStart="24dp"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="24dp"
+        android:backgroundTint="@color/red"
+        android:fontFamily="@font/urbanist_bold"
         android:text="Update"
         android:textColor="@color/white"
-        android:fontFamily="@font/urbanist_bold"
         android:textSize="18dp"
-        android:backgroundTint="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

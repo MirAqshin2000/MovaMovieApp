@@ -29,6 +29,11 @@ class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var pickImageLauncher: ActivityResultLauncher<Intent>
 
+    val sharedPreferences: SharedPreferences by lazy {
+
+        requireContext().getSharedPreferences("MyPrefs", Activity.MODE_PRIVATE)
+    }
+
     private val viewModel: ProfileViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -112,11 +117,6 @@ class ProfileFragment : Fragment() {
         }
 
 
-
-
-
-
-
         binding.constraintLayoutLanguage.setOnClickListener {
             val bottomSheet = BottomSheetDialog(requireContext())
             val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet, null)
@@ -174,15 +174,34 @@ class ProfileFragment : Fragment() {
         requireActivity().recreate()
     }
 
+
+
+
+
+    private fun saveDarkMode(isDarkMode: Boolean) {
+        sharedPreferences.edit().putBoolean("dark_mode", isDarkMode).apply()
+    }
+
+    private fun loadDarkMode(): Boolean {
+        return sharedPreferences.getBoolean("dark_mode", false)
+    }
+
+
     private fun observe() {
+        val isDark = loadDarkMode()
+        binding.switch1.isChecked = isDark
+        viewModel.setDarkMode(isDark)
+
         viewModel.isDarkMode.observe(viewLifecycleOwner) { isDarkMode ->
             binding.switch1.isChecked = isDarkMode
+
         }
 
 
         binding.switch1.setOnCheckedChangeListener { _, isChecked ->
 
             viewModel.setDarkMode(isChecked)
+saveDarkMode(isChecked)
         }
     }
 }

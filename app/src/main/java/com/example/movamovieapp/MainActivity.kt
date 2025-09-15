@@ -4,8 +4,10 @@ import android.content.Context
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.movamovieapp.databinding.ActivityMainBinding
@@ -28,9 +30,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
+
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        enableEdgeToEdge()
+
+
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView2) as? NavHostFragment
@@ -49,6 +56,11 @@ class MainActivity : AppCompatActivity() {
                 else -> bottomMenu.gone()
             }
         }
+
+
+
+
+
 
 
 

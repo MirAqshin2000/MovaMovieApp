@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/backgroundColor"
     tools:context=".notification.NotificationFragment">
 
     <ImageView
@@ -12,10 +12,11 @@
         android:layout_width="33dp"
         android:layout_height="34dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="78dp"
         android:src="@drawable/popstacklef"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/icon_color" />
 
     <TextView
         android:id="@+id/textView16notification"
@@ -24,7 +25,7 @@
         android:layout_marginStart="16dp"
         android:fontFamily="@font/urbanist_bold"
         android:text="@string/notification"
-        android:textColor="@color/white"
+        android:textColor="@color/textPrimary1"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView17"
         app:layout_constraintStart_toEndOf="@+id/imageView17"
@@ -36,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:src="@drawable/imagegroup"
+        app:tint="@color/icon_color"
         app:layout_constraintBottom_toBottomOf="@+id/textView16notification"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView16notification" />

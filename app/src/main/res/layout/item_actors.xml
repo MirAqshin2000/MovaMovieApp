@@ -43,7 +43,7 @@
 
                 android:fontFamily="@font/urbanist_semibold"
                 android:maxLines="2"
-                android:textColor="@color/white"
+                android:textColor="@color/textPrimary1"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageViewActor"
@@ -58,7 +58,7 @@
                 android:layout_marginEnd="6dp"
                 android:fontFamily="@font/urbanist"
                 android:text="@{actor.knownForDepartment}"
-                android:textColor="@color/white"
+                android:textColor="@color/textPrimary1"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageViewActor"

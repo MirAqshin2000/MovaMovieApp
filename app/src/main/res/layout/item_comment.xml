@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_marginStart="5dp"
-            app:cardBackgroundColor="#181A20"
+            app:cardBackgroundColor="@color/backgroundColor"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -64,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@{comment.authorDetails.username}"
-                    android:textColor="@color/white"
+                    android:textColor="@color/textPrimary1"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/cvImage"
@@ -76,6 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
+                    app:tint="@color/icon_color"
                     app:layout_constraintBottom_toBottomOf="@+id/textView18"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView18"
@@ -90,7 +91,7 @@
                     android:layout_marginEnd="8dp"
                     android:letterSpacing="0.02"
                     android:text="@{comment.content}"
-                    android:textColor="@color/white"
+                    android:textColor="@color/textPrimary1"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -124,7 +125,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:text="@{String.valueOf(comment.authorDetails.rating)}"
-                        android:textColor="@color/white"
+                        android:textColor="@color/textPrimary1"
                         android:textSize="12sp" />
 
                     <TextView
@@ -133,7 +134,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@{comment.createdAt.toString()}"
-                        android:textColor="#E0E0E0"
+                        android:textColor="@color/textPrimary1"
                         android:textSize="12sp" />
                 </LinearLayout>
 

@@ -5,10 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.mova.base.BaseFragment
 import com.example.movamovieapp.R
 import com.example.movamovieapp.databinding.FragmentLetsBinding
+import com.example.movamovieapp.util.gone
+import com.example.movamovieapp.util.visible
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class LetsFragment : BaseFragment<FragmentLetsBinding>(FragmentLetsBinding::inflate) {
@@ -19,13 +24,20 @@ class LetsFragment : BaseFragment<FragmentLetsBinding>(FragmentLetsBinding::infl
 
         }
         binding.textView3signup.setOnClickListener {
-            findNavController().navigate(LetsFragmentDirections.actionLetsFragmentToRegisterFragment())
+            lifecycleScope.launch {
+                binding.animationView25.visible()
+                delay(2000)
+                binding.animationView25.gone()
+                findNavController().navigate(LetsFragmentDirections.actionLetsFragmentToRegisterFragment())
+
+            }
 
         }
 
         binding.imageView4back.setOnClickListener {
             findNavController().popBackStack()
         }
+
     }
 
 

@@ -26,7 +26,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/black">
+                android:background="@color/backgroundColor">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView3"
@@ -79,7 +79,7 @@
                     android:ellipsize="end"
                     android:maxLines="3"
                     android:text="@{trailer.name}"
-                    android:textColor="@color/white"
+                    android:textColor="@color/textPrimary1"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/cardView3"
@@ -93,7 +93,7 @@
                     android:layout_marginBottom="8dp"
                     android:fontFamily="@font/urbanist_bold"
                     android:text="1m 56s"
-                    android:textColor="@color/white"
+                    android:textColor="@color/textPrimary1"
                     app:layout_constraintBottom_toBottomOf="@+id/cardView3"
                     app:layout_constraintStart_toEndOf="@+id/cardView3" />
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/backgroundColor"
     tools:context=".EditProfileNotificationFragment">
 
     <TextView
@@ -15,7 +15,7 @@
         android:fontFamily="@font/urbanist_bold"
         android:text="Notification"
 
-        android:textColor="@color/white"
+        android:textColor="@color/textPrimary1"
         android:textSize="24dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView30"
@@ -29,7 +29,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:text="General Notification"
-        android:textColor="@color/white"
+        android:textColor="@color/textPrimary1"
         android:fontFamily="@font/urbanist"
         android:textSize="18dp"
         android:textStyle="bold"
@@ -60,7 +60,7 @@
         android:text="New Arrival"
         android:textSize="18dp"
         android:fontFamily="@font/urbanist"
-        android:textColor="@color/white"
+        android:textColor="@color/textPrimary1"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView28" />
@@ -89,7 +89,7 @@
         android:text="New Services Available"
         android:fontFamily="@font/urbanist"
         android:textSize="18dp"
-        android:textColor="@color/white"
+        android:textColor="@color/textPrimary1"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView29" />
@@ -118,7 +118,7 @@
         android:text="New Releases Movie"
         android:textSize="18dp"
         android:fontFamily="@font/urbanist"
-        android:textColor="@color/white"
+        android:textColor="@color/textPrimary1"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView30" />
@@ -148,7 +148,7 @@
         android:text="App Updates"
         android:fontFamily="@font/urbanist"
         android:textSize="18dp"
-        android:textColor="@color/white"
+        android:textColor="@color/textPrimary1"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView31" />
@@ -177,7 +177,7 @@
         android:text="Subscription"
         android:textSize="18dp"
         android:fontFamily="@font/urbanist"
-        android:textColor="@color/white"
+        android:textColor="@color/textPrimary1"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView32" />
@@ -203,6 +203,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="78dp"
+        app:tint="@color/icon_color"
         android:src="@drawable/popstacklef"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

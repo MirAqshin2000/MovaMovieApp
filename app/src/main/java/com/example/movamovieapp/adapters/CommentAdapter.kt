@@ -23,6 +23,7 @@ class CommentAdapter : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() 
         val item = list[position]
         holder.itemcommentBinding.comment = item
         holder.itemcommentBinding.executePendingBindings()
+
     }
 
     override fun getItemCount(): Int {

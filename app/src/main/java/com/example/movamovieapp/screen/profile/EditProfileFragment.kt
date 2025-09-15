@@ -43,7 +43,8 @@ class EditProfileFragment :
                 val data: Intent? = result.data
                 val uri = data?.data
                 if (uri != null) {
-                    binding.imageViewedit.setImageURI(uri)
+                    binding.editimage.setImageURI(uri)
+                    selectedImageUri = uri.toString()
                 }
             }
         }
@@ -71,12 +72,14 @@ class EditProfileFragment :
         binding.autoCompleteGender.setAdapter(adapter)
 
         binding.autoCompleteGender.setDropDownBackgroundResource(R.color.gray)
+        binding.autoCompleteGender.threshold = 0
 
 
         binding.autoCompleteGender.setOnItemClickListener { parent, view, position, id ->
             val selectedGender = parent.getItemAtPosition(position).toString()
             Toast.makeText(requireContext(), "Selected Gender: $selectedGender", Toast.LENGTH_SHORT)
                 .show()
+            binding.autoCompleteGender.showDropDown()
         }
 
 
@@ -101,6 +104,7 @@ class EditProfileFragment :
         val countryadapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, countries)
 
         binding.autoCompleteCountry.setAdapter(countryadapter)
+        binding.autoCompleteCountry.threshold = 0
 
         binding.autoCompleteCountry.setDropDownBackgroundResource(R.color.gray)
         binding.autoCompleteCountry.setOnItemClickListener { parent, view, position, id ->
@@ -110,6 +114,7 @@ class EditProfileFragment :
                 "Selected Country: $selectedCountry",
                 Toast.LENGTH_SHORT
             ).show()
+            binding.autoCompleteCountry.showDropDown()
         }
         sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Activity.MODE_PRIVATE)
 
@@ -127,15 +132,19 @@ class EditProfileFragment :
         binding.editnametextinput.setText(sharedPreferences.getString("Fullname", ""))
         binding.nicknameedittext.setText(sharedPreferences.getString("nickname", ""))
         binding.emailedittext.setText(sharedPreferences.getString("email", ""))
-        binding.autoCompleteCountry.setText(sharedPreferences.getString("country", ""))
-        binding.autoCompleteGender.setText(sharedPreferences.getString("gender", ""))
+
+        binding.autoCompleteCountry.setText(sharedPreferences.getString("country", ""),false)
+        binding.autoCompleteGender.setText(sharedPreferences.getString("gender", ""),false)
         binding.editTextPhone.setText(sharedPreferences.getString("phone", ""))
 
 
 
         val imageUri = sharedPreferences.getString("image", "")
-        if (imageUri != null && imageUri.isEmpty()) {
-            binding.imageViewedit.setImageURI(android.net.Uri.parse(imageUri))
+        if (!imageUri.isNullOrEmpty()) {
+            binding.editimage.setImageURI(android.net.Uri.parse(imageUri))
+        }
+        else{
+            binding.editimage.setImageResource(R.drawable.default_profile_photo)
         }
 
     }
@@ -147,7 +156,7 @@ class EditProfileFragment :
             putString("country", binding.autoCompleteCountry.text.toString())
             putString("gender", binding.autoCompleteGender.text.toString())
             putString("phone", binding.editTextPhone.text.toString())
-            putString("image", selectedImageUri)
+            putString("image", selectedImageUri?: "")
             apply()
 
             Toast.makeText(requireContext(), "Data saved successfully", Toast.LENGTH_SHORT).show()

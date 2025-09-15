@@ -15,8 +15,8 @@
             parent: ViewGroup,
             viewType: Int
         ): FaqViewHolder {
-    val view=ItemFaqBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-            return FaqViewHolder(view)
+val itemFaqBinding=ItemFaqBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+            return FaqViewHolder(itemFaqBinding)
         }
 
         override fun onBindViewHolder(
