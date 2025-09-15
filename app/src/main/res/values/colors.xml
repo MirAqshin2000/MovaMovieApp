@@ -10,6 +10,12 @@
     <color name="graydivider">#35383F</color>
 
 
+    <color name="backgroundColor">#FFFFFF</color>
+    <color name="textPrimary1">#000000</color>
+    <color name="buttonPrimary">#FF0000</color>
+    <color name="icon_color">#212121</color>
+    <color name="input_background">#FFFFFFFF</color>
+    <color name="primary_background_color">#FAFAFA</color>
 
 
 

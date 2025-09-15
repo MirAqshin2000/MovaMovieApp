@@ -243,6 +243,7 @@
         android:backgroundTint="@color/red"
         android:fontFamily="@font/urbanist"
         android:text="Add"
+        android:textColor="@color/white"
         android:textFontWeight="700"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"

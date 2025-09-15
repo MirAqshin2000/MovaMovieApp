@@ -216,7 +216,9 @@
         android:backgroundTint="@color/red"
         android:fontFamily="@font/urbanist_bold"
         android:text="@string/play"
+        android:textColor="@color/white"
         app:icon="@drawable/play"
+        app:iconTint="@color/white"
         app:iconPadding="8dp"
         app:iconSize="16dp"
 

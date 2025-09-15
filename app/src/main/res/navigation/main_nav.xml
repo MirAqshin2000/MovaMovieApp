@@ -139,6 +139,12 @@
         <action
             android:id="@+id/action_profileFragment_to_privacyFragment"
             app:destination="@id/privacyFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_helpFragment"
+            app:destination="@id/helpFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_letsFragment"
+            app:destination="@id/letsFragment" />
     </fragment>
     <fragment
         android:id="@+id/myListFragment2"
@@ -204,4 +210,9 @@
         android:id="@+id/privacyFragment"
         android:name="com.example.movamovieapp.screen.profile.PrivacyFragment"
         android:label="PrivacyFragment" />
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="com.example.movamovieapp.help.HelpFragment"
+        android:label="fragment_help"
+        tools:layout="@layout/fragment_help" />
 </navigation>

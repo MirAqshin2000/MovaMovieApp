@@ -5,7 +5,15 @@
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
 
-    <color name="text_primary">#000000</color> <!-- dark mode üçün qara -->
-    <color name="text_secondary">#555555</color>
+
+
+    <color name="backgroundColor">#000000</color>
+    <color name="textPrimary1">#FFFFFF</color>
+    <color name="buttonPrimary">#FF5555</color>
+    <color name="icon_color">#FFFFFFFF</color>
+
+    <color name="input_background">#1F222A</color>
+    <color name="primary_background_color">#181A20</color>
+
 
 </resources>

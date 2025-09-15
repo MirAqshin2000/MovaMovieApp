@@ -8,12 +8,24 @@ import android.view.ViewGroup
 import com.example.mova.base.BaseFragment
 import com.example.movamovieapp.R
 import com.example.movamovieapp.databinding.FragmentFaqBinding
+import com.example.movamovieapp.util.gone
+import com.example.movamovieapp.util.visible
 
 
 class FaqFragment : BaseFragment<FragmentFaqBinding>(FragmentFaqBinding::inflate) {
  val faqAdapter=FaqAdapter()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        faqAdapter.onClick={binding,item,position->
+            if (item.isExpanded){
+                binding.textViewanswer.visible()
+            }else{
+                binding.textViewanswer.gone()
+            }
+
+        }
 binding.rvFaq.adapter=faqAdapter
 
 

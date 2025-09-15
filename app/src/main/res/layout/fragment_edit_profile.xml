@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/primary_background_color"
     tools:context=".screen.profile.EditProfileFragment">
 
     <ImageView
@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="78dp"
+android:tint="@color/icon_color"
         android:src="@drawable/popstacklef"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,7 +25,7 @@
         android:layout_marginStart="16dp"
         android:fontFamily="@font/urbanist_bold"
         android:text="Edit Profile"
-        android:textColor="@color/white"
+        android:textColor="@color/textPrimary1"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView57popback"
         app:layout_constraintStart_toEndOf="@+id/imageView57popback"
@@ -37,7 +38,7 @@
         android:layout_marginStart="144dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="147dp"
-        android:src="@drawable/default_profile_photo"
+        android:src="@drawable/facebook"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.562"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +64,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        app:boxBackgroundColor="@color/gray"
+        app:boxBackgroundColor="@color/input_background"
         app:boxCornerRadiusBottomEnd="12dp"
         app:boxCornerRadiusBottomStart="12dp"
         app:boxCornerRadiusTopEnd="12dp"
@@ -81,7 +82,7 @@
             android:layout_height="wrap_content"
             android:hint="Full Name"
             android:maxLines="1"
-            android:textColor="@color/white"
+            android:textColor="@color/textPrimary1"
             android:textColorHint="@color/greyscale" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -92,7 +93,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        app:boxBackgroundColor="@color/gray"
+        app:boxBackgroundColor="@color/input_background"
         app:boxCornerRadiusBottomEnd="12dp"
         app:boxCornerRadiusBottomStart="12dp"
         app:boxCornerRadiusTopEnd="12dp"
@@ -110,7 +111,7 @@
             android:layout_height="wrap_content"
             android:hint="Nickname"
             android:maxLines="1"
-            android:textColor="@color/white"
+            android:textColor="@color/textPrimary1"
             android:textColorHint="@color/greyscale" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -121,7 +122,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        app:boxBackgroundColor="@color/gray"
+        app:boxBackgroundColor="@color/input_background"
         app:boxCornerRadiusBottomEnd="12dp"
         app:boxCornerRadiusBottomStart="12dp"
         app:boxCornerRadiusTopEnd="12dp"
@@ -141,7 +142,7 @@
             android:hint="Email"
             android:maxLines="1"
 
-            android:textColor="@color/white"
+            android:textColor="@color/textPrimary1"
             android:textColorHint="@color/greyscale" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -168,7 +169,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        app:boxBackgroundColor="@color/gray"
+        app:boxBackgroundColor="@color/input_background"
         app:boxCornerRadiusBottomEnd="12dp"
         app:boxCornerRadiusBottomStart="12dp"
         app:boxCornerRadiusTopEnd="12dp"
@@ -188,8 +189,8 @@
             android:hint="Phone Number"
             android:maxLines="1"
             android:paddingStart="130dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/greyscale" />
+            android:textColor="@color/textPrimary1"
+            android:textColorHint="@color/textPrimary1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -197,9 +198,9 @@
         android:id="@+id/countryCodePicker1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/textPrimary1"
         app:ccp_autoDetectCountry="true"
-        app:ccp_contentColor="@color/white"
+        app:ccp_contentColor="@color/textPrimary1"
         app:ccp_defaultNameCode="US"
         app:ccp_showFlag="true"
         app:ccp_showNameCode="false"
@@ -216,7 +217,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        app:boxBackgroundColor="@color/gray"
+        app:boxBackgroundColor="@color/input_background"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="12dp"
         app:boxCornerRadiusBottomStart="12dp"
@@ -236,7 +237,7 @@
             android:focusable="false"
             android:hint="Select Gender"
             android:inputType="none"
-            android:textColor="@color/white"
+            android:textColor="@color/textPrimary1"
             android:textColorHint="@color/greyscale"
             tools:ignore="MissingConstraints" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -249,7 +250,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        app:boxBackgroundColor="@color/gray"
+        app:boxBackgroundColor="@color/input_background"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="12dp"
         app:boxCornerRadiusBottomStart="12dp"
@@ -269,7 +270,7 @@
             android:focusable="false"
             android:hint="Select Country"
             android:inputType="none"
-            android:textColor="@color/white"
+            android:textColor="@color/textPrimary1"
             android:textColorHint="@color/greyscale"
             tools:ignore="MissingConstraints" />
 
@@ -283,6 +284,7 @@
         android:layout_marginTop="80dp"
         android:layout_marginEnd="24dp"
         android:text="Update"
+        android:textColor="@color/white"
         android:fontFamily="@font/urbanist_bold"
         android:textSize="18dp"
         android:backgroundTint="@color/red"

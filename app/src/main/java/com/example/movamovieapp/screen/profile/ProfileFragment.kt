@@ -40,6 +40,8 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observe()
+
         pickImageLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
@@ -86,6 +88,32 @@ class ProfileFragment : Fragment() {
             }
         }
 
+        binding.constrainthelpcenter.setOnClickListener {
+            lifecycleScope.launch {
+                binding.animationView22.visible()
+                delay(1500)
+                binding.animationView22.gone()
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToHelpFragment())
+            }
+        }
+
+        binding.constraintLayoutprivacy.setOnClickListener {
+            lifecycleScope.launch {
+                binding.animationView22.visible()
+                delay(1500)
+                binding.animationView22.gone()
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToPrivacyFragment())
+            }
+        }
+        binding.imageViewlogout.setOnClickListener {
+            showLogoutBottomSheet()
+
+
+        }
+
+
+
+
 
 
 
@@ -117,10 +145,28 @@ class ProfileFragment : Fragment() {
         }
 
 
-        binding.constraintLayoutprivacy.setOnClickListener {
-            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToPrivacyFragment())
-        }
+    }
 
+
+    private fun showLogoutBottomSheet() {
+        val bottomSheet = BottomSheetDialog(requireContext())
+        val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_logout, null)
+        bottomSheet.setContentView(bottomSheetView)
+
+        val butonCancel = bottomSheetView.findViewById<View>(R.id.btnCancel)
+        val btnLogout = bottomSheetView.findViewById<View>(R.id.btnLogout)
+
+        butonCancel.setOnClickListener {
+            bottomSheet.dismiss()
+        }
+        btnLogout.setOnClickListener {
+            bottomSheet.dismiss()
+            val prefs = SharedPrefManager(requireContext())
+            prefs.clearUser()
+
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToLetsFragment())
+        }
+        bottomSheet.show()
     }
 
     private fun changeLanguage(langCode: String, prefs: SharedPreferences) {
@@ -128,18 +174,22 @@ class ProfileFragment : Fragment() {
         requireActivity().recreate()
     }
 
+    private fun observe() {
+        viewModel.isDarkMode.observe(viewLifecycleOwner) { isDarkMode ->
+            binding.switch1.isChecked = isDarkMode
+        }
 
+
+        binding.switch1.setOnCheckedChangeListener { _, isChecked ->
+
+            viewModel.setDarkMode(isChecked)
+        }
+    }
 }
 
 
-//    }
-//    private fun observe(){
-//        viewModel.isDarkMode.observe(viewLifecycleOwner) { isDarkMode ->
-//            binding.switch1.isChecked = isDarkMode
-//        }
 
 
-//        observe()
-// binding.switch1.setOnCheckedChangeListener { _, isChecked ->
 
-//     viewModel.setDarkMode(isChecked)
+
+

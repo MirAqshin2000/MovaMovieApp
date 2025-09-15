@@ -180,6 +180,8 @@
         android:backgroundTint="@color/red"
         android:fontFamily="@font/urbanist_bold"
         android:text="Play"
+        android:textColor="@color/white"
+        app:iconTint="@color/white"
         android:textSize="16sp"
     app:iconGravity="textStart"
 

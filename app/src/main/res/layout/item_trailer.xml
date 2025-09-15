@@ -109,6 +109,8 @@
                     android:paddingTop="5dp"
                     android:text="Preview"
                     app:icon="@drawable/play"
+                    android:textColor="@color/white"
+                    app:iconTint="@color/white"
                     app:layout_constraintBottom_toBottomOf="@+id/textView27"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView27" />

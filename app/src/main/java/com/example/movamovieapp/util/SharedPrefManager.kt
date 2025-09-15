@@ -59,4 +59,7 @@ class SharedPrefManager@Inject constructor
         return sharedPreferences.getString("user_email", "")
     }
 
-}
+    fun clearUser() {
+        sharedPreferences.edit().clear().apply()
+    }
+    }
