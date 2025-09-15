@@ -23,14 +23,11 @@
     <string name="what_is_Mova">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
     <string name="how_to_remove_wishlist">To remove an item from your wishlist, open the wishlist in the app, locate the item you want to delete, tap the three-dot menu or heart icon next to it, and choose “Remove from Wishlist” to immediately remove it.</string>
     <string name="how_premium">To subscribe to premium, open the app, go to the Profile or Subscription section, tap Subscribe or Upgrade to Premium, choose your plan, and follow the on-screen payment instructions.</string>
-   <string name="how_download">To download movies, open the app, go to the movie you want, tap the Download button (usually a downward arrow), and the movie will be saved to your device for offline viewing.</string>
-   <string name="how_unsubrice">To unsubscribe from premium, open the app, go to Profile or Subscription settings, tap Manage Subscription or Cancel Premium, and follow the prompts to confirm cancellation.</string>
-   <string name="how_list">To add content to your list, open the app, navigate to the movie or show you want, tap the Add to My List or + button, and it will appear in your personal list.</string>
-   
-   
-   
-   
-   
+    <string name="how_download">To download movies, open the app, go to the movie you want, tap the Download button (usually a downward arrow), and the movie will be saved to your device for offline viewing.</string>
+    <string name="how_unsubrice">To unsubscribe from premium, open the app, go to Profile or Subscription settings, tap Manage Subscription or Cancel Premium, and follow the prompts to confirm cancellation.</string>
+    <string name="how_list">To add content to your list, open the app, navigate to the movie or show you want, tap the Add to My List or + button, and it will appear in your personal list.</string>
+
+
     <string name="language">Language</string>
     <string name="english">English</string>
     <string name="azerbaijan">Azerbaijan</string>

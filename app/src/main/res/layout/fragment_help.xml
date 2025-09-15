@@ -25,7 +25,7 @@
         android:fontFamily="@font/urbanist_bold"
         android:text="Help Center"
         android:textColor="@color/white"
-        android:textSize="24"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView58"
         app:layout_constraintStart_toEndOf="@+id/imageView58"
         app:layout_constraintTop_toTopOf="@+id/imageView58" />
@@ -59,14 +59,12 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-
             android:text="FAQ" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tuesday" />
+            android:text="Contact us" />
 
     </com.google.android.material.tabs.TabLayout>
 
