@@ -49,11 +49,7 @@ class SubscribeFragment : Fragment() {
                     binding.animationView22.visible()
                     delay(1500)
                     binding.animationView22.gone()
-                    findNavController().navigate(
-                        SubscribeFragmentDirections.actionSubscribeFragmentToPaymentFragment(
-                            toString()
-                        )
-                    )
+                    findNavController().navigate(R.id.action_subscribeFragment_to_paymentFragment)
                 }
 
             }
