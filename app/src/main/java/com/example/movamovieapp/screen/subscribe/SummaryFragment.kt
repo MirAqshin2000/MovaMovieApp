@@ -34,10 +34,14 @@ class SummaryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        binding.textView59card.text = args.cardNumber
-        binding.textView52.text = args.paymentName
+        if (args.cardNumber.isNotEmpty()) {
+            binding.textView59card.text = args.cardNumber
+            binding.textView52.text = args.paymentName  // payment adını gizlət
+        } else {
+            binding.textView59card.text = ""
+            binding.textView52.text = args.paymentName  // payment adı burda da göstərilə bilər, amma sadəcə textView59-a da verə bilərsən
+        }
         binding.imageView55.setImageResource(args.cardImage.toInt())
-
 
         binding.imageView54.setOnClickListener {
             findNavController().popBackStack()

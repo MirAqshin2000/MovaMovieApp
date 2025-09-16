@@ -37,7 +37,27 @@ class CardAdapter:RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
     ) {
 val item=cardList[position]
         holder.itemCardsBinding.textViewbank.text=maskCardNumberGrouped(item.cardNumber)
-        holder.itemCardsBinding.imageViewcards.setImageResource(item.cardImage)
+//        holder.itemCardsBinding.imageViewcards.setImageResource(item.cardImage)
+
+
+        holder.itemCardsBinding.textViewbank.text=item.cardName
+        when (item.cardName) {
+            "PayPal" -> {
+                holder.itemCardsBinding.imageViewcards.setImageResource(R.drawable.paypallogo)
+            }
+            "Google Pay" -> {
+                holder.itemCardsBinding.imageViewcards.setImageResource(R.drawable.google)
+        }
+            "Apple Pay" -> {
+                holder.itemCardsBinding.imageViewcards.setImageResource(R.drawable.apple)
+            }
+            else -> {
+                holder.itemCardsBinding.textViewbank.text =maskCardNumberGrouped(item.cardNumber)
+                holder.itemCardsBinding.imageViewcards.setImageResource(R.drawable.mastercard)
+            }
+
+        }
+
 
 
 holder.itemCardsBinding.imageViewcheckh.visibility=

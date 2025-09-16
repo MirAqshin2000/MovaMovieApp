@@ -78,32 +78,19 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewpayment"
-        android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView41"
-        tools:listitem="@layout/item_payment" />
-
-    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv2"
         android:layout_width="0dp"
         android:layout_height="0dp"
 
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/button5addcard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewpayment"
+        app:layout_constraintTop_toBottomOf="@+id/textView41"
         tools:listitem="@layout/item_cards">
 
     </androidx.recyclerview.widget.RecyclerView>
@@ -112,14 +99,16 @@
         android:id="@+id/animationView22"
         android:layout_width="200dp"
         android:layout_height="200dp"
+
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/rv2"
+        app:layout_constraintBottom_toBottomOf="@+id/button5addcard"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/recyclerViewpayment"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewpayment"
-        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintTop_toBottomOf="@+id/textView41"
+        app:layout_constraintVertical_bias="0.84"
         app:lottie_autoPlay="true"
+        app:lottie_colorFilter="@color/red"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/loading" />
 

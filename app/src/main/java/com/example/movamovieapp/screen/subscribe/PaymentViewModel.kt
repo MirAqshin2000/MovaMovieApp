@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.movamovieapp.R
 import com.example.movamovieapp.di.MovieRepository
 import com.example.movamovieapp.model.CardModel
+import com.example.movamovieapp.model.PaymentModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,7 +19,8 @@ class PaymentViewModel @Inject constructor(
 
 
     val cards = MutableLiveData<List<CardModel>>()
-
+    var selectedCard: CardModel? = null
+    var selectedPayment: PaymentModel? = null
 
     fun getCards() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -44,6 +46,15 @@ class PaymentViewModel @Inject constructor(
 
     }
 
+    }
+    fun selectCard(card: CardModel) {
+        selectedCard = card
+        selectedPayment = null
+    }
+
+    fun selectPayment(payment: PaymentModel) {
+        selectedPayment = payment
+        selectedCard = null
     }
 
     fun deleteCard(id: Int) {

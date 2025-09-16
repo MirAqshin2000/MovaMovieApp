@@ -34,9 +34,6 @@ class LetsFragment : BaseFragment<FragmentLetsBinding>(FragmentLetsBinding::infl
 
         }
 
-        binding.imageView4back.setOnClickListener {
-            findNavController().popBackStack()
-        }
 
     }
 

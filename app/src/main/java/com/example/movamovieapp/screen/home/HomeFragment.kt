@@ -1,15 +1,22 @@
 package com.example.movamovieapp.screen.home
 
+import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.mova.base.BaseFragment
+import com.example.movamovieapp.R
 import com.example.movamovieapp.adapters.FilmsAdapter
 import com.example.movamovieapp.databinding.FragmentHomeBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -77,7 +84,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
 
         binding.imageView17search2.setOnClickListener {
-           findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToExploreFragment())
+
+            requireActivity()
+                .findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+                .selectedItemId=R.id.exploreFragment
         }
         binding.imageView16notification2.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToNotificationFragment())
@@ -177,5 +187,34 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         viewModel.error.observe(viewLifecycleOwner) { msg ->
             Toast.makeText(requireContext(), msg, Toast.LENGTH_LONG).show()
         }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val dialogView =
+                    LayoutInflater.from(requireContext()).inflate(R.layout.alert_dialog, null)
+                val alertDialog = MaterialAlertDialogBuilder(requireContext())
+                    .setView(dialogView)
+                    .create()
+
+                val titleTextView = dialogView.findViewById<TextView>(R.id.tvTitle)
+                val messageTextView = dialogView.findViewById<TextView>(R.id.tvMessage)
+                val noButton = dialogView.findViewById<TextView>(R.id.btnNo)
+                val yesButton = dialogView.findViewById<TextView>(R.id.btnYes)
+                titleTextView.text = "Log Out"
+                messageTextView.text = "Are you sure you want to log out?"
+                noButton.setOnClickListener {
+                    alertDialog.dismiss()
+                }
+                yesButton.setOnClickListener {
+                    requireActivity().finishAffinity()
+                }
+                alertDialog.show()
+            }
+
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 }

@@ -298,6 +298,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:visibility="gone"
+        app:lottie_colorFilter="@color/red"
         app:layout_constraintBottom_toTopOf="@+id/updatebutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -47,22 +47,21 @@ class PaymentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val adapter = PaymentAdapter()
 
-        binding.recyclerViewpayment.adapter = adapter
-
+//        binding.recyclerViewpayment.adapter = adapter
 
 
         binding.imageView53.setOnClickListener {
             findNavController().popBackStack()
         }
-
-
-        val eachpayment = arrayListOf<PaymentModel>()
-        eachpayment.add(PaymentModel(R.drawable.paypallogo, "PayPal", false))
-        eachpayment.add(PaymentModel(R.drawable.google, "Google Pay", false))
-        eachpayment.add(PaymentModel(R.drawable.apple, "Apple Pay", false))
-
-
-        adapter.updateList(eachpayment)
+//
+//
+//        val eachpayment = arrayListOf<PaymentModel>()
+//        eachpayment.add(PaymentModel(R.drawable.paypallogo, "PayPal", false))
+//        eachpayment.add(PaymentModel(R.drawable.google, "Google Pay", false))
+//        eachpayment.add(PaymentModel(R.drawable.apple, "Apple Pay", false))
+//
+//
+//        adapter.updateList(eachpayment)
 
         cardadapter = CardAdapter()
 
@@ -105,82 +104,121 @@ class PaymentFragment : Fragment() {
                 delay(2000)
                 binding.animationView22.gone()
 
-                when {
-                    selectedCard != null -> {
-                        val maskedNumber = maskCardNumberGrouped(selectedCard!!.cardNumber)
-                        val action =
-                            PaymentFragmentDirections.actionPaymentFragmentToSummaryFragment(
-                                cardNumber = maskedNumber,
-                                cardImage = selectedCard!!.cardImage,
-                            )
-                        findNavController().navigate(action)
-                    }
+                val navController = findNavController()
+                if (navController.currentDestination?.id != R.id.paymentFragment) {
+                    return@launch
+                }
 
-                    selectedPayment != null -> {
-                        val action =
-                            PaymentFragmentDirections.actionPaymentFragmentToSummaryFragment(
-                                cardNumber = selectedPayment!!.cardNumber,
-                                cardImage = selectedPayment!!.image,
-                                paymentName = selectedPayment!!.title
-                            )
-                        findNavController().navigate(action)
-                    }
 
-                    else -> {
-                        Toast.makeText(
-                            requireContext(),
-                            "Card or Payment not selected!",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                    when {
+                        selectedCard != null -> {
+                            val maskedNumber = maskCardNumberGrouped(selectedCard!!.cardNumber)
+                            val action =
+                                PaymentFragmentDirections.actionPaymentFragmentToSummaryFragment(
+                                    cardNumber = maskedNumber,
+                                    cardImage = selectedCard!!.cardImage,
+                                    paymentName =  selectedCard!!.cardName
+                                )
+                            findNavController().navigate(action)
+                        }
+
+                        selectedPayment != null -> {
+                            val action =
+                                PaymentFragmentDirections.actionPaymentFragmentToSummaryFragment(
+                                    cardNumber = "",
+                                    cardImage = selectedPayment!!.image,
+                                    paymentName = selectedPayment!!.title
+                                )
+                            findNavController().navigate(action)
+                        }
+
+                        else -> {
+                            Toast.makeText(
+                                requireContext(),
+                                "Card or Payment not selected!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
             }
+
+
+
+
+
+
+
+
+
+            cardadapter.onItemClickListener = { cardId ->
+                val dialogView =
+                    LayoutInflater.from(requireContext()).inflate(R.layout.alert_dialog, null)
+                val alertDialog = MaterialAlertDialogBuilder(requireContext())
+                    .setView(dialogView)
+                    .create()
+
+                val titleTextView = dialogView.findViewById<TextView>(R.id.tvTitle)
+                val messageTextView = dialogView.findViewById<TextView>(R.id.tvMessage)
+                val noButton = dialogView.findViewById<TextView>(R.id.btnNo)
+                val yesButton = dialogView.findViewById<TextView>(R.id.btnYes)
+                titleTextView.text = "Delete Card"
+                messageTextView.text = "Are you sure you want to delete this Card?"
+                noButton.setOnClickListener {
+                    alertDialog.dismiss()
+                }
+                yesButton.setOnClickListener {
+                    viewModel.deleteCard(cardId.id)
+                    alertDialog.dismiss()
+                }
+                alertDialog.show()
+
+
+            }
         }
 
 
+        private fun observe() {
 
 
+            viewModel.cards.observe(viewLifecycleOwner) {
 
 
+                val defaultCards = listOf(
+                    CardModel(
+                        id = -1,
+                        cardName = "PayPal",
+                        cardNumber = "PayPal",
+                        cardImage = R.drawable.paypallogo,
+                        selected = false
+                    ),
+                    CardModel(
+                        id = -2,
+                        cardName = "Google Pay",
+                        cardNumber = "Google Pay",
+                        cardImage = R.drawable.google,
+                        selected = false
+                    ),
+                    CardModel(
+                        id = -3,
+                        cardName = "Apple Pay",
+                        cardNumber = "Apple Pay",
+                        cardImage = R.drawable.apple,
+                        selected = false
+                    )
+                )
+                val allCards = defaultCards + it
+                cardadapter.updateList(allCards)
 
 
+                Log.d("CARD_DEBUG", "List size: ${it.size}")
 
-        cardadapter.onItemClickListener = { cardId ->
-            val dialogView =
-                LayoutInflater.from(requireContext()).inflate(R.layout.alert_dialog, null)
-            val alertDialog = MaterialAlertDialogBuilder(requireContext())
-                .setView(dialogView)
-                .create()
 
-            val titleTextView = dialogView.findViewById<TextView>(R.id.tvTitle)
-            val messageTextView = dialogView.findViewById<TextView>(R.id.tvMessage)
-            val noButton = dialogView.findViewById<TextView>(R.id.btnNo)
-            val yesButton = dialogView.findViewById<TextView>(R.id.btnYes)
-            titleTextView.text = "Delete Card"
-            messageTextView.text = "Are you sure you want to delete this Card?"
-            noButton.setOnClickListener {
-                alertDialog.dismiss()
             }
-            yesButton.setOnClickListener {
-                viewModel.deleteCard(cardId.id)
-                alertDialog.dismiss()
-            }
-            alertDialog.show()
-
+            viewModel.getCards()
 
         }
     }
 
 
-    private fun observe() {
-        viewModel.cards.observe(viewLifecycleOwner) {
-            Log.d("CARD_DEBUG", "List size: ${it.size}")
-
-            cardadapter.updateList(it)
-
-        }
-        viewModel.getCards()
-
-    }
-}
 

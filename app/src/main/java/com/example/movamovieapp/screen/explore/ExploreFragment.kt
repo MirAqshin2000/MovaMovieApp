@@ -12,6 +12,8 @@ import kotlinx.coroutines.delay
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import com.example.movamovieapp.adapters.FilmsAdapter
+import com.example.movamovieapp.adapters.MoreLikeAdapter
+import com.example.movamovieapp.screen.detail.DetailFragmentDirections
 import com.example.movamovieapp.util.gone
 import com.example.movamovieapp.util.visible
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +23,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class ExploreFragment : Fragment() {
     private lateinit var binding: FragmentExploreBinding
-    private lateinit var adapter : FilmsAdapter
+    private  val adapter =MoreLikeAdapter()
     private val viewModel: ExploreViewModel by viewModels()
 
 
@@ -36,8 +38,13 @@ class ExploreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter= FilmsAdapter { movieId ->
-            val action = ExploreFragmentDirections.actionExploreFragmentToDetailFragment(movieId)
+//        adapter= MoreLikeAdapter { movieId ->
+//            var action = ExploreFragmentDirections.actionExploreFragmentToDetailFragment(movieId)
+//            findNavController().navigate(action)
+//        }
+
+        adapter.onItemClickListener = {
+            val action = ExploreFragmentDirections.actionExploreFragmentToDetailFragment(it.id)
             findNavController().navigate(action)
         }
 
@@ -76,7 +83,7 @@ viewModel.getMovie()
                 binding.imageView4.gone()
                 binding.textView20Notfound.gone()
                 binding.textView21sorry.gone()
-                adapter.updateList(list)
+                adapter.updateMore(list)
 
             }else{
                 binding.recyclerView2.gone()
@@ -91,7 +98,7 @@ viewModel.getMovie()
              binding.imageView4.gone()
              binding.textView20Notfound.gone()
              binding.textView21sorry.gone()
-             adapter.updateList(it)
+             adapter.updateMore(it)
 
          }else{
              binding.recyclerView2.gone()

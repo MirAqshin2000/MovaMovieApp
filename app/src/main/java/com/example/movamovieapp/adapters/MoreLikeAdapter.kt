@@ -34,6 +34,7 @@ lateinit var onItemClickListener: ((Result) -> Unit)
 
 
 
+
     }
 
     override fun getItemCount(): Int {

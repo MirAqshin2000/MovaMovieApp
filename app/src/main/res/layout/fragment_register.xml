@@ -188,7 +188,7 @@
         android:layout_width="88dp"
         android:layout_height="60dp"
 
-        android:layout_marginStart="63dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="43dp"
         app:cardBackgroundColor="@color/gray"
         app:layout_constraintStart_toStartOf="parent"
@@ -249,11 +249,8 @@
         android:layout_width="88dp"
         android:layout_height="60dp"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="63dp"
         app:cardBackgroundColor="@color/gray"
         app:layout_constraintBottom_toBottomOf="@+id/materialCardView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toEndOf="@+id/materialCardView4"
         app:layout_constraintTop_toTopOf="@+id/materialCardView4"
         app:strokeColor="@color/gray">
@@ -293,6 +290,8 @@
         android:id="@+id/animationView22"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        app:lottie_colorFilter="@color/red"
+
         android:layout_marginTop="24dp"
         android:layout_marginBottom="18dp"
         android:visibility="gone"
@@ -317,6 +316,7 @@
         android:fontFamily="@font/urbanist_bold"
         android:text="Sign Up"
         android:textSize="15dp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

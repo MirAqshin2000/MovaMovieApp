@@ -5,12 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.example.movamovieapp.adapters.IntroPagerAdapter
 import com.example.movamovieapp.databinding.FragmentOnboardingBinding
 import com.example.movamovieapp.model.IntroModel
 import com.example.movamovieapp.util.SharedPrefManager
+import com.example.movamovieapp.util.gone
+import com.example.movamovieapp.util.visible
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class OnboardingFragment : Fragment() {
@@ -55,28 +61,44 @@ class OnboardingFragment : Fragment() {
         )
         adapter.updateList(list)
 
+
+        binding.viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                if (position == adapter.itemCount - 1) {
+                    binding.getstardetbutton.visible()
+                } else {
+                    binding.getstardetbutton.gone()
+                }
+            }
+        })
+
+
+
+
         binding.getstardetbutton.setOnClickListener {
 
-            val prefs = SharedPrefManager(requireContext())
-            prefs.setFirstLaunch(false)
 
-            findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToRegisterFragment())
-        }
+            lifecycleScope.launch {
+                binding.animationView22.visible()
+                delay(1500)
+                binding.animationView22.gone()
 
-        binding.getstardetbutton.setOnClickListener {
-            val currentItem = binding.viewPager2.currentItem
-            val lastItem = adapter.itemCount - 1
-            if (currentItem < lastItem) {
-                binding.viewPager2.setCurrentItem(currentItem + 1, true)
-            } else {
-                val prefs = SharedPrefManager(requireContext())
-                prefs.setFirstLaunch(false)
-                findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToLetsFragment())
+
+                val currentItem = binding.viewPager2.currentItem
+                val lastItem = adapter.itemCount - 1
+                if (currentItem < lastItem) {
+                    binding.viewPager2.setCurrentItem(currentItem + 1, true)
+                } else {
+                    val prefs = SharedPrefManager(requireContext())
+                    prefs.setFirstLaunch(false)
+                    findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToLetsFragment())
+
+                }
 
             }
 
+
         }
-
-
     }
 }

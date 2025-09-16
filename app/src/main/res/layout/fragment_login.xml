@@ -121,8 +121,8 @@
 
     <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/checkboxRemember"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="19dp"
+        android:layout_height="21dp"
         android:layout_marginStart="129dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/checkbox_background"
@@ -137,6 +137,8 @@
         android:id="@+id/animationView11"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        app:lottie_colorFilter="@color/red"
+
         android:layout_marginBottom="284dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -226,7 +228,7 @@
         android:layout_width="88dp"
         android:layout_height="60dp"
 
-        android:layout_marginStart="63dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="43dp"
         app:cardBackgroundColor="@color/gray"
         app:layout_constraintStart_toStartOf="parent"
@@ -287,11 +289,8 @@
         android:layout_width="88dp"
         android:layout_height="60dp"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="63dp"
         app:cardBackgroundColor="@color/gray"
         app:layout_constraintBottom_toBottomOf="@+id/materialCardView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toEndOf="@+id/materialCardView4"
         app:layout_constraintTop_toTopOf="@+id/materialCardView4"
         app:strokeColor="@color/gray">
