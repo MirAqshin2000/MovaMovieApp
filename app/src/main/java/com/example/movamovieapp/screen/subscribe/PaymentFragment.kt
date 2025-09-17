@@ -188,21 +188,21 @@ class PaymentFragment : Fragment() {
                     CardModel(
                         id = -1,
                         cardName = "PayPal",
-                        cardNumber = "PayPal",
+                        cardNumber = "",
                         cardImage = R.drawable.paypallogo,
                         selected = false
                     ),
                     CardModel(
                         id = -2,
                         cardName = "Google Pay",
-                        cardNumber = "Google Pay",
+                        cardNumber = "",
                         cardImage = R.drawable.google,
                         selected = false
                     ),
                     CardModel(
                         id = -3,
                         cardName = "Apple Pay",
-                        cardNumber = "Apple Pay",
+                        cardNumber = "",
                         cardImage = R.drawable.apple,
                         selected = false
                     )

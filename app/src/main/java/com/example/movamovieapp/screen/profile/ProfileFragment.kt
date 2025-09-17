@@ -175,35 +175,22 @@ class ProfileFragment : Fragment() {
     }
 
 
-
-
-
-    private fun saveDarkMode(isDarkMode: Boolean) {
-        sharedPreferences.edit().putBoolean("dark_mode", isDarkMode).apply()
-    }
-
-    private fun loadDarkMode(): Boolean {
-        return sharedPreferences.getBoolean("dark_mode", false)
-    }
-
-
     private fun observe() {
-        val isDark = loadDarkMode()
+        val isDark = sharedPreferences.getBoolean("dark_mode", false)
         binding.switch1.isChecked = isDark
-        viewModel.setDarkMode(isDark)
+        viewModel.setDarkMode(isDark, sharedPreferences)
 
         viewModel.isDarkMode.observe(viewLifecycleOwner) { isDarkMode ->
             binding.switch1.isChecked = isDarkMode
-
         }
-
 
         binding.switch1.setOnCheckedChangeListener { _, isChecked ->
-
-            viewModel.setDarkMode(isChecked)
-saveDarkMode(isChecked)
+            viewModel.setDarkMode(isChecked, sharedPreferences)
         }
+
+
     }
+
 }
 
 

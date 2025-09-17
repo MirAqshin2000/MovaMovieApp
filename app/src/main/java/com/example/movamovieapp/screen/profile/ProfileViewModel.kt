@@ -1,5 +1,6 @@
 package com.example.movamovieapp.screen.profile
 
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,15 +15,15 @@ class ProfileViewModel@Inject constructor(
     val isDarkMode: LiveData<Boolean> = isdarkMode
 
 
-    fun setDarkMode(isDark: Boolean) {
+    fun setDarkMode(isDark: Boolean, sharedPreferences: SharedPreferences) {
         isdarkMode.value = isDark
+        sharedPreferences.edit().putBoolean("dark_mode", isDark).apply()
 
-        if (isDark) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-        }
+        AppCompatDelegate.setDefaultNightMode(
+            if (isDark) AppCompatDelegate.MODE_NIGHT_YES
+            else AppCompatDelegate.MODE_NIGHT_NO
+        )
     }
 }
 
