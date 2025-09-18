@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movamovieapp.di.MovieRepository
+import com.example.movamovieapp.model.DownloadModel
 import com.example.movamovieapp.model.MyListModel
 import com.example.movamovieapp.model.Result
 import com.example.movamovieapp.model.Review
@@ -13,6 +14,7 @@ import com.example.movamovieapp.model.detail.credits.CreditResponse
 import com.example.movamovieapp.model.video.Video
 
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -148,6 +150,17 @@ return respository.isMovieAdded(id)
     }
 
 
+
+    suspend fun addDownload(download: com.example.movamovieapp.model.DownloadModel) {
+        respository.addDownload(download)
+    }
+
+    suspend fun isDownloadAdded(id: Int): Boolean {
+        return respository.isDownloadAdded(id)
+        }
+    fun getDownloadMovies(): Flow<List<DownloadModel>> {
+        return respository.getDownloadMovies()
+    }
 
 
 }

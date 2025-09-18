@@ -92,6 +92,8 @@ private val downloadDao: DownloadDao
         return dao.isMovieInList(id)
     }
 
+
+
      fun getCards(): Flow<List<com.example.movamovieapp.model.CardModel>> {
         return cardDao.getAllCards()
 
@@ -106,7 +108,7 @@ private val downloadDao: DownloadDao
 
 
 
-    suspend fun getDownloadMovies(): Flow<List<com.example.movamovieapp.model.DownloadModel>> {
+     fun getDownloadMovies(): Flow<List<com.example.movamovieapp.model.DownloadModel>> {
         return downloadDao.getAllDownloads()
 
     }
@@ -117,6 +119,10 @@ private val downloadDao: DownloadDao
 
     suspend fun deleteDownload(id: Int) {
        return downloadDao.deleteDownload(id)
+    }
+
+    suspend fun isDownloadAdded(id: Int): Boolean {
+        return downloadDao.isDownloadInList(id)
     }
 
 }

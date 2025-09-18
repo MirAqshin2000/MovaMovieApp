@@ -15,9 +15,14 @@ interface DownloadDao {
     suspend fun addDownload(download: DownloadModel)
 
     @Query("SELECT * FROM downloads")
-    suspend fun getAllDownloads(): Flow<List<DownloadModel>>
+     fun getAllDownloads(): Flow<List<DownloadModel>>
 
     @Query("DELETE FROM downloads WHERE id = :downloadId")
     suspend fun deleteDownload(downloadId: Int)
+
+    @Query("SELECT EXISTS(SELECT 1 FROM downloads WHERE id = :downloadId)")
+    suspend fun isDownloadInList(downloadId: Int): Boolean
+
+
 
 }

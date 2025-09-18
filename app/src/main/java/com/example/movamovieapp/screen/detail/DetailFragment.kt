@@ -8,18 +8,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.movamovieapp.MainActivity
 import com.example.movamovieapp.R
 import com.example.movamovieapp.adapters.CommentAdapter
 import com.example.movamovieapp.adapters.CreditsAdapter
 import com.example.movamovieapp.adapters.MoreLikeAdapter
 import com.example.movamovieapp.adapters.TrailerAdapter
 import com.example.movamovieapp.databinding.FragmentDetailBinding
+import com.example.movamovieapp.model.DownloadModel
 import com.example.movamovieapp.model.MyListModel
 import com.example.movamovieapp.util.gone
 import com.example.movamovieapp.util.visible
@@ -62,15 +67,15 @@ class DetailFragment : Fragment() {
         trailerAdapter.onItemClick = { video ->
             openYoutube(requireContext(), video.key)
         }
-        binding.buttonplay.setOnClickListener {
-            val youtubeKey = "dQw4w9WgXcQ"
-            openYoutube(requireContext(), youtubeKey)
+
+        moreLikeAdapter.onItemClickListener = {
+            val action = DetailFragmentDirections.actionDetailFragmentSelf(it.id)
+            findNavController().navigate(action)
         }
-      moreLikeAdapter.onItemClickListener = {
-          val action = DetailFragmentDirections.actionDetailFragmentSelf(it.id)
-          findNavController().navigate(action)
-      }
         binding.buttonDetailDownload.setOnClickListener {
+
+
+            downloadDialog(requireContext())
 
         }
 
@@ -92,7 +97,66 @@ class DetailFragment : Fragment() {
         binding.rvlikemore.gone()
         binding.rvcomment.gone()
 
-setupAddButton()
+        setupAddButton()
+    }
+
+
+    private fun downloadDialog(context: Context) {
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.alert_download, null)
+        val progressBar = dialogView.findViewById<ProgressBar>(R.id.progressBar)
+        val progressText = dialogView.findViewById<TextView>(R.id.progressText)
+        val hideButton = dialogView.findViewById<Button>(R.id.hideButton)
+        val statusText = dialogView.findViewById<TextView>(R.id.statusText)
+
+        val dialog = androidx.appcompat.app.AlertDialog.Builder(context)
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+
+        hideButton.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.getDownloadMovies().collect { downloads ->
+
+
+                val download = DownloadModel(
+                    title = viewModel.detail.value?.title ?: "No Title",
+                    image = viewModel.detail.value?.posterPath ?: "",
+                    id = viewModel.detail.value?.id ?: 0
+                )
+
+                val alreadyAdded = viewModel.isDownloadAdded(download.id)
+                if (alreadyAdded) {
+                    Toast.makeText(requireContext(), "Already Added", Toast.LENGTH_SHORT).show()
+
+                    viewModel.addDownload(download)
+                }
+            }
+
+        }
+
+        Thread{
+            for (i in 1..100){
+                Thread.sleep(50)
+                (context as MainActivity).runOnUiThread {
+                    progressBar.progress = i
+                    progressText.text = "$i%"
+                    statusText.text = "Downloading"
+                }
+
+                }
+            (context as MainActivity).runOnUiThread {
+                progressBar.progress = 100
+                progressText.text = "100%"
+                statusText.text = "Download Complete"
+                hideButton.visibility = View.VISIBLE
+            }
+
+        }.start()
+
     }
 
     private fun setupTabLayout() {
