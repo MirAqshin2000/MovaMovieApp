@@ -4,11 +4,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "downloads")
-class DownloadModel (
+
+data class DownloadModel (
+    @PrimaryKey
+
     val title: String,
     val image: String,
     var selected: Boolean = false,
-    @PrimaryKey
     var id: Int
 )
 

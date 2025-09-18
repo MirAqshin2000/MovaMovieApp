@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase
 import com.example.movamovieapp.model.CardModel
 import com.example.movamovieapp.model.MyListModel
 
-@Database(entities = [MyListModel::class, CardModel::class], version = 4)
+@Database(entities = [MyListModel::class, CardModel::class, com.example.movamovieapp.model.DownloadModel::class], version = 7)
 
 
 abstract class MovieDatabase :RoomDatabase(){

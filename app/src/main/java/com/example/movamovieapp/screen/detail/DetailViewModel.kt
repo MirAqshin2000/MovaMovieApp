@@ -158,9 +158,7 @@ return respository.isMovieAdded(id)
     suspend fun isDownloadAdded(id: Int): Boolean {
         return respository.isDownloadAdded(id)
         }
-    fun getDownloadMovies(): Flow<List<DownloadModel>> {
-        return respository.getDownloadMovies()
-    }
+
 
 
 }

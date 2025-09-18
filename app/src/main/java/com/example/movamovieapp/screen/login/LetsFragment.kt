@@ -20,7 +20,13 @@ class LetsFragment : BaseFragment<FragmentLetsBinding>(FragmentLetsBinding::infl
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.button.setOnClickListener {
-            findNavController().navigate(LetsFragmentDirections.actionLetsFragmentToLoginFragment())
+            lifecycleScope.launch {
+                binding.animationView25.visible()
+                delay(2000)
+                binding.animationView25.gone()
+                findNavController().navigate(LetsFragmentDirections.actionLetsFragmentToLoginFragment())
+
+            }
 
         }
         binding.textView3signup.setOnClickListener {

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.mova.base.BaseFragment
 import com.example.movamovieapp.R
@@ -24,11 +25,8 @@ class DownloadFragment : BaseFragment<FragmentDownloadBinding>(FragmentDownloadB
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvdownload.adapter = downloadadapter
-        viewModel.getDownloads()
-        observe()
 
-
-        downloadadapter.onItemClickListener = {
+        downloadadapter.onItemClickListener = { download->
             val dialogView =
                 LayoutInflater.from(requireContext()).inflate(R.layout.alert_dialog, null)
             val dialog = MaterialAlertDialogBuilder(requireContext())
@@ -39,18 +37,25 @@ class DownloadFragment : BaseFragment<FragmentDownloadBinding>(FragmentDownloadB
             val messageTextView = dialogView.findViewById<TextView>(R.id.tvMessage)
             val noButton = dialogView.findViewById<TextView>(R.id.btnNo)
             val yesButton = dialogView.findViewById<TextView>(R.id.btnYes)
+
             titleTextView.text = "Delete Download"
             messageTextView.text = "Are you sure you want to delete this download?"
+
             noButton.setOnClickListener {
                 dialog.dismiss()
             }
             yesButton.setOnClickListener {
-                viewModel.deleteDownload(it.id)
+
+                viewModel.deleteDownload( download.id)
+                Toast.makeText(requireContext(), "Deleted", Toast.LENGTH_SHORT).show()
+
                 dialog.dismiss()
             }
             dialog.show()
 
         }
+        viewModel.getDownloads()
+        observe()
 
     }
 
@@ -58,6 +63,11 @@ class DownloadFragment : BaseFragment<FragmentDownloadBinding>(FragmentDownloadB
         viewModel.downloads.observe(viewLifecycleOwner) {
             downloadadapter.updateList(it)
         }
+        viewModel.error.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+        }
+
+
     }
 
 

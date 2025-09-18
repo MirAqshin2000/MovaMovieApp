@@ -31,7 +31,10 @@ import com.example.movamovieapp.util.visible
 import com.google.android.material.tabs.TabLayout
 
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 @AndroidEntryPoint
@@ -113,51 +116,47 @@ class DetailFragment : Fragment() {
             .setCancelable(false)
             .create()
 
-        hideButton.setOnClickListener {
-            dialog.dismiss()
-        }
         dialog.show()
 
+
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getDownloadMovies().collect { downloads ->
+            val download = DownloadModel(
+                title = viewModel.detail.value?.title ?: "No Title",
+                image = viewModel.detail.value?.posterPath ?: "",
+                id = viewModel.detail.value?.id ?: 0
+            )
 
-
-                val download = DownloadModel(
-                    title = viewModel.detail.value?.title ?: "No Title",
-                    image = viewModel.detail.value?.posterPath ?: "",
-                    id = viewModel.detail.value?.id ?: 0
-                )
-
-                val alreadyAdded = viewModel.isDownloadAdded(download.id)
-                if (alreadyAdded) {
-                    Toast.makeText(requireContext(), "Already Added", Toast.LENGTH_SHORT).show()
-
-                    viewModel.addDownload(download)
-                }
+            val alreadyAdded = withContext(Dispatchers.IO) {
+                viewModel.isDownloadAdded(download.id)
             }
+            if (alreadyAdded) {
+                Toast.makeText(requireContext(), "Already Added", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+            } else {
 
-        }
+                for (i in 1..100) {
 
-        Thread{
-            for (i in 1..100){
-                Thread.sleep(50)
-                (context as MainActivity).runOnUiThread {
+                    delay(30)
+
                     progressBar.progress = i
                     progressText.text = "$i%"
-                    statusText.text = "Downloading"
+                    statusText.text = if (i < 100) "Downloading..." else "Download Complete"
                 }
 
+                withContext(Dispatchers.IO) {
+                    viewModel.addDownload(download)
                 }
-            (context as MainActivity).runOnUiThread {
-                progressBar.progress = 100
-                progressText.text = "100%"
-                statusText.text = "Download Complete"
-                hideButton.visibility = View.VISIBLE
+                Toast.makeText(requireContext(), "Download Added", Toast.LENGTH_SHORT).show()
+
+
+                hideButton.setOnClickListener {
+                    dialog.dismiss()
+
+                }
             }
-
-        }.start()
-
+        }
     }
+
 
     private fun setupTabLayout() {
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {

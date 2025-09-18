@@ -12,28 +12,29 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DownloadViewModel @Inject constructor(
-    val respository: MovieRepository
+   private  val respository: MovieRepository
 ) : ViewModel() {
     val downloads = MutableLiveData<List<DownloadModel>>()
+    val error = MutableLiveData<String>()
 
 
-    fun getDownloads() {
-        viewModelScope.launch(Dispatchers.IO) {
-            respository.getDownloadMovies().collect {
-                downloads.postValue(it)
+   fun getDownloads() {
+       viewModelScope.launch(Dispatchers.IO) {
+           downloads.postValue(respository.getDownloadMovies())
 
-            }
-        }
-    }
+       }
+   }
 
 
 
     fun deleteDownload(id: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO){
             respository.deleteDownload(id)
-            getDownloads()
+            downloads.postValue(respository.getDownloadMovies())
         }
     }
+
+
 }
 
 

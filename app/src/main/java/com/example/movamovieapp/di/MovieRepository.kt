@@ -108,9 +108,8 @@ private val downloadDao: DownloadDao
 
 
 
-     fun getDownloadMovies(): Flow<List<com.example.movamovieapp.model.DownloadModel>> {
+    suspend fun getDownloadMovies():List<DownloadModel> {
         return downloadDao.getAllDownloads()
-
     }
 
     suspend fun addDownload(download: com.example.movamovieapp.model.DownloadModel) {

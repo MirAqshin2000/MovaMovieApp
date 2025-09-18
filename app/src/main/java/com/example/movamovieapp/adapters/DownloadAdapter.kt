@@ -9,7 +9,7 @@ import com.example.movamovieapp.model.DownloadModel
 class DownloadAdapter:RecyclerView.Adapter<DownloadAdapter.DownloadViewHolder>() {
 
 
-    lateinit var onItemClickListener: ((DownloadModel) -> Unit)
+     var onItemClickListener: ((DownloadModel) -> Unit)?=null
     val downloadList = arrayListOf<DownloadModel>()
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -26,7 +26,7 @@ class DownloadAdapter:RecyclerView.Adapter<DownloadAdapter.DownloadViewHolder>()
 val item = downloadList[position]
         holder.itemDownloadBinding.download = item
         holder.itemDownloadBinding.imageView68delete.setOnClickListener {
-            onItemClickListener.invoke(item)
+            onItemClickListener?.invoke(item)
         }
     }
 

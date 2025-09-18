@@ -47,8 +47,11 @@ class MyListFragment : Fragment() {
             val messageTextView = dialogView.findViewById<TextView>(R.id.tvMessage)
             val noButton = dialogView.findViewById<TextView>(R.id.btnNo)
             val yesButton = dialogView.findViewById<TextView>(R.id.btnYes)
+
+
             titleTextView.text = "Delete Movie"
             messageTextView.text = "Are you sure you want to delete this movie?"
+
             noButton.setOnClickListener {
                 alertDialog.dismiss()
             }
