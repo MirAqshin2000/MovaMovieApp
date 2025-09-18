@@ -1,4 +1,4 @@
-    package com.example.movamovieapp.help
+package com.example.movamovieapp.screen.help
 
     import android.view.LayoutInflater
     import android.view.View
@@ -15,7 +15,7 @@
             parent: ViewGroup,
             viewType: Int
         ): FaqViewHolder {
-val itemFaqBinding=ItemFaqBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+val itemFaqBinding= ItemFaqBinding.inflate(LayoutInflater.from(parent.context),parent,false)
             return FaqViewHolder(itemFaqBinding)
         }
 

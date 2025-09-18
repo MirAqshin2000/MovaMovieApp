@@ -93,9 +93,9 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                         prefs.saveUser(it.email)
 
                     }
-                    Toast.makeText(requireContext(), "Registered: ${it.email}", Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), "Registered Successfully: ${it.email}", Toast.LENGTH_SHORT)
                         .show()
-                    findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+                    findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToHomeFragment())
 
                 }
 

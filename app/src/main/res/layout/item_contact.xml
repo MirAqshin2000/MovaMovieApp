@@ -7,7 +7,7 @@
     <data>
         <variable
             name="contact"
-            type="com.example.movamovieapp.help.Contact" />
+            type="com.example.movamovieapp.screen.help.Contact" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout

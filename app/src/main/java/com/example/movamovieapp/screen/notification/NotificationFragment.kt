@@ -1,4 +1,4 @@
-package com.example.movamovieapp.notification
+package com.example.movamovieapp.screen.notification
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.movamovieapp.R
 import com.example.movamovieapp.adapters.NotificationAdapter
 import com.example.movamovieapp.databinding.FragmentNotificationBinding
 import com.example.movamovieapp.util.visible

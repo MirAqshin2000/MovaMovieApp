@@ -1,13 +1,11 @@
-package com.example.movamovieapp.mylist
+package com.example.movamovieapp.screen.mylist
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import com.example.movamovieapp.R
 import com.example.movamovieapp.adapters.MyListAdapter

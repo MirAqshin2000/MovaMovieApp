@@ -1,4 +1,4 @@
-package com.example.movamovieapp.help
+package com.example.movamovieapp.screen.help
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

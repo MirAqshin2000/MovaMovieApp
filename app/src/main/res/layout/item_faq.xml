@@ -6,7 +6,7 @@
     <data>
         <variable
             name="faq"
-            type="com.example.movamovieapp.help.Faq" />
+            type="com.example.movamovieapp.screen.help.Faq" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

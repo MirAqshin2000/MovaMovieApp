@@ -1,16 +1,15 @@
 <resources>
 
-    <!-- App Theme nümunəsi (əgər hələ yoxdursa) -->
     <style name="Theme.MyApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- theme atributları -->
     </style>
 
-    <!-- Rounded ExposedDropdownMenu stili -->
     <style name="RoundedDropdownTextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="boxCornerRadiusTopStart">12dp</item>
         <item name="boxCornerRadiusTopEnd">12dp</item>
         <item name="boxCornerRadiusBottomStart">12dp</item>
         <item name="boxCornerRadiusBottomEnd">12dp</item>
     </style>
+
+
 
 </resources>

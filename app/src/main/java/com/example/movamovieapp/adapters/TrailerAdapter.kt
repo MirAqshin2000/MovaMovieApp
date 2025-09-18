@@ -38,6 +38,7 @@ class TrailerAdapter(): RecyclerView.Adapter<TrailerAdapter.TrailerViewHolder>()
             onItemClick.invoke(item)
             Log.d("VideoKey",item.toString())
         }
+
         holder.itemTrailerBinding.cvTrailer.setOnClickListener {
             onItemClick.invoke(item)
             Log.d("VideoKey",item.toString())

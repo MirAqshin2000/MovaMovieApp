@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/backgroundColor"
     android:layout_height="match_parent"
-    tools:context=".help.HelpFragment">
+    tools:context=".screen.help.HelpFragment">
 
     <ImageView
         android:id="@+id/imageView58"

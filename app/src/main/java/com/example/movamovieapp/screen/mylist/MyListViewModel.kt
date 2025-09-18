@@ -1,4 +1,4 @@
-package com.example.movamovieapp.mylist
+package com.example.movamovieapp.screen.mylist
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

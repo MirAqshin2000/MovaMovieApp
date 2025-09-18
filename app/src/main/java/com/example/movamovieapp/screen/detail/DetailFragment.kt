@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +21,6 @@ import com.example.movamovieapp.adapters.MoreLikeAdapter
 import com.example.movamovieapp.adapters.TrailerAdapter
 import com.example.movamovieapp.databinding.FragmentDetailBinding
 import com.example.movamovieapp.model.MyListModel
-import com.example.movamovieapp.mylist.MyListViewModel
 import com.example.movamovieapp.util.gone
 import com.example.movamovieapp.util.visible
 import com.google.android.material.tabs.TabLayout
@@ -64,11 +62,17 @@ class DetailFragment : Fragment() {
         trailerAdapter.onItemClick = { video ->
             openYoutube(requireContext(), video.key)
         }
-
+        binding.buttonplay.setOnClickListener {
+            val youtubeKey = "dQw4w9WgXcQ"
+            openYoutube(requireContext(), youtubeKey)
+        }
       moreLikeAdapter.onItemClickListener = {
           val action = DetailFragmentDirections.actionDetailFragmentSelf(it.id)
           findNavController().navigate(action)
       }
+        binding.buttonDetailDownload.setOnClickListener {
+
+        }
 
 
 

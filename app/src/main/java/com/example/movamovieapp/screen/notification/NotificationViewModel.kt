@@ -1,4 +1,4 @@
-package com.example.movamovieapp.notification
+package com.example.movamovieapp.screen.notification
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

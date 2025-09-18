@@ -1,9 +1,8 @@
-package com.example.movamovieapp.help
+package com.example.movamovieapp.screen.help
 
 import android.content.res.Resources
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.movamovieapp.help.FaqFragment
 
 class HelpPagerAdapter(fragment: Fragment) :
     FragmentStateAdapter(fragment) {

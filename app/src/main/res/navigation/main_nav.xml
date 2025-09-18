@@ -51,6 +51,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
+        tools:layout="@layout/fragment_home"
         android:name="com.example.movamovieapp.screen.home.HomeFragment"
         android:label="HomeFragment" >
         <action
@@ -68,6 +69,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
+
         android:name="com.example.movamovieapp.screen.login.RegisterFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
@@ -80,6 +82,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
+        tools:layout="@layout/fragment_login"
         android:name="com.example.movamovieapp.screen.login.LoginFragment"
         android:label="LoginFragment" >
         <action
@@ -113,7 +116,7 @@
     </fragment>
     <fragment
         android:id="@+id/notificationFragment"
-        android:name="com.example.movamovieapp.notification.NotificationFragment"
+        android:name="com.example.movamovieapp.screen.notification.NotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" />
     <fragment
@@ -130,6 +133,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
+        tools:layout="@layout/fragment_profile"
         android:name="com.example.movamovieapp.screen.profile.ProfileFragment"
         android:label="ProfileFragment" >
         <action
@@ -153,7 +157,7 @@
     </fragment>
     <fragment
         android:id="@+id/myListFragment2"
-        android:name="com.example.movamovieapp.mylist.MyListFragment"
+        android:name="com.example.movamovieapp.screen.mylist.MyListFragment"
         android:label="fragment_my_list"
         tools:layout="@layout/fragment_my_list" />
     <fragment
@@ -182,6 +186,7 @@
     </fragment>
     <fragment
         android:id="@+id/newCardFragment"
+        tools:layout="@layout/fragment_new_card"
         android:name="com.example.movamovieapp.screen.subscribe.NewCardFragment"
         android:label="NewCardFragment" />
     <fragment
@@ -210,15 +215,22 @@
         tools:layout="@layout/fragment_edit_profile" />
     <fragment
         android:id="@+id/editProfileNotificationFragment"
+        tools:layout="@layout/fragment_edit_profile_notification"
         android:name="com.example.movamovieapp.screen.profile.EditProfileNotificationFragment"
         android:label="EditProfileNotificationFragment" />
     <fragment
         android:id="@+id/privacyFragment"
+        tools:layout="@layout/fragment_privacy"
         android:name="com.example.movamovieapp.screen.profile.PrivacyFragment"
         android:label="PrivacyFragment" />
     <fragment
         android:id="@+id/helpFragment"
-        android:name="com.example.movamovieapp.help.HelpFragment"
+        android:name="com.example.movamovieapp.screen.help.HelpFragment"
         android:label="fragment_help"
         tools:layout="@layout/fragment_help" />
+    <fragment
+        android:id="@+id/downloadFragment2"
+        android:name="com.example.movamovieapp.screen.download.DownloadFragment"
+        android:label="fragment_download"
+        tools:layout="@layout/fragment_download" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.movamovieapp.help
+package com.example.movamovieapp.screen.help
 
 data class Contact(
     val title: String,
