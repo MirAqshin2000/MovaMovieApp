@@ -15,6 +15,7 @@ import com.example.movamovieapp.adapters.FilmsAdapter
 import com.example.movamovieapp.adapters.MoreLikeAdapter
 import com.example.movamovieapp.screen.detail.DetailFragmentDirections
 import com.example.movamovieapp.util.gone
+
 import com.example.movamovieapp.util.visible
 import dagger.hilt.android.AndroidEntryPoint
 

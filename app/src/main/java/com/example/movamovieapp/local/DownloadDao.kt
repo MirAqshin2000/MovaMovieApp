@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.movamovieapp.model.DownloadModel
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface DownloadDao {
@@ -22,6 +21,9 @@ interface DownloadDao {
 
     @Query("SELECT EXISTS(SELECT 1 FROM downloads WHERE id = :downloadId)")
     suspend fun isDownloadInList(downloadId: Int): Boolean
+
+    @Query("SELECT * FROM downloads WHERE title LIKE '%' || :query || '%'")
+   suspend fun searchDownloads(query: String): List<DownloadModel>
 
 
 

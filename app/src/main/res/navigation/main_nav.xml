@@ -232,5 +232,9 @@
         android:id="@+id/downloadFragment2"
         android:name="com.example.movamovieapp.screen.download.DownloadFragment"
         android:label="fragment_download"
-        tools:layout="@layout/fragment_download" />
+        tools:layout="@layout/fragment_download" >
+        <action
+            android:id="@+id/action_downloadFragment2_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 </navigation>

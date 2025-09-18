@@ -1,16 +1,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/backgroundColor">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headerContainer"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:background="@color/backgroundColor"
         android:layout_marginTop="78dp"
+        android:background="@color/backgroundColor"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,32 +43,8 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/imageViewsearch"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginEnd="24dp"
-        android:src="@drawable/searchhome"
-        app:tint="@color/icon_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/headerContainer"
-        app:layout_constraintBottom_toBottomOf="@+id/headerContainer" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvdownload"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginHorizontal="24dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_marginTop="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerContainer"
-        tools:listitem="@layout/item_download" />
-
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout11"
+        android:id="@+id/searchLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -79,7 +55,8 @@
         app:boxCornerRadiusTopEnd="12dp"
         app:boxCornerRadiusTopStart="12dp"
         app:boxStrokeColor="@color/selector_inputlayout"
-        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidth="2dp"
+
         app:hintEnabled="false"
         app:layout_constraintBottom_toBottomOf="@+id/headerContainer"
         app:layout_constraintEnd_toStartOf="@+id/imageViewsearch"
@@ -88,13 +65,71 @@
         app:startIconDrawable="@drawable/search_xml">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchedittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Search"
+
             android:inputType="text"
             android:maxLines="1"
             android:textColor="@color/textPrimary1"
-            android:textColorHint="@color/gray" />
+            android:textColorHint="@color/textPrimary1" />
+
     </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/imageViewsearch"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/searchhome"
+        app:layout_constraintBottom_toBottomOf="@+id/headerContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/headerContainer"
+        app:tint="@color/icon_color" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvdownload"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="24dp"
+        android:visibility="visible"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerContainer"
+        tools:listitem="@layout/item_download" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView22"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerContainer"
+        app:lottie_autoPlay="true"
+        app:lottie_colorFilter="@color/red"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading" />
+
+    <TextView
+        android:id="@+id/textViewNoresult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/urbanist_bold"
+        android:text="No results"
+        android:textColor="@color/textPrimary1"
+        android:textSize="32dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerContainer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

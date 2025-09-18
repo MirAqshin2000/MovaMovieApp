@@ -4,18 +4,14 @@ import com.example.movamovieapp.api.ApiService
 import com.example.movamovieapp.local.CardDao
 import com.example.movamovieapp.local.DownloadDao
 import com.example.movamovieapp.local.MovieDao
-import com.example.movamovieapp.local.MovieDatabase
 import com.example.movamovieapp.model.CardModel
 import com.example.movamovieapp.model.DownloadModel
 import com.example.movamovieapp.model.MovaListModel
 import com.example.movamovieapp.model.MyListModel
-import com.example.movamovieapp.model.Result
 import com.example.movamovieapp.model.ReviewResponse
-import com.example.movamovieapp.model.TrailerResponse
 import com.example.movamovieapp.model.detail.DetailResponse
 import com.example.movamovieapp.model.detail.credits.CreditResponse
 import com.example.movamovieapp.model.video.VideoResponse
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -123,5 +119,6 @@ private val downloadDao: DownloadDao
     suspend fun isDownloadAdded(id: Int): Boolean {
         return downloadDao.isDownloadInList(id)
     }
+    suspend fun searchDownload(query: String): List<DownloadModel> = downloadDao.searchDownloads(query)
 
 }
