@@ -84,6 +84,10 @@ private val downloadDao: DownloadDao
      suspend fun getAllMovies(): List<MyListModel> {
         return dao.getAllMovies()
     }
+
+    suspend fun searchMylist(query: String): List<MyListModel> =
+        dao.searchMovies(query)
+
     suspend fun isMovieAdded(id: Int): Boolean {
         return dao.isMovieInList(id)
     }

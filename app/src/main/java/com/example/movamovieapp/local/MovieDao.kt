@@ -12,17 +12,20 @@ import kotlinx.coroutines.flow.Flow
 interface MovieDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-   suspend fun addMovie(movie: MyListModel)
+    suspend fun addMovie(movie: MyListModel)
 
-@Query("SELECT * FROM movie_table")
-suspend fun getAllMovies(): List<MyListModel>
+    @Query("SELECT * FROM movie_table")
+    suspend fun getAllMovies(): List<MyListModel>
 
 
     @Query("SELECT EXISTS(SELECT 1 FROM movie_table WHERE id = :movieId)")
     suspend fun isMovieInList(movieId: Int): Boolean
 
-@Query("DELETE FROM movie_table WHERE id = :movieId")
-suspend fun deleteMovie(movieId: Int):Int
+    @Query("DELETE FROM movie_table WHERE id = :movieId")
+    suspend fun deleteMovie(movieId: Int): Int
+
+    @Query("SELECT * FROM movie_table WHERE title LIKE '%' || :query || '%'")
+    suspend fun searchMovies(query: String): List<MyListModel>
 
 
 }

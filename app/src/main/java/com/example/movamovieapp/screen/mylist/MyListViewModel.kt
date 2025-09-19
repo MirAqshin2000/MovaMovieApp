@@ -19,6 +19,13 @@ class MyListViewModel @Inject constructor(
     val movies = MutableLiveData<List<MyListModel>>()
 
 
+
+    fun searchMovies(query: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            movies.postValue(respository.searchMylist(query))
+        }
+    }
+
     fun getAllMovies() {
         viewModelScope.launch(Dispatchers.IO) {
             movies.postValue(respository.getAllMovies())
