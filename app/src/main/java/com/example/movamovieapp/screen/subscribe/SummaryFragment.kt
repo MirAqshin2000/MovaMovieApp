@@ -39,7 +39,19 @@ class SummaryFragment : Fragment() {
             else -> ""
         }
 
-        binding.imageView55.setImageResource(args.cardImage.toInt())
+        if (args.paymentName == "Apple Pay") {
+            val isNightMode = (requireContext().resources.configuration.uiMode
+                    and android.content.res.Configuration.UI_MODE_NIGHT_MASK) ==
+                    android.content.res.Configuration.UI_MODE_NIGHT_YES
+
+            if (isNightMode) {
+                binding.imageView55.setImageResource(R.drawable.apple)
+            } else {
+                binding.imageView55.setImageResource(R.drawable.appleblack)
+            }
+        } else {
+            binding.imageView55.setImageResource(args.cardImage.toInt())
+        }
 
         binding.imageView54.setOnClickListener {
             findNavController().popBackStack()

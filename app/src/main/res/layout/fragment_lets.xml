@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/backgroundColor"
+    android:layout_height="match_parent">
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundColor"
     tools:context=".screen.login.LetsFragment">
 
     <ImageView
@@ -42,7 +51,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
-        app:cardBackgroundColor="#1F222A"
+        app:cardBackgroundColor="@color/backgroundColor"
+        app:strokeWidth="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -54,9 +64,9 @@
 
             <ImageView
                 android:id="@+id/imageView6"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginStart="81dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="55dp"
                 android:layout_marginTop="18dp"
                 android:layout_marginBottom="17dp"
                 android:src="@drawable/facebook2"
@@ -72,7 +82,7 @@
                 android:fontFamily="@font/urbanist"
                 android:text="Continue with Facebook"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/textPrimary1"
                 android:textFontWeight="600"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView6"
@@ -89,7 +99,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        app:cardBackgroundColor="@color/gray"
+        app:cardBackgroundColor="@color/backgroundColor"
+        app:strokeWidth="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView"
@@ -103,7 +114,7 @@
                 android:id="@+id/imageView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="81dp"
+                android:layout_marginStart="55dp"
                 android:layout_marginTop="19dp"
                 android:layout_marginBottom="19dp"
                 android:src="@drawable/google"
@@ -119,7 +130,7 @@
                 android:fontFamily="@font/urbanist"
                 android:text="Continue with Google"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/textPrimary1"
                 android:textFontWeight="600"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView7"
@@ -135,8 +146,9 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        app:cardBackgroundColor="@color/gray"
+        app:cardBackgroundColor="@color/backgroundColor"
         app:layout_constraintEnd_toEndOf="parent"
+        app:strokeWidth="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView2"
         app:strokeColor="@color/gray">
@@ -152,7 +164,7 @@
                 android:id="@+id/imageView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="81dp"
+                android:layout_marginStart="55dp"
                 android:layout_marginTop="18dp"
                 android:layout_marginBottom="18dp"
                 android:src="@drawable/apple"
@@ -168,7 +180,7 @@
                 android:fontFamily="@font/urbanist"
                 android:text="Continue with Apple"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/textPrimary1"
                 android:textFontWeight="600"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView9"
@@ -226,8 +238,8 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/urbanist"
         android:text="Don’t have an account?"
         android:textColor="@color/textPrimary1"
@@ -278,3 +290,5 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
+

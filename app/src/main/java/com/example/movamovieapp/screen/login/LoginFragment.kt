@@ -1,5 +1,6 @@
 package com.example.movamovieapp.screen.login
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -22,6 +23,14 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        val isNightMode = (requireContext().resources.configuration.uiMode
+                and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+
+        binding.imageView13.setImageResource(
+            if (isNightMode) R.drawable.apple else R.drawable.appleblack
+        )
         observeData()
 
         loginClick()

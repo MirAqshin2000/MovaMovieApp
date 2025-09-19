@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+
+
+
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/black"
+    android:background="@color/backgroundColor"
+    android:layout_height="match_parent">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:layout_width="match_parent"
+    android:background="@color/backgroundColor"
     android:layout_height="match_parent">
 
 
@@ -15,7 +24,7 @@
         android:layout_marginStart="16dp"
         android:fontFamily="@font/urbanist_bold"
         android:text="Review Summary"
-        android:textColor="@color/white"
+        android:textColor="@color/textPrimary1"
 
         android:textFontWeight="700"
         android:textSize="24dp"
@@ -30,7 +39,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
-        app:cardBackgroundColor="#1F222A"
+        app:cardBackgroundColor="@color/backgroundColor"
         app:cardCornerRadius="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -65,7 +74,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/urbanist_bold"
                 android:text="$9.99"
-                android:textColor="@color/white"
+                android:textColor="@color/textPrimary1"
                 android:textFontWeight="700"
                 android:textSize="32dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +89,7 @@
 
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
-                app:dividerColor="@color/graydivider"
+                app:dividerColor="@color/icon_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -95,12 +104,14 @@
                 android:layout_marginEnd="122dp"
                 android:fontFamily="@font/urbanist"
                 android:text="/month"
-                android:textColor="@color/white"
+                android:textColor="@color/textPrimary1"
                 android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView19"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/textView19"
-                app:layout_constraintTop_toTopOf="@+id/textView19" />
+                app:layout_constraintTop_toTopOf="@+id/textView19"
+                app:layout_constraintVertical_bias="0.611" />
 
             <ImageView
                 android:id="@+id/imageView40"
@@ -140,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="Watch all you want. Ad-free."
-                android:textColor="@color/white"
+                android:textColor="@color/textPrimary1"
                 android:fontFamily="@font/urbanist"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView40"
@@ -153,7 +164,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="Allows streaming of 4K."
-                android:textColor="@color/white"
+                android:textColor="@color/textPrimary1"
                 android:fontFamily="@font/urbanist"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView41"
@@ -166,7 +177,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="Video and Audio Quality is Better."
-                android:textColor="@color/white"
+                android:textColor="@color/textPrimary1"
                 android:fontFamily="@font/urbanist"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView42"
@@ -183,10 +194,11 @@
         android:layout_width="0dp"
         android:layout_height="174dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
+        app:cardCornerRadius="25dp"
 
-        app:cardBackgroundColor="#1F222A"
+        app:cardBackgroundColor="@color/backgroundColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView2"
@@ -207,7 +219,7 @@
 
                 android:fontFamily="@font/urbanist"
                 android:text="Amount"
-                android:textColor="@color/white"
+                android:textColor="@color/textPrimary1"
 
                 android:textFontWeight="700"
                 android:textSize="16dp"
@@ -222,7 +234,7 @@
                 android:layout_marginTop="21dp"
                 android:fontFamily="@font/urbanist"
                 android:text="Tax"
-                android:textColor="@color/white"
+                android:textColor="@color/textPrimary1"
                 android:textFontWeight="700"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView50" />
@@ -236,7 +248,7 @@
 
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
-                app:dividerColor="@color/graydivider"
+                app:dividerColor="@color/icon_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -246,15 +258,13 @@
                 android:id="@+id/textView54"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="232dp"
                 android:layout_marginEnd="24dp"
                 android:fontFamily="@font/urbanist"
                 android:text="$9.99"
-                android:textColor="@color/white"
+                android:textColor="@color/textPrimary1"
                 android:textFontWeight="700"
                 app:layout_constraintBottom_toBottomOf="@+id/textView50"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView50"
                 app:layout_constraintTop_toTopOf="@+id/textView50" />
 
             <TextView
@@ -264,7 +274,7 @@
                 android:layout_marginEnd="24dp"
                 android:fontFamily="@font/urbanist"
                 android:text="$1.99"
-                android:textColor="@color/white"
+                android:textColor="@color/textPrimary1"
                 android:textFontWeight="700"
                 app:layout_constraintBottom_toBottomOf="@+id/textView53"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -278,7 +288,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/urbanist"
                 android:text="Total"
-                android:textColor="@color/white"
+                android:textColor="@color/textPrimary1"
                 android:textFontWeight="700"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/materialDivider" />
@@ -288,9 +298,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
-                android:text="$11.99"
                 android:fontFamily="@font/urbanist"
-                android:textColor="@color/white"
+                android:text="$11.99"
+                android:textColor="@color/textPrimary1"
                 android:textFontWeight="700"
                 app:layout_constraintBottom_toBottomOf="@+id/textView57"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -305,14 +315,15 @@
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:backgroundTint="#1F222A"
-        app:strokeColor="@color/gray"
-        app:strokeWidth="2dp"
+        app:cardCornerRadius="25dp"
+app:cardBackgroundColor="@color/backgroundColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView3">
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView3"
+        app:strokeColor="@color/gray"
+        app:strokeWidth="2dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -326,7 +337,7 @@
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/urbanist_bold"
                 android:textAlignment="textStart"
-                android:textColor="@color/white"
+                android:textColor="@color/textPrimary1"
                 android:textFontWeight="700"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView55"
@@ -336,20 +347,21 @@
 
             <TextView
                 android:id="@+id/textView60"
+                style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="29dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                android:text="Change"
                 android:fontFamily="@font/urbanist"
-                android:textFontWeight="700"
+                android:text="Change"
                 android:textColor="@color/red"
+                android:textFontWeight="700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/imageView55"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -357,35 +369,22 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
 
-            <TextView
-                android:id="@+id/textView52"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/urbanist"
-                android:text=""
-                android:textColor="@color/white"
-                android:textFontWeight="700"
-                android:textSize="18dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView59card"
-                app:layout_constraintTop_toTopOf="@+id/textView59card"
-                tools:layout_editor_absoluteX="289dp" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <Button
         android:id="@+id/button5confirmpayment"
         android:layout_width="0dp"
-        android:layout_height="58dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:backgroundTint="@color/red"
         android:fontFamily="@font/urbanist"
         android:text="Confirm Payment"
-        android:textSize="18dp"
         android:textColor="@color/white"
         android:textFontWeight="700"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -397,6 +396,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="78dp"
+        app:tint="@color/icon_color"
         android:src="@drawable/popstacklef"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -507,3 +507,4 @@
         app:lottie_rawRes="@raw/loading" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

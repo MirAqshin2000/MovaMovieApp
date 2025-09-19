@@ -52,7 +52,14 @@ val item=cardList[position]
         }
             "Apple Pay" -> {
                 holder.itemCardsBinding.textViewbank.text = "Apple Pay"
-                holder.itemCardsBinding.imageViewcards.setImageResource(R.drawable.apple)
+
+                val isNightMode=(holder.itemView.context.resources.configuration.uiMode
+                        and android.content.res.Configuration.UI_MODE_NIGHT_MASK)==android.content.res.Configuration.UI_MODE_NIGHT_YES
+                if (isNightMode)
+                    holder.itemCardsBinding.imageViewcards.setImageResource(R.drawable.apple)
+                else{
+                    holder.itemCardsBinding.imageViewcards.setImageResource(R.drawable.appleblack)
+                }
             }
             else -> {
 

@@ -1,5 +1,6 @@
 package com.example.movamovieapp.screen.login
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,6 +20,13 @@ import kotlinx.coroutines.launch
 class LetsFragment : BaseFragment<FragmentLetsBinding>(FragmentLetsBinding::inflate) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val isNightMode = (requireContext().resources.configuration.uiMode
+                and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+
+        binding.imageView9.setImageResource(
+            if (isNightMode) R.drawable.apple else R.drawable.appleblack
+        )
         binding.button.setOnClickListener {
             lifecycleScope.launch {
                 binding.animationView25.visible()

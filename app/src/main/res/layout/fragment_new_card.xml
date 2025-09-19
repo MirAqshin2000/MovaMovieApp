@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/black"
+    android:background="@color/backgroundColor"
+    android:layout_height="match_parent">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CardFragment">
 
@@ -14,6 +20,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="78dp"
         android:src="@drawable/popstacklef"
+        app:tint="@color/icon_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,7 +32,7 @@
         android:layout_marginTop="76dp"
         android:fontFamily="@font/urbanist"
         android:text="Add New Card"
-        android:textColor="@color/white"
+        android:textColor="@color/textPrimary1"
         android:textFontWeight="700"
         android:textSize="24dp"
         app:layout_constraintStart_toEndOf="@+id/card2geri"
@@ -38,6 +45,7 @@
         android:layout_marginTop="82dp"
         android:layout_marginEnd="24dp"
         android:src="@drawable/skaner"
+        app:tint="@color/icon_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,10 +67,10 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
 
         android:layout_marginEnd="24dp"
-        app:dividerColor="@color/gray"
+        app:dividerColor="@color/icon_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,12 +81,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:text="Card Name"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/urbanist"
+        android:text="Card Name"
+        android:textColor="@color/textPrimary1"
         android:textFontWeight="700"
         android:textSize="18dp"
-        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialDivide1" />
 
@@ -88,6 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
+        app:boxStrokeWidth="2dp"
 
         android:layout_marginEnd="24dp"
         app:boxCornerRadiusBottomEnd="12dp"
@@ -114,25 +123,26 @@
 
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="24dp"
         app:boxCornerRadiusBottomEnd="12dp"
         app:boxCornerRadiusBottomStart="12dp"
         app:boxCornerRadiusTopEnd="12dp"
         app:boxCornerRadiusTopStart="12dp"
+        app:boxStrokeWidth="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView45">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
             android:id="@+id/kartnumarasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your card number"
             android:inputType="number"
             android:maxLength="16"
             android:maxLines="1"
-            android:textColor="@color/white"
-            android:layout_height="wrap_content"
-            android:hint="Enter your card number" />
+            android:textColor="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -140,11 +150,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:text="Card Number"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/urbanist"
+        android:text="Card Number"
+        android:textColor="@color/textPrimary1"
         android:textFontWeight="700"
-        android:textColor="@color/white"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout7" />
@@ -154,11 +164,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:text="Expiry Date"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/urbanist"
+        android:text="Expiry Date"
+        android:textColor="@color/textPrimary1"
         android:textFontWeight="700"
-        android:textColor="@color/white"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout8" />
@@ -169,6 +179,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:src="@drawable/kalendar"
+        app:tint="@color/icon_color"
         app:layout_constraintBottom_toBottomOf="@+id/textInputLayout9"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout9"
         app:layout_constraintTop_toTopOf="@+id/textInputLayout9" />
@@ -177,8 +188,12 @@
         android:id="@+id/textInputLayout9"
         android:layout_width="180dp"
         android:layout_height="56dp"
-
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusTopStart="12dp"
         android:layout_marginStart="24dp"
+        app:boxStrokeWidth="2dp"
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView46">
@@ -201,11 +216,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="136dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="125dp"
         android:fontFamily="@font/urbanist"
         android:text="CVV"
-        android:textColor="@color/white"
+        android:textColor="@color/textPrimary1"
         android:textFontWeight="700"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -218,6 +233,11 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxStrokeWidth="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textInputLayout9"
         app:layout_constraintTop_toBottomOf="@+id/textView47">
@@ -228,6 +248,7 @@
             android:textColor="@color/white"
             android:hint="CVV"
             android:id="@+id/cvv"
+            android:inputType="number"
             android:maxLines="1"
             android:maxLength="3" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -235,22 +256,20 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonaddcard"
         android:layout_width="0dp"
-        android:layout_height="58dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="14dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="32dp"
         android:backgroundTint="@color/red"
         android:fontFamily="@font/urbanist"
         android:text="Add"
         android:textColor="@color/white"
         android:textFontWeight="700"
         android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout9"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
