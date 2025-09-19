@@ -1,6 +1,9 @@
 package com.example.movamovieapp.screen.home
 
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -47,6 +50,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         viewModel.loadFeaturedMovie()
         setonClickListener()
 
+
+
+
+    }
+
+    private fun openYoutube(context: Context, youtubeKey: String?) {
+        val youtubeAppIntent = Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:$youtubeKey"))
+        val youtubeWebIntent =
+            Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=$youtubeKey"))
+
+        try {
+            context.startActivity(youtubeAppIntent)
+        } catch (e: ActivityNotFoundException) {
+            context.startActivity(youtubeWebIntent)
+        }
     }
 
     private fun setupRecyclerViews() {

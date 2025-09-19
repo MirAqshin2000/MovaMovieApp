@@ -125,6 +125,10 @@ dependencies {
 //    Prefix
     implementation("com.hbb20:ccp:2.5.4")
 
+//youtube sdk
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
+
+
 
 
 }
