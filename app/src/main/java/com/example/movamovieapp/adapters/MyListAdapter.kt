@@ -11,6 +11,8 @@ private val movalist= arrayListOf<MyListModel>()
 
     lateinit var onItemClickListener: ((MyListModel) -> Unit)
 
+    lateinit var onClick: ((MyListModel) -> Unit)
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -26,8 +28,12 @@ private val movalist= arrayListOf<MyListModel>()
 val item = movalist[position]
 
         holder.itemMyListBinding.movie = item
+
         holder.itemMyListBinding.imageViewCheck.setOnClickListener {
             onItemClickListener.invoke(item)
+        }
+        holder.itemMyListBinding.root.setOnClickListener {
+            onClick.invoke(item)
         }
     }
 

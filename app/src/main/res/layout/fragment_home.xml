@@ -25,7 +25,6 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/urbanist_bold"
         android:text="UpComing"
-
         android:textColor="@color/textPrimary1"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -164,7 +163,6 @@
 
     <ImageView
         android:id="@+id/reklamFlimImage"
-        load_url="@{film.posterPath}"
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:scaleType="centerCrop"
@@ -220,6 +218,7 @@
         app:iconSize="16dp"
 
         app:iconTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/reklamFlimImage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewOverview" />
 

@@ -33,8 +33,19 @@ binding.rvFaq.adapter=faqAdapter
                 Faq("How to remove wishlist?",getString(R.string.how_to_remove_wishlist)),
                 Faq("How do I subscribe to premium?",getString(R.string.how_premium)),
                 Faq("How do I can download movies?",getString(R.string.how_download)),
-                Faq("How to unsubscribe from premium?",getString(R.string.how_unsubrice))
-
+                Faq("How to unsubscribe from premium?",getString(R.string.how_unsubrice)),
+                Faq("How do I add content to the list?",getString(R.string.how_list)),
+                Faq("How to remove wishlist?",getString(R.string.how_to_remove_wishlist)),
+                Faq("How do I subscribe to premium?",getString(R.string.how_premium)),
+                Faq("How do I can download movies?",getString(R.string.how_download)),
+                Faq("How to unsubscribe from premium?",getString(R.string.how_unsubrice)),
+                Faq("How do I add content to the list?",getString(R.string.how_list)),
+                Faq("How to remove wishlist?",getString(R.string.how_to_remove_wishlist)),
+                Faq("How do I subscribe to premium?",getString(R.string.how_premium)),
+                Faq("How do I can download movies?",getString(R.string.how_download)),
+                Faq("How to unsubscribe from premium?",getString(R.string.how_unsubrice)),
+                Faq("How do I add content to the list?",getString(R.string.how_list)),
+                Faq("How to remove wishlist?",getString(R.string.how_to_remove_wishlist)),
         )
         )
 

@@ -159,7 +159,11 @@
         android:id="@+id/myListFragment2"
         android:name="com.example.movamovieapp.screen.mylist.MyListFragment"
         android:label="fragment_my_list"
-        tools:layout="@layout/fragment_my_list" />
+        tools:layout="@layout/fragment_my_list" >
+        <action
+            android:id="@+id/action_myListFragment2_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/subscribeFragment"
         android:name="com.example.movamovieapp.screen.subscribe.SubscribeFragment"

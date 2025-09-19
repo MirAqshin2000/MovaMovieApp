@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.movamovieapp.R
 import com.example.movamovieapp.adapters.MyListAdapter
 import com.example.movamovieapp.databinding.FragmentMyListBinding
@@ -34,6 +35,12 @@ class MyListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvMylist.adapter = adapter
+
+
+        adapter.onClick = { movie ->
+            val action = MyListFragmentDirections.actionMyListFragment2ToDetailFragment(movie.id.toInt())
+            findNavController().navigate(action)
+        }
 
         adapter.onItemClickListener = { movie ->
 
