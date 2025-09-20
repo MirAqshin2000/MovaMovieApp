@@ -15,7 +15,7 @@ data class Video(
     @SerializedName("name")
     val name: String? = "",
     @SerializedName("official")
-    val official: Boolean? = false,
+    val official: Boolean = false,
     @SerializedName("published_at")
     val publishedAt: String? = "",
     @SerializedName("site")

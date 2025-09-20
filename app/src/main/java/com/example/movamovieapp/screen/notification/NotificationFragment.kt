@@ -30,6 +30,14 @@ class NotificationFragment : Fragment() {
         viewModel.getMovie()
         observe()
         binding.rvnotification.adapter = adapter
+
+
+
+
+        adapter.onClick = {
+            val action = NotificationFragmentDirections.actionNotificationFragmentToDetailFragment(it.id)
+            findNavController().navigate(action)
+        }
         binding.imageView17.setOnClickListener {
             findNavController().popBackStack()
         }

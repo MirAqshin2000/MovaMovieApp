@@ -7,7 +7,7 @@ import com.example.movamovieapp.databinding.ItemNotificationBinding
 import com.example.movamovieapp.model.Result
 
 class NotificationAdapter : RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
-
+lateinit var onClick: (Result) -> Unit
     val notifications = arrayListOf<Result>()
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -24,6 +24,10 @@ val view = ItemNotificationBinding.inflate(LayoutInflater.from(parent.context),p
 val item = notifications[position]
         holder.itemnotificationBinding.noti = item
         holder.itemnotificationBinding.executePendingBindings()
+
+     holder.itemnotificationBinding.notificationconst.setOnClickListener {
+         onClick(item)
+     }
 
     }
 

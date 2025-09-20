@@ -71,6 +71,20 @@ class DetailFragment : Fragment() {
             openYoutube(requireContext(), video.key)
         }
 
+        binding.buttonplay.setOnClickListener {
+            val trailers = viewModel.trailer.value
+            if (!trailers.isNullOrEmpty()) {
+
+                val officialTrailer = trailers.find { it.type == "Trailer" && it.official }
+                val trailerToPlay = officialTrailer ?: trailers[0]
+                openYoutube(requireContext(), trailerToPlay.key)
+            } else {
+                Toast.makeText(requireContext(), "Bu film üçün video yoxdur ❌", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+
         moreLikeAdapter.onItemClickListener = {
             val action = DetailFragmentDirections.actionDetailFragmentSelf(it.id)
             findNavController().navigate(action)

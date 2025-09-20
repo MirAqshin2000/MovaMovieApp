@@ -7,50 +7,99 @@
     android:background="@color/backgroundColor"
     tools:context=".screen.home.ViewAllFragment">
 
-    <ImageView
-        android:id="@+id/imageView16back"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="24dp"
-        app:tint="@color/icon_color"
-        android:layout_marginTop="48dp"
-        android:src="@drawable/popstacklef"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="78dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textViewheader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/urbanist_bold"
-        android:text="@string/top_10_movies_this_week"
-        android:textColor="@color/textPrimary1"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView16back"
-        app:layout_constraintStart_toEndOf="@+id/imageView16back"
-        app:layout_constraintTop_toTopOf="@+id/imageView16back" />
+        <ImageView
+            android:id="@+id/imageView16back"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/popstacklef"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/icon_color" />
+
+        <TextView
+            android:id="@+id/textViewheader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/urbanist_bold"
+            android:text="@string/top_10_movies_this_week"
+            android:textColor="@color/textPrimary1"
+            android:textSize="24sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView16back"
+            app:layout_constraintStart_toEndOf="@+id/imageView16back"
+            app:layout_constraintTop_toTopOf="@+id/imageView16back" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/imageView17top"
+        android:id="@+id/imageView17search"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:layout_marginTop="48dp"
         android:layout_marginEnd="24dp"
         android:src="@drawable/searchhome"
-        app:tint="@color/icon_color"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout2"
+        app:tint="@color/icon_color" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvallmovie"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewheader"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
         app:spanCount="2" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/searchLayout22"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:visibility="gone"
+        app:boxBackgroundColor="@color/backgroundColor"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxStrokeColor="@color/selector_inputlayout"
+        app:boxStrokeWidth="2dp"
+
+        app:hintEnabled="false"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toStartOf="@+id/imageView17search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout2"
+        app:startIconDrawable="@drawable/search_xml">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchedittext222"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textColor="@color/textPrimary1"
+            android:textColorHint="@color/textPrimary1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
