@@ -84,7 +84,7 @@
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:paddingStart="55dp"
-            android:textColor="@color/white"
+            android:textColor="@color/textPrimary1"
             android:textColorHint="@color/greyscale" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,12 +105,12 @@
         app:endIconMode="password_toggle"
         app:endIconTint="@color/selector_toggle"
         app:hintEnabled="false"
-        app:passwordToggleEnabled="true"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
-        app:passwordToggleTint="@color/greyscale"
+        app:passwordToggleTint="@color/icon_color"
         app:startIconDrawable="@drawable/baseline_lock_24"
         app:startIconTint="@color/greyscale">
 
@@ -119,10 +119,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
+
             android:inputType="textPassword"
             android:maxLines="1"
             android:paddingStart="55dp"
-            android:textColor="@color/white"
+            android:textColor="@color/textPrimary1"
             android:textColorHint="@color/greyscale"
             android:visibility="visible" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -165,6 +166,7 @@
         android:layout_marginStart="12dp"
         android:fontFamily="@font/urbanist_bold"
         android:text="@string/remember_me"
+        android:textSize="18dp"
 
         android:textColor="@color/textPrimary1"
         app:layout_constraintBottom_toBottomOf="@+id/checkboxRemember"

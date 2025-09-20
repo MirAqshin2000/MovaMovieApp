@@ -36,23 +36,18 @@ fun View.gone(){
 }
 
 fun maskCardNumberGrouped(cardNumber: String): String {
-    if (cardNumber.length < 4) return cardNumber
+    val visibleCount = 4
+    val digitsOnly = cardNumber.replace(" ", "")
+    val maskedBuilder = StringBuilder()
 
-    val last4 = cardNumber.takeLast(4)
-    val groups = (cardNumber.length - 4) / 4 // neçə tam qrup var
-    val remainder = (cardNumber.length - 4) % 4 // artıq qalan rəqəmlər
-
-    val maskedGroups = buildString {
-        repeat(groups) {
-            append("**** ")
-        }
-        if (remainder > 0) {
-            append("*".repeat(remainder)).append(" ")
-        }
-        append(last4.chunked(4).joinToString(" "))
+    for (i in digitsOnly.indices) {
+        maskedBuilder.append(
+            if (i < digitsOnly.length - visibleCount) '*' else digitsOnly[i]
+        )
     }
-    return maskedGroups.trim()
+    return maskedBuilder.toString().chunked(4).joinToString(" ")
 }
+
 
 
 

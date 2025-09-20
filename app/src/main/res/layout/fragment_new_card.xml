@@ -112,7 +112,7 @@
             android:id="@+id/kartadi"
             android:maxLines="1"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/textPrimary1"
             android:inputType="text"
             android:hint="Enter your card name" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -140,9 +140,8 @@
             android:layout_height="wrap_content"
             android:hint="Enter your card number"
             android:inputType="number"
-            android:maxLength="16"
-            android:maxLines="1"
-            android:textColor="@color/white" />
+            android:maxLength="19"
+            android:textColor="@color/textPrimary1" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -206,8 +205,8 @@
 
             android:maxLines="1"
             android:inputType="number"
-            android:maxLength="4"
-            android:textColor="@color/white" />
+            android:maxLength="5"
+            android:textColor="@color/textPrimary1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -245,7 +244,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/textPrimary1"
             android:hint="CVV"
             android:id="@+id/cvv"
             android:inputType="number"

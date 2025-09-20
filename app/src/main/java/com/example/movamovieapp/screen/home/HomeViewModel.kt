@@ -51,7 +51,7 @@ class HomeViewModel @Inject constructor(
                 movieRepository.getTopRatedMoviesFlow().collect { response ->
                     if (response.isSuccessful) {
                         response.body()?.let {
-                            top10Movies.value = MovieState.Success(it.results.take(10))
+                            top10Movies.value = MovieState.Success(it.results.take(5))
                         }
                         loading.value = false
                     } else {

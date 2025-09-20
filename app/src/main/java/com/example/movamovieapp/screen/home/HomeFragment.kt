@@ -18,14 +18,18 @@ import com.example.mova.base.BaseFragment
 import com.example.movamovieapp.R
 import com.example.movamovieapp.adapters.FilmsAdapter
 import com.example.movamovieapp.databinding.FragmentHomeBinding
+import com.example.movamovieapp.model.MyListModel
+import com.example.movamovieapp.screen.mylist.MyListViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.getValue
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
     private val viewModel: HomeViewModel by viewModels()
+    private val myListViewModel: MyListViewModel by viewModels()
     private fun createAdapter() = FilmsAdapter { movieId ->
         val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(movieId)
         findNavController().navigate(action)
@@ -38,6 +42,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        binding.button2.setOnClickListener {
+            val movie = viewModel.featuredMovie.value
+            movie?.let {
+                val mylistModel = MyListModel(
+                    id = movie.id ?: 0,
+                    title = movie.title,
+                    image = movie.posterPath ?: ""
+                )
+                myListViewModel.addMovie(mylistModel)
+                Toast.makeText(
+                    requireContext(), "${movie.title} My List-ə əlavə olundu ", Toast.LENGTH_SHORT
+                ).show()
+
+            }
+        }
 
         setupRecyclerViews()
         observeViewModel()
@@ -118,6 +139,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             when (state) {
                 is MovieState.Success -> {
                     val sortedList = state.movieList.sortedByDescending { it.voteAverage ?: 0.0 }
+                        .take(5)
                     popularAdapter.updateList(sortedList)
 
                 }
