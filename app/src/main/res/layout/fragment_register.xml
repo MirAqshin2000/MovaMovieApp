@@ -161,7 +161,7 @@
             android:layout_marginStart="16dp"
 
             android:layout_marginEnd="16dp"
-            app:dividerColor="@color/icon_color"
+            app:dividerColor="@color/gray"
             app:layout_constraintBottom_toBottomOf="@+id/textView11"
             app:layout_constraintEnd_toStartOf="@+id/textView11"
             app:layout_constraintHorizontal_bias="0.0"
@@ -189,7 +189,7 @@
             android:layout_height="1dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            app:dividerColor="@color/icon_color"
+            app:dividerColor="@color/gray"
             app:layout_constraintBottom_toBottomOf="@+id/textView11"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -291,11 +291,12 @@
             android:id="@+id/textView12email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/urbanist"
             android:text="@string/already_have_account"
             android:textColor="@color/textPrimary1"
+            android:textSize="18dp"
             app:layout_constraintStart_toStartOf="@+id/materialCardView3"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView3" />
 
@@ -343,7 +344,7 @@
             android:fontFamily="@font/urbanist"
             android:text="Sign in"
             android:textColor="@color/red"
-            android:textSize="14dp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView12email"
             app:layout_constraintStart_toEndOf="@+id/textView12email"
             app:layout_constraintTop_toTopOf="@+id/textView12email" />

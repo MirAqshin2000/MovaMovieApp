@@ -178,6 +178,7 @@ class ProfileFragment : Fragment() {
     private fun observe() {
         val isDark = sharedPreferences.getBoolean("dark_mode", false)
         binding.switch1.isChecked = isDark
+
         viewModel.setDarkMode(isDark, sharedPreferences)
 
         viewModel.isDarkMode.observe(viewLifecycleOwner) { isDarkMode ->

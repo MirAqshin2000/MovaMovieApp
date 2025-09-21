@@ -29,9 +29,12 @@ class LetsFragment : BaseFragment<FragmentLetsBinding>(FragmentLetsBinding::infl
         )
         binding.button.setOnClickListener {
             lifecycleScope.launch {
+                if(!isAdded)return@launch
                 binding.animationView25.visible()
                 delay(2000)
+                if(!isAdded)return@launch
                 binding.animationView25.gone()
+                if(!isAdded)return@launch
                 findNavController().navigate(LetsFragmentDirections.actionLetsFragmentToLoginFragment())
 
             }
@@ -39,9 +42,13 @@ class LetsFragment : BaseFragment<FragmentLetsBinding>(FragmentLetsBinding::infl
         }
         binding.textView3signup.setOnClickListener {
             lifecycleScope.launch {
+                if(!isAdded)return@launch
                 binding.animationView25.visible()
+
                 delay(2000)
+                if(!isAdded)return@launch
                 binding.animationView25.gone()
+                if(!isAdded)return@launch
                 findNavController().navigate(LetsFragmentDirections.actionLetsFragmentToRegisterFragment())
 
             }

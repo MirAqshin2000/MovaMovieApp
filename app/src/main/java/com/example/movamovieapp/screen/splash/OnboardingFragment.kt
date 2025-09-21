@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.example.movamovieapp.R
 import com.example.movamovieapp.adapters.IntroPagerAdapter
 import com.example.movamovieapp.databinding.FragmentOnboardingBinding
 import com.example.movamovieapp.model.IntroModel
@@ -22,6 +23,9 @@ import kotlinx.coroutines.launch
 class OnboardingFragment : Fragment() {
     private lateinit var binding: FragmentOnboardingBinding
     private val adapter = IntroPagerAdapter()
+
+    private var isNavigating = false
+
 
 
     override fun onCreateView(
@@ -77,22 +81,39 @@ class OnboardingFragment : Fragment() {
 
 
         binding.getstardetbutton.setOnClickListener {
+            if (isNavigating) {
+                return@setOnClickListener
+            }
+            isNavigating = true
 
 
             lifecycleScope.launch {
+                if (!isAdded) return@launch
                 binding.animationView22.visible()
                 delay(1500)
+                if (!isAdded) return@launch
                 binding.animationView22.gone()
+                if (!isAdded) {
+                    isNavigating = false
+                    return@launch
+                }
 
 
                 val currentItem = binding.viewPager2.currentItem
                 val lastItem = adapter.itemCount - 1
                 if (currentItem < lastItem) {
                     binding.viewPager2.setCurrentItem(currentItem + 1, true)
+                    isNavigating = false
                 } else {
-                    val prefs = SharedPrefManager(requireContext())
-                    prefs.setFirstLaunch(false)
-                    findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToLetsFragment())
+                    val navController = findNavController()
+                    val actionId = OnboardingFragmentDirections.actionOnboardingFragmentToLetsFragment()
+                    if (navController.currentDestination?.getAction(R.id.action_onboardingFragment_to_letsFragment) != null){
+                        val prefs = SharedPrefManager(requireContext())
+                        prefs.setFirstLaunch(false)
+                        navController.navigate(actionId)
+
+                    }
+                    isNavigating = false
 
                 }
 
