@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.movamovieapp.MainActivity
@@ -49,6 +50,9 @@ class DetailFragment : Fragment() {
     private val moreLikeAdapter = MoreLikeAdapter()
     private val trailerAdapter = TrailerAdapter()
     private var isSelected = false
+
+    private var canNavigate = true
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -87,7 +91,7 @@ class DetailFragment : Fragment() {
 
         moreLikeAdapter.onItemClickListener = {
             val action = DetailFragmentDirections.actionDetailFragmentSelf(it.id)
-            findNavController().navigate(action)
+            safeNavigate(action)
         }
         binding.buttonDetailDownload.setOnClickListener {
 
@@ -115,6 +119,17 @@ class DetailFragment : Fragment() {
         binding.rvcomment.gone()
 
         setupAddButton()
+    }
+
+    private fun safeNavigate(action: NavDirections) {
+        if (canNavigate) {
+            canNavigate = false
+            findNavController().navigate(action)
+            viewLifecycleOwner.lifecycleScope.launch {
+                delay(500)
+                canNavigate = true
+            }
+        }
     }
 
 
@@ -217,30 +232,46 @@ class DetailFragment : Fragment() {
 
 
     private fun observeData() {
-        viewModel.detail.observe(viewLifecycleOwner) {
-            binding.detail = it
+        viewModel.detail.observe(viewLifecycleOwner) { detail ->
+            if (!isAdded) return@observe
+            binding.detail = detail
         }
 
-        viewModel.error.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+        viewModel.error.observe(viewLifecycleOwner) { error ->
+            if (!isAdded) return@observe
+            Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
         }
 
         viewModel.credits.observe(viewLifecycleOwner) {
-            creditsAdapter.updateCredits(it.cast)
+            if (!isAdded) return@observe
+            binding.recyclerView3.post {
+                creditsAdapter.updateCredits(it.cast)
+
+            }
         }
 
-        viewModel.comments.observe(viewLifecycleOwner) {
-            commentAdapter.updateList(it)
-        }
+        viewModel.comments.observe(viewLifecycleOwner) { comments ->
+            if (!isAdded) return@observe
+            binding.rvcomment.post {
+                commentAdapter.updateList(comments)
+            }
 
-        viewModel.more.observe(viewLifecycleOwner) {
-            moreLikeAdapter.updateMore(it)
-        }
+            viewModel.more.observe(viewLifecycleOwner) {  moreMovies ->
+                if (!isAdded) return@observe
+                binding.rvlikemore.post {
+                    moreLikeAdapter.updateMore(moreMovies)
+                }
+            }
 
-        viewModel.trailer.observe(viewLifecycleOwner) {
-            trailerAdapter.updateList(it)
-        }
+            viewModel.trailer.observe(viewLifecycleOwner) {trailers ->
+                if (!isAdded) return@observe
+                binding.rvtrailer.post {
+                    trailerAdapter.updateList(trailers)
 
+                }
+            }
+
+        }
     }
 
 

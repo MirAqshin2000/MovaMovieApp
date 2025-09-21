@@ -26,6 +26,9 @@ import kotlinx.coroutines.launch
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
     private val viewModel: LoginViewModel by viewModels()
 
+    private var hasNavigated = false
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -51,6 +54,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     private fun loginClick() {
         binding.signinbuttonlogin.setOnClickListener {
+            if (!binding.signinbuttonlogin.isEnabled) return@setOnClickListener
+            binding.signinbuttonlogin.isEnabled = false
 
 
             val email = binding.editLoginemail.text.toString().trim()
@@ -62,14 +67,20 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                 binding.editLogipassword.error = "Password is required"
                 shakeView(binding.editLoginemail)
                 shakeView(binding.editLogipassword)
+                binding.signinbuttonlogin.isEnabled = true
+
             }
             else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                 Toast.makeText(requireContext(), "Invalid email format", Toast.LENGTH_SHORT).show()
                 shakeView(binding.editLoginemail)
+                binding.signinbuttonlogin.isEnabled = true
+
 
             }else if (password.length < 6){
                 Toast.makeText(requireContext(), "Password must be at least 6 characters", Toast.LENGTH_SHORT).show()
                 shakeView(binding.editLogipassword)
+                binding.signinbuttonlogin.isEnabled = true
+
             }
             else {
                 viewModel.loginUser(email, password)
@@ -95,6 +106,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
 
                 is LoginUi.Success -> {
+
+                    if (hasNavigated) return@observe
+
                     val prefs = SharedPrefManager(requireContext())
 
                     if (binding.checkboxRemember.isChecked) {
@@ -111,8 +125,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                         Toast.makeText(requireContext(), state.successMessage, Toast.LENGTH_SHORT)
                             .show()
 
-                        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
-
+                        if (findNavController().currentDestination?.id == R.id.loginFragment) {
+                            hasNavigated = true
+                            findNavController().navigate(
+                                LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+                            )
+                        }
 
                     }
 

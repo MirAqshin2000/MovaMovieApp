@@ -39,12 +39,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private val nowPlayingAdapter by lazy { createAdapter() }
     private val top10Adapter by lazy { createAdapter() }
     private val upcomingAdapter by lazy { createAdapter() }
+    private var isAdding = false
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
         binding.button2.setOnClickListener {
+
+            if (isAdding) return@setOnClickListener
+            isAdding = true
+
             val movie = viewModel.featuredMovie.value
             movie?.let {
                 val mylistModel = MyListModel(
@@ -54,10 +60,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 )
                 myListViewModel.addMovie(mylistModel)
                 Toast.makeText(
-                    requireContext(), "${movie.title} My List-ə əlavə olundu ", Toast.LENGTH_SHORT
+                    requireContext(), "${movie.title} added to my list", Toast.LENGTH_SHORT
                 ).show()
 
             }
+            binding.button2.postDelayed({
+                isAdding = false
+            }, 1000)
         }
 
         setupRecyclerViews()
