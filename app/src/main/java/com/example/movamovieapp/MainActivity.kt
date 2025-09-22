@@ -5,7 +5,9 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.navigation.fragment.NavHostFragment
@@ -32,7 +34,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
 
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         enableEdgeToEdge()
@@ -56,10 +57,15 @@ class MainActivity : AppCompatActivity() {
                 R.id.downloadFragment2 -> bottomMenu.visible()
                 else -> bottomMenu.gone()
             }
+
         }
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.gray) // bottom nav background rəngi ilə eyni
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         ViewCompat.setOnApplyWindowInsetsListener(binding.bottomNavigationView) { view, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            view.updatePadding(bottom = systemBars.bottom)
+            view.setPadding(0, 0, 0, systemBars.bottom)
             insets
         }
 

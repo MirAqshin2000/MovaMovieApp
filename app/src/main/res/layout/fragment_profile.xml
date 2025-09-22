@@ -192,7 +192,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayoutEditProfile"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
@@ -236,7 +236,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayoutNotifications"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
@@ -283,7 +283,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayoutLanguage"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
@@ -330,10 +330,10 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayoutDarkmode"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayoutLanguage">
@@ -343,11 +343,11 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginBottom="2dp"
-                app:tint="@color/icon_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/darkmod" />
+                app:srcCompat="@drawable/darkmod"
+                app:tint="@color/icon_color" />
 
             <TextView
                 android:id="@+id/textView25"
@@ -377,7 +377,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constrainthelpcenter"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
@@ -389,11 +389,11 @@
                 android:id="@+id/imageView41"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                app:tint="@color/icon_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/helpcenter" />
+                app:srcCompat="@drawable/helpcenter"
+                app:tint="@color/icon_color" />
 
             <TextView
                 android:id="@+id/textView28"
@@ -423,23 +423,25 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayoutprivacy"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constrainthelpcenter">
 
             <ImageView
                 android:id="@+id/imageView43"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                app:tint="@color/icon_color"
+                android:layout_width="29dp"
+                android:layout_height="29dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/danger" />
+                app:srcCompat="@drawable/danger"
+                app:tint="@color/icon_color" />
 
             <TextView
                 android:id="@+id/textView29"

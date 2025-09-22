@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -33,7 +34,9 @@ import com.google.android.material.tabs.TabLayout
 
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -52,6 +55,11 @@ class DetailFragment : Fragment() {
     private var isSelected = false
 
     private var canNavigate = true
+
+
+    private var downloadDialog: AlertDialog? = null
+    private var downloadJob: Job? = null
+
 
 
     override fun onCreateView(
@@ -134,57 +142,58 @@ class DetailFragment : Fragment() {
 
 
     private fun downloadDialog(context: Context) {
-        val dialogView = LayoutInflater.from(context).inflate(R.layout.alert_download, null)
-        val progressBar = dialogView.findViewById<ProgressBar>(R.id.progressBar)
-        val progressText = dialogView.findViewById<TextView>(R.id.progressText)
-        val hideButton = dialogView.findViewById<Button>(R.id.hideButton)
-        val statusText = dialogView.findViewById<TextView>(R.id.statusText)
+        if (downloadDialog?.isShowing == true) return
 
-        val dialog = androidx.appcompat.app.AlertDialog.Builder(context)
-            .setView(dialogView)
-            .setCancelable(false)
-            .create()
-
-        dialog.show()
-
+        val download = DownloadModel(
+            title = viewModel.detail.value?.title ?: "No Title",
+            image = viewModel.detail.value?.posterPath ?: "",
+            id = viewModel.detail.value?.id ?: 0
+        )
 
         viewLifecycleOwner.lifecycleScope.launch {
-            val download = DownloadModel(
-                title = viewModel.detail.value?.title ?: "No Title",
-                image = viewModel.detail.value?.posterPath ?: "",
-                id = viewModel.detail.value?.id ?: 0
-            )
-
-            val alreadyAdded = withContext(Dispatchers.IO) {
-                viewModel.isDownloadAdded(download.id)
-            }
+            val alreadyAdded = withContext(Dispatchers.IO) { viewModel.isDownloadAdded(download.id) }
             if (alreadyAdded) {
                 Toast.makeText(requireContext(), "Already Added", Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
-            } else {
+                return@launch
+            }
 
+            val dialogView = LayoutInflater.from(context).inflate(R.layout.alert_download, null)
+            val progressBar = dialogView.findViewById<ProgressBar>(R.id.progressBar)
+            val progressText = dialogView.findViewById<TextView>(R.id.progressText)
+            val hideButton = dialogView.findViewById<Button>(R.id.hideButton)
+            val statusText = dialogView.findViewById<TextView>(R.id.statusText)
+
+            downloadDialog = AlertDialog.Builder(context)
+                .setView(dialogView)
+                .setCancelable(false)
+                .create()
+            downloadDialog?.show()
+
+            val downloadJob = viewLifecycleOwner.lifecycleScope.launch {
                 for (i in 1..100) {
-
+                    if (!isActive) break
                     delay(30)
-
                     progressBar.progress = i
                     progressText.text = "$i%"
                     statusText.text = if (i < 100) "Downloading..." else "Download Complete"
                 }
 
-                withContext(Dispatchers.IO) {
-                    viewModel.addDownload(download)
+                if (isActive && downloadDialog?.isShowing == true) {
+                    withContext(Dispatchers.IO) { viewModel.addDownload(download) }
+                    Toast.makeText(requireContext(), "Download Added", Toast.LENGTH_SHORT).show()
+                    downloadDialog?.dismiss()
                 }
-                Toast.makeText(requireContext(), "Download Added", Toast.LENGTH_SHORT).show()
+            }
 
-
-                hideButton.setOnClickListener {
-                    dialog.dismiss()
-
-                }
+            hideButton.setOnClickListener {
+                downloadJob.cancel()
+                downloadDialog?.dismiss()
+                Toast.makeText(context, "Download Cancelled", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
+
 
 
     private fun setupTabLayout() {
