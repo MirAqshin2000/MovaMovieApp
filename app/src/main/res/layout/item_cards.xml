@@ -20,8 +20,8 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardViewcards"
-            android:layout_width="370dp"
-            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             app:cardBackgroundColor="@color/backgroundColor"
@@ -30,7 +30,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:strokeColor="@color/icon_color"
-            app:strokeWidth="2dp">
+            app:strokeWidth="1dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/paymentbuton"

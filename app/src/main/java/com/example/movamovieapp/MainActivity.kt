@@ -57,13 +57,11 @@ class MainActivity : AppCompatActivity() {
                 else -> bottomMenu.gone()
             }
         }
-
-
-
-
-
-
-
+        ViewCompat.setOnApplyWindowInsetsListener(binding.bottomNavigationView) { view, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.updatePadding(bottom = systemBars.bottom)
+            insets
+        }
 
 
     }

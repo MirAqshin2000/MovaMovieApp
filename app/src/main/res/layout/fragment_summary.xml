@@ -46,7 +46,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView49"
         app:strokeColor="@color/red"
-        app:strokeWidth="2dp">
+        app:strokeWidth="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/aaa"
@@ -203,7 +203,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView2"
         app:strokeColor="@color/gray"
-        app:strokeWidth="2dp">
+        app:strokeWidth="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -323,7 +323,7 @@ app:cardBackgroundColor="@color/backgroundColor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView3"
         app:strokeColor="@color/gray"
-        app:strokeWidth="2dp">
+        app:strokeWidth="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -350,14 +350,14 @@ app:cardBackgroundColor="@color/backgroundColor"
                 style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 android:fontFamily="@font/urbanist"
                 android:text="Change"
                 android:textColor="@color/red"
                 android:textFontWeight="700"
+                app:layout_constraintBottom_toBottomOf="@+id/textView59card"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/textView59card" />
 
             <ImageView
                 android:id="@+id/imageView55"
@@ -377,7 +377,7 @@ app:cardBackgroundColor="@color/backgroundColor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:backgroundTint="@color/red"
         android:fontFamily="@font/urbanist"
@@ -402,97 +402,6 @@ app:cardBackgroundColor="@color/backgroundColor"
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardsummary"
-        android:layout_width="340dp"
-        android:layout_height="463dp"
-        android:visibility="gone"
-        app:cardBackgroundColor="#1F222A"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/red">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonoksummary"
-                android:layout_width="276dp"
-                android:layout_height="58dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
-                android:backgroundTint="@color/red"
-                android:fontFamily="@font/urbanist"
-                android:text="OK"
-                android:textColor="@color/white"
-                android:textFontWeight="700"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView62" />
-
-            <TextView
-                android:id="@+id/textView62"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-
-                android:layout_marginEnd="32dp"
-                android:fontFamily="@font/urbanist"
-                android:text="You have successfully subscribed 1 month premium. Enjoy the benefits!"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView61" />
-
-            <ImageView
-                android:id="@+id/imageView66"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="77dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="77dp"
-                android:layout_marginBottom="33dp"
-                android:src="@drawable/congrlation"
-                app:layout_constraintBottom_toTopOf="@+id/textView61"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView61"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
-
-                android:fontFamily="@font/urbanist"
-                android:text="Congratulations!"
-
-                android:textColor="@color/red"
-                android:textFontWeight="700"
-                android:textSize="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView66" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView22"
         android:layout_width="200dp"
@@ -503,6 +412,7 @@ app:cardBackgroundColor="@color/backgroundColor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/materialCardView3"
         app:lottie_autoPlay="true"
+        app:lottie_colorFilter="@color/red"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/loading" />
 

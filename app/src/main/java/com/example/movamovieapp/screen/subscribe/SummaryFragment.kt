@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -12,6 +13,7 @@ import com.example.movamovieapp.R
 import com.example.movamovieapp.databinding.FragmentSummaryBinding
 import com.example.movamovieapp.util.gone
 import com.example.movamovieapp.util.visible
+import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -62,21 +64,34 @@ class SummaryFragment : Fragment() {
         binding.button5confirmpayment.setOnClickListener {
             lifecycleScope.launch {
                 binding.animationView22.visible()
-                delay(2000)
+                delay(1300)
                 binding.animationView22.gone()
-                binding.cardsummary.visible()
-
+showCongratsDialog()
             }
         }
-        binding.buttonoksummary.setOnClickListener {
+
+    }
+
+
+    private fun showCongratsDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_congrlations, null)
+
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setView(dialogView)
+
+        val dialog = builder.create()
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.setCancelable(false)
+        dialog.show()
+
+        dialogView.findViewById<MaterialButton>(R.id.buttonoksummary).setOnClickListener {
             lifecycleScope.launch {
                 binding.animationView22.visible()
-                delay(2500)
+                delay(1300)
                 binding.animationView22.gone()
-                binding.cardsummary.gone()
                 findNavController().navigate(SummaryFragmentDirections.actionSummaryFragmentToProfileFragment())
-
             }
+            dialog.dismiss()
         }
     }
 

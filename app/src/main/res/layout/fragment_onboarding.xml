@@ -69,11 +69,12 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager2"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toTopOf="@+id/dotindicator"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView22"
