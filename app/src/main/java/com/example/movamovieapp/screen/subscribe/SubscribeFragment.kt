@@ -17,6 +17,8 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class SubscribeFragment : Fragment() {
     private lateinit var binding: FragmentSubscribeBinding
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,6 +45,7 @@ class SubscribeFragment : Fragment() {
                     )
                 )
             }
+        }
 
             binding.materialcardview7.setOnClickListener {
                 lifecycleScope.launch {
@@ -51,8 +54,9 @@ class SubscribeFragment : Fragment() {
                     binding.animationView22.gone()
                     findNavController().navigate(R.id.action_subscribeFragment_to_paymentFragment)
                 }
-
             }
+
+
         }
-    }
+
 }
