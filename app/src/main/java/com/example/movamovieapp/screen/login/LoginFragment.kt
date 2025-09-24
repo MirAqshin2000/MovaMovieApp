@@ -112,7 +112,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                 is LoginUi.Loading -> {
                     lifecycleScope.launch {
                         binding.animationView11.visible()
-                        delay(1000)
+                        delay(1500)
                         binding.animationView11.gone()
 
                     }
@@ -136,7 +136,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                     binding.animationView11.gone()
                     lifecycleScope.launch {
                         binding.animationView11.visible()
-                        delay(1500)
+                        delay(1700)
                         binding.animationView11.gone()
                         Toast.makeText(requireContext(), state.successMessage, Toast.LENGTH_SHORT)
                             .show()
