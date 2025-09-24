@@ -2,6 +2,8 @@ package com.example.movamovieapp.screen.login
 
 import android.content.Context
 import android.content.res.Configuration
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -50,12 +52,19 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
 
     }
+    fun Context.isInternetAvailable(): Boolean {
+        val connectivityManager =
+            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = connectivityManager.activeNetwork ?: return false
+        val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
+        return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+    }
+
 
 
     private fun loginClick() {
         binding.signinbuttonlogin.setOnClickListener {
             if (!binding.signinbuttonlogin.isEnabled) return@setOnClickListener
-            binding.signinbuttonlogin.isEnabled = false
 
 
             val email = binding.editLoginemail.text.toString().trim()
@@ -73,7 +82,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                 Toast.makeText(requireContext(), "Invalid email format", Toast.LENGTH_SHORT).show()
                 shakeView(binding.editLoginemail)
-                binding.signinbuttonlogin.isEnabled = true
+                binding.signinbuttonlogin.isEnabled = false
 
 
             }else if (password.length < 6){
@@ -83,6 +92,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
             }
             else {
+                if (!requireContext().isInternetAvailable()) {
+                    Toast.makeText(requireContext(), "No internet connection", Toast.LENGTH_SHORT).show()
+                    binding.signinbuttonlogin.isEnabled = true
+                    return@setOnClickListener
+                }
+
                 viewModel.loginUser(email, password)
             }
 
@@ -92,6 +107,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     private fun observeData() {
         viewModel.loginUi.observe(viewLifecycleOwner) { state ->
+            binding.signinbuttonlogin.isEnabled = true
             when (state) {
                 is LoginUi.Loading -> {
                     lifecycleScope.launch {
@@ -136,13 +152,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
 
                 }
-
                 is LoginUi.Error -> {
                     binding.animationView11.gone()
-                    Toast.makeText(requireContext(), "Email and password are incorrect" , Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), state.errorMessage, Toast.LENGTH_SHORT).show()
                     shakeView(binding.editLoginemail)
                     shakeView(binding.editLogipassword)
                 }
+
 
 
             }
