@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.mova.base.BaseFragment
 import com.example.movamovieapp.R
 import com.example.movamovieapp.adapters.CardAdapter
 import com.example.movamovieapp.adapters.PaymentAdapter
@@ -27,21 +28,11 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class PaymentFragment : Fragment() {
+class PaymentFragment : BaseFragment<FragmentPaymentBinding>(FragmentPaymentBinding::inflate) {
 
-    private lateinit var binding: FragmentPaymentBinding
     private lateinit var cardadapter: CardAdapter
     private val viewModel: PaymentViewModel by viewModels()
     val args: PaymentFragmentArgs by navArgs()
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentPaymentBinding.inflate(layoutInflater)
-        return binding.root
-
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

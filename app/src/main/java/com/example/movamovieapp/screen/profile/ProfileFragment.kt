@@ -14,6 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.mova.base.BaseFragment
 import com.example.movamovieapp.R
 import com.example.movamovieapp.databinding.FragmentProfileBinding
 import com.example.movamovieapp.util.LocalHelper
@@ -25,8 +26,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
-class ProfileFragment : Fragment() {
-    private lateinit var binding: FragmentProfileBinding
+class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBinding::inflate) {
     private lateinit var pickImageLauncher: ActivityResultLauncher<Intent>
 
     val sharedPreferences: SharedPreferences by lazy {
@@ -35,13 +35,7 @@ class ProfileFragment : Fragment() {
     }
 
     private val viewModel: ProfileViewModel by viewModels()
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentProfileBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -19,6 +19,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.navOptions
+import com.example.mova.base.BaseFragment
 import com.example.movamovieapp.MainActivity
 import com.example.movamovieapp.R
 import com.example.movamovieapp.adapters.CommentAdapter
@@ -42,9 +44,8 @@ import kotlinx.coroutines.withContext
 
 
 @AndroidEntryPoint
-class DetailFragment : Fragment() {
+class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding::inflate) {
 
-    private lateinit var binding: FragmentDetailBinding
     private val args by navArgs<DetailFragmentArgs>()
     private val viewModel by viewModels<DetailViewModel>()
 
@@ -62,14 +63,6 @@ class DetailFragment : Fragment() {
 
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentDetailBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -91,7 +84,7 @@ class DetailFragment : Fragment() {
                 val trailerToPlay = officialTrailer ?: trailers[0]
                 openYoutube(requireContext(), trailerToPlay.key)
             } else {
-                Toast.makeText(requireContext(), "Bu film üçün video yoxdur ❌", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "No trailer found", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -99,10 +92,10 @@ class DetailFragment : Fragment() {
 
         moreLikeAdapter.onItemClickListener = {
             val action = DetailFragmentDirections.actionDetailFragmentSelf(it.id)
-            safeNavigate(action)
+            findNavController().navigate(action)
+
         }
         binding.buttonDetailDownload.setOnClickListener {
-
 
             downloadDialog(requireContext())
 

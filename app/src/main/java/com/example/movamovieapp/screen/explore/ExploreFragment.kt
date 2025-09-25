@@ -11,8 +11,10 @@ import com.example.movamovieapp.databinding.FragmentExploreBinding
 import kotlinx.coroutines.delay
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
+import com.example.mova.base.BaseFragment
 import com.example.movamovieapp.adapters.FilmsAdapter
 import com.example.movamovieapp.adapters.MoreLikeAdapter
+import com.example.movamovieapp.model.Result
 import com.example.movamovieapp.screen.detail.DetailFragmentDirections
 import com.example.movamovieapp.util.gone
 
@@ -20,21 +22,14 @@ import com.example.movamovieapp.util.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 import kotlinx.coroutines.launch
+import kotlin.getValue
 
 @AndroidEntryPoint
-class ExploreFragment : Fragment() {
-    private lateinit var binding: FragmentExploreBinding
-    private  val adapter =MoreLikeAdapter()
+class ExploreFragment :BaseFragment<FragmentExploreBinding>(FragmentExploreBinding::inflate) {
+    private val adapter = MoreLikeAdapter()
     private val viewModel: ExploreViewModel by viewModels()
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentExploreBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,7 +48,7 @@ class ExploreFragment : Fragment() {
 
         binding.recyclerView2.adapter = adapter
         observe()
-viewModel.getMovie()
+        viewModel.getMovie()
 
 
 
@@ -64,50 +59,40 @@ viewModel.getMovie()
                 if (query.isNotEmpty()) {
                     delay(1000)
                     viewModel.searchMovies(query)
-                }else{
-                    viewModel.getMovie()
+                } else {
+                    viewModel.isSearching = false
+                    updateRecyclerView(viewModel.allmovies.value ?: emptyList())
                 }
             }
 
         }
 
 
-
-
-
     }
 
     private fun observe() {
-        viewModel.allmovies.observe(viewLifecycleOwner) {list->
-            if (list.isNotEmpty()) {
-                binding.recyclerView2.visible()
-                binding.imageView4.gone()
-                binding.textView20Notfound.gone()
-                binding.textView21sorry.gone()
-                adapter.updateMore(list)
-
-            }else{
-                binding.recyclerView2.gone()
-                binding.imageView4.visible()
-                binding.textView20Notfound.visible()
-                binding.textView21sorry.visible()
-            }
+        viewModel.allmovies.observe(viewLifecycleOwner) { list ->
+            if (!viewModel.isSearching) updateRecyclerView(list)
         }
-     viewModel.searchmovie.observe(viewLifecycleOwner) {
-         if (it.isNotEmpty()) {
-             binding.recyclerView2.visible()
-             binding.imageView4.gone()
-             binding.textView20Notfound.gone()
-             binding.textView21sorry.gone()
-             adapter.updateMore(it)
 
-         }else{
-             binding.recyclerView2.gone()
-             binding.imageView4.visible()
-             binding.textView20Notfound.visible()
-             binding.textView21sorry.visible()
-         }
-     }
-
+        viewModel.searchResults.observe(viewLifecycleOwner) { list ->
+            if (viewModel.isSearching) updateRecyclerView(list)
+        }
     }
+
+    private fun updateRecyclerView(list: List<Result>) {
+        if (list.isNotEmpty()) {
+            binding.recyclerView2.visible()
+            binding.imageView4.gone()
+            binding.textView20Notfound.gone()
+            binding.textView21sorry.gone()
+            adapter.updateMore(list)
+        } else {
+            binding.recyclerView2.gone()
+            binding.imageView4.visible()
+            binding.textView20Notfound.visible()
+            binding.textView21sorry.visible()
+        }
+    }
+
 }

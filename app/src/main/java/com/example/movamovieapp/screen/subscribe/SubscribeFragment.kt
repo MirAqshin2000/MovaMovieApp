@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.mova.base.BaseFragment
 import com.example.movamovieapp.R
 import com.example.movamovieapp.databinding.FragmentSubscribeBinding
 import com.example.movamovieapp.util.gone
@@ -15,17 +16,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 @AndroidEntryPoint
-class SubscribeFragment : Fragment() {
-    private lateinit var binding: FragmentSubscribeBinding
+class SubscribeFragment : BaseFragment<FragmentSubscribeBinding>(FragmentSubscribeBinding::inflate){
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentSubscribeBinding.inflate(layoutInflater)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

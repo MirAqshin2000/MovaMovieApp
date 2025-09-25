@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.mova.base.BaseFragment
 import com.example.movamovieapp.R
 import com.example.movamovieapp.adapters.MyListAdapter
 import com.example.movamovieapp.databinding.FragmentMyListBinding
@@ -22,20 +23,13 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MyListFragment : Fragment() {
+class MyListFragment : BaseFragment<FragmentMyListBinding>(FragmentMyListBinding::inflate) {
 
-    private lateinit var binding: FragmentMyListBinding
 
     private val viewModel: MyListViewModel by viewModels()
     private val adapter = MyListAdapter()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentMyListBinding.inflate(layoutInflater)
-        return binding.root
-    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

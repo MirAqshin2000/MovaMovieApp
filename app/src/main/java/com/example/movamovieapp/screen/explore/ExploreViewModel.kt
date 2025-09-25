@@ -19,6 +19,10 @@ class ExploreViewModel@Inject constructor(
 
     val allmovies = MutableLiveData<List<Result>>()
     val searchmovie = MutableLiveData<List<Result>>()
+    val searchResults = MutableLiveData<List<Result>>()
+
+    var isSearching = false
+
 
     val error = MutableLiveData<String>()
     val loading = MutableLiveData<Boolean>()
@@ -26,31 +30,34 @@ class ExploreViewModel@Inject constructor(
 
 
     fun searchMovies(title: String) {
+        if (title.isEmpty()) {
+            isSearching = false
+            searchResults.value = emptyList()
+            return
+        }
+
+        isSearching = true
         viewModelScope.launch {
             loading.value = true
-
-
             try {
                 repository.searchMovies(title).collect { response ->
                     if (response.isSuccessful) {
                         response.body()?.results?.let {
-                            allmovies.value = it
-                            loading.value = false
-
-
+                            searchResults.value = it  // <- search üçün ayrıca LiveData
                         }
+                    } else {
+                        error.value = "Search failed: ${response.code()}"
                     }
                 }
             } catch (e: Exception) {
                 error.value = e.localizedMessage
+            } finally {
+                loading.value = false
             }
-
-
         }
-
-
-
     }
+
+
     fun getMovie() {
         viewModelScope.launch  {
             loading.value = true

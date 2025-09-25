@@ -2,50 +2,46 @@ package com.example.movamovieapp.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movamovieapp.adapters.MoreLikeAdapter.MoreViewHolder
 import com.example.movamovieapp.databinding.ItemMoreBinding
 import com.example.movamovieapp.model.Result
+class MoreLikeAdapter : ListAdapter<Result, MoreLikeAdapter.MoreViewHolder>(DIFF_CALLBACK) {
 
-class MoreLikeAdapter() : RecyclerView.Adapter<MoreViewHolder>() {
-lateinit var onItemClickListener: ((Result) -> Unit)
-    val morelist = arrayListOf<Result>()
+    var onItemClickListener: ((Result) -> Unit)? = null
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): MoreViewHolder {
-        val view = ItemMoreBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MoreViewHolder(view)
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Result>() {
+            override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean =
+                oldItem.id == newItem.id
 
-    }
-
-    override fun onBindViewHolder(
-        holder: MoreViewHolder,
-        position: Int
-    ) {
-        val item = morelist[position]
-        holder.itemMoreBinding.more = item
-
-
-        holder.itemMoreBinding.cvMore.setOnClickListener {
-            onItemClickListener.invoke(item)
+            override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean =
+                oldItem == newItem
         }
-
-
-
-
     }
 
-    override fun getItemCount(): Int {
-return morelist.size
-    }
-    fun updateMore(newList: List<Result>){
-        morelist.clear()
-        morelist.addAll(newList )
-        notifyDataSetChanged()
+    inner class MoreViewHolder(val binding: ItemMoreBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: Result) {
+            binding.more = item
+            binding.cvMore.setOnClickListener {
+                onItemClickListener?.invoke(item)
+            }
+        }
     }
 
-    class MoreViewHolder(val itemMoreBinding: ItemMoreBinding) :RecyclerView.ViewHolder(itemMoreBinding.root)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoreViewHolder {
+        val binding = ItemMoreBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MoreViewHolder(binding)
+    }
 
+    override fun onBindViewHolder(holder: MoreViewHolder, position: Int) {
+        holder.bind(getItem(position))
+    }
+
+    fun updateMore(list: List<Result>) {
+        submitList(list)
+    }
 }

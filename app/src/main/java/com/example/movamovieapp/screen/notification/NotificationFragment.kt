@@ -7,23 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.mova.base.BaseFragment
 import com.example.movamovieapp.adapters.NotificationAdapter
 import com.example.movamovieapp.databinding.FragmentNotificationBinding
 import com.example.movamovieapp.util.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NotificationFragment : Fragment() {
-    private lateinit var binding: FragmentNotificationBinding
+class NotificationFragment :BaseFragment<FragmentNotificationBinding>(FragmentNotificationBinding::inflate) {
     private val viewModel: NotificationViewModel by viewModels()
     private  val adapter= NotificationAdapter()
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentNotificationBinding.inflate(layoutInflater)
-        return binding.root
-    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

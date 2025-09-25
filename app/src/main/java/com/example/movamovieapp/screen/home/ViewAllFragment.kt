@@ -9,6 +9,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.mova.base.BaseFragment
 import com.example.movamovieapp.adapters.FilmsAdapter
 import com.example.movamovieapp.databinding.FragmentViewAllBinding
 import com.example.movamovieapp.enum1.CategoryMovie
@@ -17,21 +18,13 @@ import com.example.movamovieapp.util.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ViewAllFragment : Fragment() {
-    private lateinit var binding: FragmentViewAllBinding
+class ViewAllFragment : BaseFragment<FragmentViewAllBinding>(FragmentViewAllBinding::inflate) {
+
     private val args: ViewAllFragmentArgs by navArgs()
     private lateinit var adapter: FilmsAdapter
     private val viewModel: VieweAllViewModel by viewModels()
     private var category: String? = null
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentViewAllBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,7 +33,7 @@ class ViewAllFragment : Fragment() {
 
 
 
-        adapter= FilmsAdapter{movieId->
+        adapter = FilmsAdapter { movieId ->
             val action = ViewAllFragmentDirections.actionViewAllFragmentToDetailFragment(movieId)
             findNavController().navigate(action)
 
@@ -48,7 +41,7 @@ class ViewAllFragment : Fragment() {
 
         binding.rvallmovie.adapter = adapter
 
-        val categoryEnum= CategoryMovie.fromApiValue(args.category )
+        val categoryEnum = CategoryMovie.fromApiValue(args.category)
         binding.textViewheader.text = categoryEnum.displayName
 
 
@@ -68,19 +61,20 @@ class ViewAllFragment : Fragment() {
         }
 
         binding.searchedittext222.addTextChangedListener {
-viewModel.searchMovies(it.toString())
+            viewModel.searchMovies(it.toString())
         }
         viewModel.getMovies(categoryEnum.apiValue)
 
 
-binding.imageView16back.setOnClickListener {
-    findNavController().popBackStack()
-}
+        binding.imageView16back.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
 
     }
-    private fun observe(){
-        viewModel.movies.observe(viewLifecycleOwner){
+
+    private fun observe() {
+        viewModel.movies.observe(viewLifecycleOwner) {
             adapter.updateList(it)
         }
 
