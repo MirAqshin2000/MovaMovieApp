@@ -49,7 +49,7 @@ class EditProfileFragment :
                 }
             }
         }
-        binding.buttonEdit.setOnClickListener {
+        binding.buttonEdit2.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             pickImageLauncher.launch(intent)
         }
@@ -141,11 +141,10 @@ class EditProfileFragment :
 
 
 
-        val imageUri = sharedPreferences.getString("image", "")
+        val imageUri = selectedImageUri ?: sharedPreferences.getString("image", null)
         if (!imageUri.isNullOrEmpty()) {
-            binding.editimage.setImageURI(android.net.Uri.parse(imageUri))
-        }
-        else{
+            binding.editimage.setImageURI(Uri.parse(imageUri))
+        } else {
             binding.editimage.setImageResource(R.drawable.default_profile_photo)
         }
 
