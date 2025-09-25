@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/gray"
+    android:background="@color/backgroundColor"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:padding="12dp"
         android:text="@string/english"
-        android:textColor="@color/white"
+        android:textColor="@color/textPrimary1"
         android:fontFamily="@font/urbanist_bold"
         android:textSize="16sp" />
 
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:padding="12dp"
         android:text="@string/azerbaijan"
-        android:textColor="@color/white"
+        android:textColor="@color/textPrimary1"
         android:fontFamily="@font/urbanist_bold"
         android:textSize="16sp" />
 
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:padding="12dp"
         android:text="@string/turkish"
-        android:textColor="@color/white"
+        android:textColor="@color/textPrimary1"
         android:fontFamily="@font/urbanist_bold"
         android:textSize="16sp" />
 
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:padding="12dp"
         android:text="@string/russian"
-        android:textColor="@color/white"
+        android:textColor="@color/textPrimary1"
         android:fontFamily="@font/urbanist_bold"
         android:textSize="16sp" />
 </LinearLayout>

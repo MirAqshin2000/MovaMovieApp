@@ -204,7 +204,7 @@
         android:id="@+id/countryCodePicker1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/textPrimary1"
         app:ccp_autoDetectCountry="true"
         app:ccp_contentColor="@color/textPrimary1"
         app:ccp_defaultNameCode="US"

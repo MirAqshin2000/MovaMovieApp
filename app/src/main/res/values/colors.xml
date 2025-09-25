@@ -16,6 +16,8 @@
     <color name="icon_color">#212121</color>
     <color name="input_background">#FFFFFFFF</color>
     <color name="primary_background_color">#FAFAFA</color>
+    <color name="ccp_text_color">#FFFFFF</color> <!-- white -->
+
 
 
 
