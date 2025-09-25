@@ -69,6 +69,9 @@ class ProfileFragment : Fragment() {
         binding.textView12email.text = prefs.getUserEmail()
 
         binding.materialCardView.setOnClickListener {
+            if (binding.materialCardView.isClickable) {
+                binding.materialCardView.isClickable = false
+            }
             lifecycleScope.launch {
                 binding.animationView22.visible()
                 delay(1500)
@@ -77,6 +80,9 @@ class ProfileFragment : Fragment() {
             }
         }
         binding.constraintLayoutNotifications.setOnClickListener {
+            if (binding.constraintLayoutNotifications.isClickable) {
+                binding.constraintLayoutNotifications.isClickable = false
+            }
             lifecycleScope.launch {
                 binding.animationView22.visible()
                 delay(1500)
@@ -85,15 +91,25 @@ class ProfileFragment : Fragment() {
             }
         }
         binding.constraintLayoutEditProfile.setOnClickListener {
-            lifecycleScope.launch {
-                binding.animationView22.visible()
-                delay(1500)
-                binding.animationView22.gone()
-                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment())
+
+            if (binding.constraintLayoutEditProfile.isClickable) {
+                binding.constraintLayoutEditProfile.isClickable = false
+                lifecycleScope.launch {
+                    binding.animationView22.visible()
+                    delay(1500)
+                    binding.animationView22.gone()
+                    findNavController().navigate(
+                        ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment()
+                    )
+                    binding.constraintLayoutEditProfile.isClickable = true
+                }
             }
         }
 
         binding.constrainthelpcenter.setOnClickListener {
+            if (binding.constrainthelpcenter.isClickable) {
+                binding.constrainthelpcenter.isClickable = false
+            }
             lifecycleScope.launch {
                 binding.animationView22.visible()
                 delay(1500)
@@ -103,6 +119,9 @@ class ProfileFragment : Fragment() {
         }
 
         binding.constraintLayoutprivacy.setOnClickListener {
+            if (binding.constraintLayoutprivacy.isClickable) {
+                binding.constraintLayoutprivacy.isClickable = false
+            }
             lifecycleScope.launch {
                 binding.animationView22.visible()
                 delay(1500)
@@ -118,6 +137,9 @@ class ProfileFragment : Fragment() {
 
 
         binding.constraintLayoutLanguage.setOnClickListener {
+            if (binding.constraintLayoutLanguage.isClickable) {
+                binding.constraintLayoutLanguage.isClickable = false
+            }
             val bottomSheet = BottomSheetDialog(requireContext())
             val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet, null)
             bottomSheet.setContentView(bottomSheetView)
