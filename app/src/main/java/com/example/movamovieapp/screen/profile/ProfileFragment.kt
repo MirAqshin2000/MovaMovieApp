@@ -25,6 +25,8 @@ import com.example.movamovieapp.util.visible
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.io.File
+import java.io.FileOutputStream
 
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBinding::inflate) {
@@ -42,14 +44,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
         super.onViewCreated(view, savedInstanceState)
         observe()
 
-        val savedImage = sharedPreferences.getString("image", null)
-        if (!savedImage.isNullOrEmpty()) {
-            binding.imageView25.setImageURI(Uri.parse(savedImage))
-        } else {
-            binding.imageView25.setImageResource(R.drawable.default_profile_photo)
-        }
 
-
+        // --- 1. Launcher register ---
         pickImageLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
@@ -57,17 +53,34 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
                 val data: Intent? = result.data
                 val uri = data?.data
                 if (uri != null) {
-                    binding.imageView25.setImageURI(uri)
-                    sharedPreferences.edit()
-                        .putString("image", uri.toString())
-                        .apply()
+                    // --- 2. Şəkili internal storage-a kopyala ---
+                    val path = saveImageToInternalStorage(uri)
+                    if (path != null) {
+                        sharedPreferences.edit()
+                            .putString("image", path)
+                            .apply()
+                        binding.imageView25.setImageURI(Uri.fromFile(File(path)))
+                    }
                 }
             }
         }
 
+        // --- 3. SharedPreferences-dən şəkil yüklə ---
+        val savedPath = sharedPreferences.getString("image", null)
+        val file = savedPath?.let { File(it) }
+        if (file?.exists() == true) {
+            binding.imageView25.setImageURI(Uri.fromFile(file))
+        } else {
+            binding.imageView25.setImageResource(R.drawable.default_profile_photo)
+        }
+
+
+
 
         binding.buttonEdit.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+            intent.addCategory(Intent.CATEGORY_OPENABLE)
+            intent.type = "image/*"
             pickImageLauncher.launch(intent)
         }
 
@@ -175,6 +188,21 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
         }
 
 
+    }
+
+    private fun saveImageToInternalStorage(uri: Uri): String? {
+        return try {
+            requireContext().contentResolver.openInputStream(uri)?.use { inputStream ->
+                val file = File(requireContext().filesDir, "profile_image.jpg")
+                FileOutputStream(file).use { outputStream ->
+                    inputStream.copyTo(outputStream)
+                }
+                file.absolutePath
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
     }
 
 

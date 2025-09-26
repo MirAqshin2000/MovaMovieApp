@@ -23,6 +23,7 @@ import com.example.movamovieapp.util.gone
 import com.example.movamovieapp.util.visible
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.io.File
 
 
 class EditProfileFragment :
@@ -33,24 +34,18 @@ class EditProfileFragment :
     private lateinit var sharedPreferences: SharedPreferences
 
     private var selectedImageUri: String? = null
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Activity.MODE_PRIVATE)
 
-        pickImageLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()
-        ) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data: Intent? = result.data
-                val uri = data?.data
-                if (uri != null) {
-                    binding.editimage.setImageURI(uri)
-                    selectedImageUri = uri.toString()
-                }
-            }
-        }
+        setupImagePicker()
+        loadUserData()
+
+
         binding.buttonEdit2.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+            intent.addCategory(Intent.CATEGORY_OPENABLE)
+            intent.type = "image/*"
             pickImageLauncher.launch(intent)
         }
 
@@ -130,6 +125,36 @@ class EditProfileFragment :
             }
         }
     }
+
+    private fun setupImagePicker() {
+        pickImageLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val uri = result.data?.data ?: return@registerForActivityResult
+                val path = saveImageToInternalStorage(uri)
+                if (path != null) {
+                    selectedImageUri = path
+                    binding.editimage.setImageURI(Uri.fromFile(File(path)))
+                }
+            }
+        }
+    }
+    private fun saveImageToInternalStorage(uri: Uri): String? {
+        return try {
+            val inputStream = requireContext().contentResolver.openInputStream(uri)
+            val file = File(requireContext().filesDir, "profile_image.jpg")
+            val outputStream = file.outputStream()
+            inputStream?.copyTo(outputStream)
+            inputStream?.close()
+            outputStream.close()
+            file.absolutePath
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
     private fun loadUserData(){
         binding.editnametextinput.setText(sharedPreferences.getString("Fullname", ""))
         binding.nicknameedittext.setText(sharedPreferences.getString("nickname", ""))
@@ -141,13 +166,13 @@ class EditProfileFragment :
 
 
 
-        val imageUri = selectedImageUri ?: sharedPreferences.getString("image", null)
-        if (!imageUri.isNullOrEmpty()) {
-            binding.editimage.setImageURI(Uri.parse(imageUri))
+        val savedPath = sharedPreferences.getString("image", null)
+        val file = savedPath?.let { File(it) }
+        if (file?.exists() == true) {
+            binding.editimage.setImageURI(Uri.fromFile(file))
         } else {
             binding.editimage.setImageResource(R.drawable.default_profile_photo)
         }
-
     }
     private fun saveUserData(){
         sharedPreferences.edit().apply {
@@ -157,7 +182,7 @@ class EditProfileFragment :
             putString("country", binding.autoCompleteCountry.text.toString())
             putString("gender", binding.autoCompleteGender.text.toString())
             putString("phone", binding.editTextPhone.text.toString())
-            putString("image", selectedImageUri?: "")
+            selectedImageUri?.let { putString("image", it) }
             apply()
 
             Toast.makeText(requireContext(), "Data saved successfully", Toast.LENGTH_SHORT).show()
