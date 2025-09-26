@@ -136,6 +136,11 @@ class EditProfileFragment :
                 if (path != null) {
                     selectedImageUri = path
                     binding.editimage.setImageURI(Uri.fromFile(File(path)))
+
+                    sharedPreferences.edit().apply {
+                        putString("image", path)
+                        apply()
+                    }
                 }
             }
         }
