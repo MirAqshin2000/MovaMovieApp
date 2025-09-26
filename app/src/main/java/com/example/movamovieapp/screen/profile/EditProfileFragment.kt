@@ -33,19 +33,25 @@ class EditProfileFragment :
 
     private lateinit var sharedPreferences: SharedPreferences
 
+    private val firebaseAuth = com.google.firebase.auth.FirebaseAuth.getInstance()
+
+
     private var selectedImageUri: String? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Activity.MODE_PRIVATE)
 
+        sharedPreferences = getUserSharedPreferences()
         setupImagePicker()
         loadUserData()
 
 
         binding.buttonEdit2.setOnClickListener {
-            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-            intent.addCategory(Intent.CATEGORY_OPENABLE)
-            intent.type = "image/*"
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+                addCategory(Intent.CATEGORY_OPENABLE)
+                type = "image/*"
+                flags = Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION or
+                        Intent.FLAG_GRANT_READ_URI_PERMISSION
+            }
             pickImageLauncher.launch(intent)
         }
 
@@ -113,7 +119,6 @@ class EditProfileFragment :
             ).show()
             binding.autoCompleteCountry.showDropDown()
         }
-        sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Activity.MODE_PRIVATE)
 
         binding.updatebutton.setOnClickListener {
             lifecycleScope.launch {
@@ -132,18 +137,32 @@ class EditProfileFragment :
         ) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val uri = result.data?.data ?: return@registerForActivityResult
+
+                requireContext().contentResolver.takePersistableUriPermission(
+                    uri,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+
                 val path = saveImageToInternalStorage(uri)
                 if (path != null) {
                     selectedImageUri = path
-                    binding.editimage.setImageURI(Uri.fromFile(File(path)))
 
-                    sharedPreferences.edit().apply {
-                        putString("image", path)
-                        apply()
-                    }
+                    val bitmap = android.graphics.BitmapFactory.decodeFile(path)
+                    binding.editimage.setImageBitmap(bitmap)
+
+                    sharedPreferences.edit().putString("image", path).apply()
                 }
             }
         }
+    }
+
+
+    private fun getUserSharedPreferences(): SharedPreferences {
+        val currentUserId = firebaseAuth.currentUser?.uid ?: "guest"
+        return requireContext().getSharedPreferences(
+            "MyPrefs_$currentUserId",
+            Activity.MODE_PRIVATE
+        )
     }
     private fun saveImageToInternalStorage(uri: Uri): String? {
         return try {
@@ -170,11 +189,11 @@ class EditProfileFragment :
         binding.editTextPhone.setText(sharedPreferences.getString("phone", ""))
 
 
-
         val savedPath = sharedPreferences.getString("image", null)
         val file = savedPath?.let { File(it) }
         if (file?.exists() == true) {
             binding.editimage.setImageURI(Uri.fromFile(file))
+            selectedImageUri = savedPath
         } else {
             binding.editimage.setImageResource(R.drawable.default_profile_photo)
         }
@@ -196,5 +215,8 @@ class EditProfileFragment :
     override fun onResume() {
         super.onResume()
         loadUserData()
-        }
     }
+
+
+
+}

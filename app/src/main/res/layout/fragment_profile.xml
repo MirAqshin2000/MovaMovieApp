@@ -60,6 +60,7 @@
             android:layout_width="40dp"
             android:layout_height="45dp"
             android:backgroundTint="@color/red"
+            android:visibility="gone"
             app:cornerRadius="10dp"
             app:icon="@drawable/edit"
             app:iconGravity="top"

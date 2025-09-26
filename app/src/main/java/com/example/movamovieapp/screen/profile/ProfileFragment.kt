@@ -31,11 +31,12 @@ import java.io.FileOutputStream
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBinding::inflate) {
     private lateinit var pickImageLauncher: ActivityResultLauncher<Intent>
+    private val firebaseAuth = com.google.firebase.auth.FirebaseAuth.getInstance()
 
-    val sharedPreferences: SharedPreferences by lazy {
-
-        requireContext().getSharedPreferences("MyPrefs", Activity.MODE_PRIVATE)
+    private val sharedPreferences: SharedPreferences by lazy {
+        getUserSharedPreferences()
     }
+
 
     private val viewModel: ProfileViewModel by viewModels()
 
@@ -45,7 +46,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
         observe()
 
 
-        // --- 1. Launcher register ---
         pickImageLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
@@ -53,7 +53,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
                 val data: Intent? = result.data
                 val uri = data?.data
                 if (uri != null) {
-                    // --- 2. Şəkili internal storage-a kopyala ---
                     val path = saveImageToInternalStorage(uri)
                     if (path != null) {
                         sharedPreferences.edit()
@@ -65,7 +64,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
             }
         }
 
-        // --- 3. SharedPreferences-dən şəkil yüklə ---
         val savedPath = sharedPreferences.getString("image", null)
         val file = savedPath?.let { File(it) }
         if (file?.exists() == true) {
@@ -189,6 +187,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
 
 
     }
+    private fun getUserSharedPreferences(): SharedPreferences {
+        val currentUserId = firebaseAuth.currentUser?.uid ?: "guest"
+        return requireContext().getSharedPreferences(
+            "MyPrefs_$currentUserId",
+            Activity.MODE_PRIVATE
+        )
+    }
+
 
     private fun saveImageToInternalStorage(uri: Uri): String? {
         return try {

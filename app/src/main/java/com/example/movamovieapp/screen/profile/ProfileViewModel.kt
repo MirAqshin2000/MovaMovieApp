@@ -14,7 +14,6 @@ class ProfileViewModel@Inject constructor(
     private val isdarkMode = MutableLiveData<Boolean>()
     val isDarkMode: LiveData<Boolean> = isdarkMode
 
-
     fun setDarkMode(isDark: Boolean, sharedPreferences: SharedPreferences) {
         isdarkMode.value = isDark
         sharedPreferences.edit().putBoolean("dark_mode", isDark).apply()
@@ -25,6 +24,9 @@ class ProfileViewModel@Inject constructor(
             else AppCompatDelegate.MODE_NIGHT_NO
         )
     }
+
+
+
 }
 
 
