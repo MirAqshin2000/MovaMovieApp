@@ -226,9 +226,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
         btnLogout.setOnClickListener {
             bottomSheet.dismiss()
             val prefs = SharedPrefManager(requireContext())
-            prefs.clearUser()
+            prefs.logoutButKeepData()
 
-            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToLetsFragment())
+            requireActivity().finish()
+            requireActivity().startActivity(requireActivity().intent)
         }
         bottomSheet.show()
     }

@@ -9,25 +9,21 @@ import androidx.core.content.edit
 @Singleton
 class SharedPrefManager@Inject constructor
     (context: Context) {
+
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE)
 
 
-    fun isFirstLaunch(bool: Boolean): Boolean {
+    fun isFirstLaunch(): Boolean {
         return sharedPreferences.getBoolean("is_first_launch", true)
     }
 
-    fun setLaunched() {
-        sharedPreferences.edit { putBoolean("is_first_launch", true) }
-    }
-    fun setFirstLaunch(bool: Boolean) {
-        sharedPreferences.edit {
-            putBoolean("is_first_launch", bool).apply()
-        }
+    fun setFirstLaunch(isFirst: Boolean) {
+        sharedPreferences.edit().putBoolean("is_first_launch", isFirst).apply()
     }
 
     fun saveIsLoggedIn(isLoggedIn: Boolean) {
-        sharedPreferences.edit { putBoolean("is_logged_in", isLoggedIn) }
+        sharedPreferences.edit().putBoolean("is_logged_in", isLoggedIn).apply()
     }
 
     fun isLoggedIn(): Boolean {
@@ -44,9 +40,8 @@ class SharedPrefManager@Inject constructor
     fun saveToken(token: String) {
         sharedPreferences.edit().putString("token", token).apply()
     }
-    fun saveUser(user: String) {
-        sharedPreferences.edit { putString("user", user.toString()) }
-
+    fun logoutButKeepData() {
+        saveIsLoggedIn(false)
     }
 
     fun addToken(token: String) {

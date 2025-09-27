@@ -100,17 +100,20 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
 
                 is RegisterViewModel.RegisterUiState.Success -> {
                     binding.animationView22.gone()
-                    if (binding.checkboxRemember.isChecked) {
-                        val prefs = SharedPrefManager(requireContext())
-                        prefs.saveIsLoggedIn(true)
-                        prefs.saveEmail(it.email)
-                        prefs.saveUser(it.email)
+                    val prefs = SharedPrefManager(requireContext())
 
+                    prefs.saveUserEmail(it.email)
+
+                    if (binding.checkboxRemember.isChecked) {
+                        prefs.saveIsLoggedIn(true)
                     }
+
                     Toast.makeText(requireContext(), "Registered Successfully: ${it.email}", Toast.LENGTH_SHORT)
                         .show()
-                    findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToHomeFragment())
 
+                    findNavController().navigate(
+                        RegisterFragmentDirections.actionRegisterFragmentToHomeFragment()
+                    )
                 }
 
             }

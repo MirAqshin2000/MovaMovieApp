@@ -27,15 +27,19 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
 
         lifecycleScope.launch {
-
             delay(2500)
-            if (prefs.isFirstLaunch(false)) {
-                findNavController().navigate(R.id.action_splashFragment_to_onboardingFragment)
-            } else if (prefs.isLoggedIn()) {
-                findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
-            } else {
-                findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
 
+            when {
+                prefs.isFirstLaunch() -> {
+                    prefs.setFirstLaunch(false)
+                    findNavController().navigate(R.id.action_splashFragment_to_onboardingFragment)
+                }
+                prefs.isLoggedIn() -> {
+                    findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+                }
+                else -> {
+                    findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+                }
             }
         }
     }
