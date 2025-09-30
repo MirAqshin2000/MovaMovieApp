@@ -37,6 +37,7 @@ class EditProfileFragment :
 
 
     private var selectedImageUri: String? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
