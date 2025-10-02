@@ -252,8 +252,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 val messageTextView = dialogView.findViewById<TextView>(R.id.tvMessage)
                 val noButton = dialogView.findViewById<TextView>(R.id.btnNo)
                 val yesButton = dialogView.findViewById<TextView>(R.id.btnYes)
-                titleTextView.text = "Log Out"
-                messageTextView.text = "Are you sure you want to log out?"
+                titleTextView.text = "Exit App"
+                messageTextView.text = "Are you sure you want to exit ?"
                 noButton.setOnClickListener {
                     alertDialog.dismiss()
                 }
