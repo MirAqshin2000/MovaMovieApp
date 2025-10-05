@@ -28,11 +28,13 @@ class SubscribeFragment : BaseFragment<FragmentSubscribeBinding>(FragmentSubscri
 
         }
         binding.materialCardView6.setOnClickListener {
+            binding.materialCardView6.isEnabled = false
             lifecycleScope.launch {
                 binding.animationView22.visible()
                 delay(1500)
                 binding.animationView22.gone()
                 findNavController().navigate(
+
                     SubscribeFragmentDirections.actionSubscribeFragmentToPaymentFragment(
                         toString()
                     )
@@ -41,6 +43,7 @@ class SubscribeFragment : BaseFragment<FragmentSubscribeBinding>(FragmentSubscri
         }
 
             binding.materialcardview7.setOnClickListener {
+                binding.materialcardview7.isEnabled = false
                 lifecycleScope.launch {
                     binding.animationView22.visible()
                     delay(1500)

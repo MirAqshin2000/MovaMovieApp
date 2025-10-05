@@ -55,6 +55,7 @@ class SummaryFragment : BaseFragment<FragmentSummaryBinding>(FragmentSummaryBind
             findNavController().popBackStack()
         }
         binding.button5confirmpayment.setOnClickListener {
+            binding.button5confirmpayment.isEnabled = false
             lifecycleScope.launch {
                 binding.animationView22.visible()
                 delay(1300)

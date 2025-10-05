@@ -88,9 +88,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
         binding.textView12email.text = prefs.getUserEmail()
 
         binding.materialCardView.setOnClickListener {
-            if (binding.materialCardView.isClickable) {
-                binding.materialCardView.isClickable = false
-            }
+
+         binding.materialCardView.isEnabled=false
             lifecycleScope.launch {
                 binding.animationView22.visible()
                 delay(1500)

@@ -63,6 +63,7 @@ class PaymentFragment : BaseFragment<FragmentPaymentBinding>(FragmentPaymentBind
 
 
         binding.button5addcard.setOnClickListener {
+            binding.button5addcard.isEnabled = false
             lifecycleScope.launch {
                 binding.animationView22.visible()
                 delay(2000)
@@ -90,6 +91,7 @@ class PaymentFragment : BaseFragment<FragmentPaymentBinding>(FragmentPaymentBind
         }
 
         binding.button4.setOnClickListener {
+            binding.button4.isEnabled = false
             lifecycleScope.launch {
                 binding.animationView22.visible()
                 delay(2000)
